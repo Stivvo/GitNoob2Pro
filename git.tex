@@ -1,10 +1,12 @@
-\documentclass{article}
+\documentclass{article} \usepackage[textwidth=18cm,textheight=18cm]{geometry}
 
 \title{Git} \date{\vspace{-5ex}} \author{Stefano Entatti}
 
 \begin{document}
 
 \maketitle
+
+\newcommand{\code}[1]{\texttt{#1}}
 
 \section{Cos'è un sistema di controllo di versione}
 
@@ -125,7 +127,7 @@ cd linux
 Ogni volta che si fa una certa quantità di cambiamenti è utile fare un commit,
 ovvero segnare un punto nello sviluppo a cui sarà sempre possibile tornare. 
 
-\texttt{\$ git commit}
+\code{\$ git commit}
 
 Questo comando aprirà l'editor di default di git. Nella prima riga va scritto il
 titolo del commit. è una buona norma che il titolo mantenga una lunghezza
@@ -139,7 +141,9 @@ screen di vim mentre si scrive il commit
 se non si necessita di una descrizione si può utilizzare l'opzione -m
 (``message''):
 
-\texttt{\$ git commit -m "add options page"}
+\begin{verbatim}
+$ git commit -m "add options page"
+\end{verbatim}
 
 Ci sono varie teorie  sulla lunghezza e il contenuto dei messaggi e delle
 descrizioni dei commit e su ogni \emph{quanto} si debba committare. In genere un
@@ -150,7 +154,9 @@ capire cosa si era fatto senza controlare il codice.
 
 L'opzione -s (``signed'') aggiunge la firma dell'autore nella descrizione:
 
-\texttt{Signed-off-by: user1 <user1@gmail.com>}
+\begin{verbatim}
+Signed-off-by: user1 <user1@gmail.com>
+\end{verbatim}
 
 \subsection{Add, rm, reset}
 
@@ -161,9 +167,10 @@ comprese nel prossimo commit.
 
 Se ad esempio si modificano functions.cpp, functions.hpp e main.cpp:
 
-\texttt{\$ git add functions.cpp functions.hpp}
-
-\texttt{\$ git commit -m "added get function"}
+\begin{verbatim}
+$ git add functions.cpp functions.hpp
+$ git commit -m "added get function"
+\end{verbatim}
 
 In questo caso le moficiche di main.cpp non verranno aggiunte al commit "added
 get function".
@@ -178,8 +185,10 @@ L'opzione -a (``all'') di commit permette di saltare questo passaggio.
 
 Alcune opzioni utili per add:
 
-\begin{itemize} \item -A aggiunge qualsiasi modifica all'area di staging \item .
-come -A ma non aggiunge la rimozione dei file \item -u non aggiunge i nuovi file
+\begin{itemize}
+    \item -A aggiunge qualsiasi modifica all'area di staging
+    \item . come -A ma non aggiunge la rimozione dei file
+    \item -u non aggiunge i nuovi file
 \end{itemize}
 
 Il comando git rm fa il contrario di add, mentre reset pulisce completamente la
@@ -190,36 +199,62 @@ staging area.
 Permette di caricare un numero illimitato di commit su un branch di un
 repository remoto. Le modifiche remote vengono unite a quelle locali.
 
-immagine di push con con i  +e - delle aggiunte
-
 Git non permette di effettuare un push se il repository remoto contiene commit
 che non sono presenti su quello locale, perchè sul repository remoto andrebbero
-persi.  Se ci si trova in questa situazione occorre effettuare prima un pull.
+persi. Se ci si trova in questa situazione occorre effettuare prima un pull.
+
+\begin{verbatim}
+Username for 'https://github.com': Stivvo
+Password for 'https://Stivvo@github.com':
+To https://github.com/Stivvo/msTest.git
+ ! [rejected]        master -> master (fetch first)
+error: push di alcuni riferimenti su 'https://github.com/Stivvo/msTest.git' non riuscito
+Gli aggiornamenti sono stati rifiutati perché il remoto contiene delle
+modifiche che non hai localmente. Ciò solitamente è causato da un push
+da un altro repository allo stesso riferimento. Potresti voler integrare
+le modifiche remote (ad es. con 'git pull ...') prima di eseguire
+nuovamente il push.
+Vedi la 'Nota sui fast forward' in 'git push --help' per ulteriori
+dettagli
+\end{verbatim}
 
 \subsection{Merge, Pull, fetch}
 
-Merge permette di fondere le modifiche di due branch, locali o remoti (o anche
-commit diversi dello stesso brancH). Se git rivela dei conflitti segnala
-all'utente di risolverli manualmente. Le porzioni interessate da conflitti
-mantengono entrambe le versioni, evidenziate da git con una serie di caratteri,
-ed è l'utente che deve decidere quale eliminare. Alla fine di questo processo
-viene creato un commit di merge.
+\textbf{Merge} permette di fondere le modifiche di due branch, locali o remoti (o anche
+commit diversi dello stesso branch). Se si effettua un pull come suggerito
+sopra, avverrà infatti un merge. Se git rivela dei conflitti segnala all'utente
+di risolverli manualmente. 
 
-immagine del prompt dei conflitti immagine dei conflitti nell'editor
-immagine/codice del commit di merge
-
-Fetch permette di aggiornare le copie locali ad un repository remoto. In questo
+\textbf{Fetch} permette di aggiornare le copie locali ad un repository remoto. In questo
 modo si creeranno come due copie dello stesso repository, una su cui si sta
 lavorando offline e una aggiornata alla versione remota. Questo permette
 effettuare il merge tra la versione remota e quella locale anche in assenza di
 connessione.
 
-Pull è in sostanza un fetch seguito da un merge, ed è quello che capita di
+\textbf{Pull} è in sostanza un fetch seguito da un merge, ed è quello che capita di
 utilzzare puù spesso. In generale pull fonnde ciò che si trova al momento sul
 repository remoto con quello locale.
 
 Pull e fetch chiamati senza argomenti vanno a prelevare la versione remota del
 branch su cui si è localmente.
+
+\begin{verbatim}
+<<<<<<< HEAD
+class FirstClass {
+=======
+class SecondClass {
+>>>>>>> 4ceb8e7c4fe78b59c00be99418f54280df19078c
+\end{verbatim}
+
+Questo è il caso in cui mentre il repository locale è rimasto indietro di alcuni
+commit la classe è stata rinominata in FirstClass. Nel frattempo un altro
+sviluppatore ha fatto un push di un commit in cui ha rinominato la stessa classe in
+SecondClass. Quando il primo si trova a dover fare il pull delle modifiche del
+secondo, per risovere i conflitti di merge deve scegliere tra la versione locale
+(HEAD) e quella dell'altro,
+identificata dal codice hash del commit che ha rinominato la classe in
+SecondClass. Il prossimo push sarà quello del commit di merge, automaticamente
+creato da git.
 
 \subsection{Checkout, Branch, merge}
 
@@ -229,26 +264,21 @@ esempio git branch
 
 L'opzione -d invece lo elimina:
 
-esempio git branch -d
+\code{\$ git branch -d}
 
 L'opzione --all mostra tutti i branch locali e remoti. Il branch seguito
 dall'asterisco è quello su cui si è posizionati correntemtente.
 
-\texttt{\$ git branch --all}
-
-\texttt{master}
-
-\texttt{noMulticast}
-
-\texttt{serverThread}
-
-\texttt{remotes/origin/HEAD - > origin / master (rosso)}
-
-\texttt{remotes/origin/master}
-
-\texttt{remotes/origin/noMulticast}
-
-\texttt{remotes/origin/serverThread}
+\begin{verbatim}
+$ git branch --all
+* master
+  noMulticast
+  serverThread
+  remotes/origin/HEAD - > origin / master
+  remotes/origin/master
+  remotes/origin/noMulticast
+  remotes/origin/serverThread}
+\end{verbatim}
 
 Per passare da un branch ad un altro si utilzza checkout
 
@@ -268,9 +298,12 @@ utilizzati da git, tra cui informazioni sui branch, sui commit. Nei sistemi
 operativi unix una cartella preceduta da un punto è nascosta e quindi occorre
 utilizzare il parametro -a di ls per poterla vedere.
 
-\texttt{\$ ls .git/}
-
-\texttt{\$ ls .git/refs}
+\begin{verbatim}
+$ ls .git/
+...
+$ ls .git/refs
+...
+\end{verbatim}
 
 è molto importante la cartella refs. Contiene:
 
@@ -279,12 +312,16 @@ utilizzare il parametro -a di ls per poterla vedere.
 In git una head è un riferimento ad un branch o ad un commit di un determinato
 branch, locale o remoto. Una lista delle head disponibili:
 
+\begin{verbatim}
 ls .git/refs/heads
+\end{verbatim}
 
 HEAD è un file che punta all'ultimo commit del branch in cui si sta lavorando
 nel repository locale.
 
+\begin{verbatim}
 cat .git/HEAD
+\end{verbatim}
 
 Nel caso in cui si voglia ritornare ad un commit precedente si entra nello stato
 di \emph{deatached head}, ovvero facendo il checkout su uno specifico commit

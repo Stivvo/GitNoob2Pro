@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1581971813 "git.tex" "git.pdf" "git" 1581971813
+["pdflatex"] 1582146785 "git.tex" "git.pdf" "git" 1582146785
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1572595918 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1572595918 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1572595918 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -23,15 +23,20 @@
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1572595918 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1572595918 37944 359e864bd06cde3b1cf57bb20757fb06 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb" 1572595918 31099 c85edf1dd5b9e826d67c9c7293b6786c ""
+  "/usr/share/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1572595918 1458 43ab4710dc82f3edeabecd0d099626b2 ""
+  "/usr/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty" 1572595918 1300 96620a7d94bc0ceb261d968770ce8315 ""
+  "/usr/share/texmf-dist/tex/generic/oberdiek/ifvtex.sty" 1572595918 6797 90b7f83b0ad46826bc16058b1e3d48df ""
   "/usr/share/texmf-dist/tex/latex/base/article.cls" 1572595918 19931 9ab70b303cca263e0120c205e98dee99 ""
   "/usr/share/texmf-dist/tex/latex/base/omscmr.fd" 1572595918 2470 eac9b55b50df56621bd69fa9b6495a74 ""
   "/usr/share/texmf-dist/tex/latex/base/size10.clo" 1572595918 8405 41d2bb848d0640ceaee96d90b89378b7 ""
+  "/usr/share/texmf-dist/tex/latex/geometry/geometry.sty" 1572595918 41645 0653033a985e06c69a2a9cea9a95e31a ""
+  "/usr/share/texmf-dist/tex/latex/graphics/keyval.sty" 1572595918 2590 3aa06f747eb7e19c8d68947f1828fd06 ""
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1572595918 33301 a3134070eacafb10b1f371612ce2650d ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1581969489 4572998 f9631eebba48c3ee98e5d310044b0a09 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1581969466 8044939 ffb9d4ea9e5527275ecd781f4c604a66 ""
-  "git.aux" 1581971813 2303 3dc834d896a72ecf90e2c8679c87e354 "pdflatex"
-  "git.tex" 1581971813 12904 8202c121f20da468222482afffe45b1d ""
+  "git.aux" 1582146785 2303 74fb7013064a4ff61ceb796d88c7a76a "pdflatex"
+  "git.tex" 1582146784 14236 2e58c40d2635e652eaa479ca0ef7e259 ""
   (generated)
-  "git.aux"
   "git.log"
   "git.pdf"
+  "git.aux"

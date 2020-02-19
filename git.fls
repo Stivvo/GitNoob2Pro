@@ -1,4 +1,4 @@
-PWD /home/stefano/Sync/dispensaGit
+PWD /home/stefano/prog/GitNoob2ProIta
 INPUT /usr/share/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
 INPUT git.tex
@@ -7,6 +7,16 @@ INPUT /usr/share/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/share/texmf-dist/tex/latex/base/size10.clo
+INPUT /usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT /usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT /usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT /usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT /usr/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+INPUT /usr/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+INPUT /usr/share/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+INPUT /usr/share/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+INPUT /usr/share/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+INPUT /usr/share/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 INPUT git.aux
 INPUT git.aux
 OUTPUT git.aux
