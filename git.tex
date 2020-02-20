@@ -2,6 +2,7 @@
 
 \title{Git} \date{\vspace{-5ex}} \author{Stefano Entatti}
 \usepackage{hyperref}
+\usepackage{graphicx}
 \setlength{\parindent}{10pt}
 
 \begin{document}
@@ -147,7 +148,11 @@ seconda riga inizia la descrizione, che può avere una lunghezza molto più ampi
 per spiegare in modo discorsivo cosa si è fatto, perchè e se eventualmente ha
 causato dei problemi.
 
-screen di vim mentre si scrive il commit
+\begin{figure}
+\includegraphics[width=6in]{vimEditCommit.png}
+\centering
+\caption{scrittura del testo di un commit in vim}
+\end{figure}
 
 se non si necessita di una descrizione si può utilizzare l'opzione -m
 (``message''):
