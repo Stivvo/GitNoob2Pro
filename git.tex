@@ -288,6 +288,16 @@ M	git.tex
 Si è passati al branch 'develop'
 \end{verbatim}
 
+Se si prova a eseguire un push dal branch appena creato occorre
+aggiungerlo alla lista dei branch remoti:
+
+\begin{verbatim}
+fatal: Il branch corrente develop non ha alcun branch upstream.
+Per eseguire il push del branch corrente ed impostare il remoto come upstream, usa
+
+    git push --set-upstream origin develop
+\end{verbatim}
+
 L'opzione -d invece lo elimina. Non è possibile eliminare il branch corrente:
 
 \begin{verbatim}
@@ -301,16 +311,15 @@ dall'asterisco è quello su cui si è posizionati correntemtente.
 
 \begin{verbatim}
 $ git branch --all
-* master
-  noMulticast
-  serverThread
-  remotes/origin/HEAD - > origin / master
+* develop
+  master
+  temp
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/develop
   remotes/origin/master
-  remotes/origin/noMulticast
-  remotes/origin/serverThread}
 \end{verbatim}
 
-Per passare da un branch ad un altro si utilzza checkout
+In questo caso, temp è solamente locale. Per passare da un branch ad un altro si utilzza checkout
 
 esempio su checkout 
 
