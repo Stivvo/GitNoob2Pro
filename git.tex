@@ -67,14 +67,15 @@ git direttamente dall'IDE.
 
 \section{Branching}
 
-Git può gestire più copie dello stesso progetto, chiamate branch. Ogni branch ha
-un proprio nome e più persone possono lavorare sullo stesso branch
-``contemporaneamente'', ma può tornare anche utile allo stesso sviluppatore
-modificare alternativamente più branch.
+Git e' in grado di gestire contemporaneamente piu' sviluppi all'interno della
+stessa copia del progetto, questi si chiamano branch. Con piu' sviluppi si 
+intendono piu' tipologie di modifiche differenti anche all'interno dello stesso file.
+In questo si puo' saltare da uno sviluppo all'altro senza perdere nessuna modifica
+e senza avere piu' copie del progetto.
 
 Ogni repository git possiede almeno un branch, chiamato \textbf{master}.
 Possono essere creati infiniti branch, ognuno dei quali può essere utilizzato
-per la realizzazione di una particolare feature, in modo che modifiche su parti
+per la realizzazione di una particolare funzionalita', in modo che modifiche su parti
 molto diverse del codice non possano causare conflitti. Spesso un singolo
 sviluppatore lavora su un proprio branch, in modo da non dover gestire anche i
 cambiamenti fatti da altri mentre svolge il suo compito. 
@@ -95,8 +96,8 @@ da master.
 Ovviamente, due branch possono essere uniti tramite un \textbf{merge}. Gli
 algoritmi di merge confrontano due branch riga per riga, manentendo quella
 appartenente al branch in cui è stata modificata. Se però la stessa riga è stata
-cambiata in entrambi i branch, git richiede all'utente di scegliere quale
-mantenere.
+cambiata in entrambi i branch si crea un conflitto e git richiede all'utente di 
+risolverlo a mano.
 
 Si può passare in qualsiasi momento da un branch all'altro.
 
@@ -108,9 +109,10 @@ funzionalità. Ogni comando (di seguito i principali) è sempre preceduto da
 (tratteremo le principali per ogni comando), spesso precedute da un singolo o da
 un doppio meno. 
 
-\subsection{Clone, init}
+\subsection{init, clone}
 
-Per creare un nuovo repository locale si utilizza init:
+Per creare un nuovo repository locale si utilizza init (stando all'interno
+della cartella del progetto del quale si vuole tenere traccia):
 
 git init prova Inizializzato repository Git vuoto in /home/user/prova/.git/
 
