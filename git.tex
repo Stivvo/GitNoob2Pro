@@ -114,24 +114,29 @@ un doppio meno.
 Per creare un nuovo repository locale si utilizza init (stando all'interno
 della cartella del progetto del quale si vuole tenere traccia):
 
-git init prova Inizializzato repository Git vuoto in /home/user/prova/.git/
+\begin{verbatim}
+$ git init prova
+Inizializzato repository Git vuoto in /home/user/prova/.git/
+\end{verbatim}
 
 Per copiare un intero repository remoto si utilizza git clone. Viene scaricato
 solo il branch master, ma una volta clonato si può accedere a tutti gli altri
 
-git clone https://github.com/torvalds/linux.git
+\begin{verbatim}
+$ git clone https://github.com/torvalds/linux.git
+\end{verbatim}
 
 Per utilizzare tutti gli altri comandi, occorre posizionarsi all' interno della
 cartella del repository, che viene creata in automatico da clone e init.
-
-cd linux
 
 \subsection{Commit}
 
 Ogni volta che si fa una certa quantità di cambiamenti è utile fare un commit,
 ovvero segnare un punto nello sviluppo a cui sarà sempre possibile tornare. 
 
-\code{\$ git commit}
+\begin{verbatim}
+$ git commit
+\end{verbatim}
 
 Questo comando aprirà l'editor di default di git. Nella prima riga va scritto il
 titolo del commit. è una buona norma che il titolo mantenga una lunghezza
@@ -190,9 +195,9 @@ L'opzione -a (``all'') di commit permette di saltare questo passaggio.
 Alcune opzioni utili per add:
 
 \begin{itemize}
-    \item -A aggiunge qualsiasi modifica all'area di staging
-    \item . come -A ma non aggiunge la rimozione dei file
-    \item -u non aggiunge i nuovi file
+    \item \code{-A} aggiunge qualsiasi modifica all'area di staging
+    \item \code{.} come -A ma non aggiunge la rimozione dei file
+    \item \code{-u} non aggiunge i nuovi file
 \end{itemize}
 
 Il comando git rm fa il contrario di add, mentre reset pulisce completamente la
@@ -208,6 +213,7 @@ che non sono presenti su quello locale, perchè sul repository remoto andrebbero
 persi. Se ci si trova in questa situazione occorre effettuare prima un pull.
 
 \begin{verbatim}
+$ git push
 Username for 'https://github.com': Stivvo
 Password for 'https://Stivvo@github.com':
 To https://github.com/Stivvo/msTest.git
@@ -262,29 +268,58 @@ creato da git.
 
 \subsection{Checkout, Branch, merge}
 
-Git branch senza opzioni viene utilizzato per creare un nuovo branch.
+Git branch senza opzioni viene utilizzato per creare un nuovo branch locale. La
+creazione del branch develop:
 
-esempio git branch
+\begin{verbatim}
+$ git branch develop
+\end{verbatim}
 
-L'opzione -d invece lo elimina:
+Per posizionarsi su develop:
 
-\code{\$ git branch -d}
+\begin{verbatim}
+$ git checkout develop
+M	git.aux
+M	git.fdb_latexmk
+M	git.log
+M	git.pdf
+M	git.synctex.gz
+M	git.tex
+Si è passati al branch 'develop'
+\end{verbatim}
+
+Se si prova a eseguire un push dal branch appena creato occorre
+aggiungerlo alla lista dei branch remoti:
+
+\begin{verbatim}
+fatal: Il branch corrente develop non ha alcun branch upstream.
+Per eseguire il push del branch corrente ed impostare il remoto come upstream, usa
+
+    git push --set-upstream origin develop
+\end{verbatim}
+
+L'opzione -d invece lo elimina. Non è possibile eliminare il branch corrente:
+
+\begin{verbatim}
+$ git branch -d develop
+error: Impossibile eliminare il branch 'develop' di cui è stato eseguito 
+il checkout in '/home/stefano/prog/GitNoob2ProIta'
+\end{verbatim}
 
 L'opzione --all mostra tutti i branch locali e remoti. Il branch seguito
 dall'asterisco è quello su cui si è posizionati correntemtente.
 
 \begin{verbatim}
 $ git branch --all
-* master
-  noMulticast
-  serverThread
-  remotes/origin/HEAD - > origin / master
+* develop
+  master
+  temp
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/develop
   remotes/origin/master
-  remotes/origin/noMulticast
-  remotes/origin/serverThread}
 \end{verbatim}
 
-Per passare da un branch ad un altro si utilzza checkout
+In questo caso, temp è solamente locale. Per passare da un branch ad un altro si utilzza checkout
 
 esempio su checkout 
 

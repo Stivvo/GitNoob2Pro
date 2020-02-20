@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1582228468 "git.tex" "git.pdf" "git" 1582228508
+["pdflatex"] 1582228657 "git.tex" "git.pdf" "git" 1582228658
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1572595918 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1572595918 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1572595918 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -34,9 +34,9 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1572595918 33301 a3134070eacafb10b1f371612ce2650d ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1581969489 4572998 f9631eebba48c3ee98e5d310044b0a09 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1581969466 8044939 ffb9d4ea9e5527275ecd781f4c604a66 ""
-  "git.aux" 1582228468 2303 138c6eea73ded69769694c3126025702 "pdflatex"
-  "git.tex" 1582228464 14626 317d6a52834f92c99ab2ac1fa8175dcd ""
+  "git.aux" 1582228657 2303 994191b389fbca85942f5b1ec3a3000c "pdflatex"
+  "git.tex" 1582228586 15537 9eff036cb132b1cb0567d1338e6d3560 ""
   (generated)
   "git.pdf"
-  "git.aux"
   "git.log"
+  "git.aux"
