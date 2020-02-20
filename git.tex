@@ -11,7 +11,7 @@
 \section{Cos'è un sistema di controllo di versione}
 
 Nella realizzazione di un progetto software potresti esserti accorto di voler
-tenere traccia dei tuoi progressi, magari catalogandoli in modo da sapere cosa
+tenere traccia dei tuoi progressi, magari registrandoli in modo da sapere cosa
 hai fatto e quando, o di voler tornare al momento esattamente prima a quella
 modifica che non fa funzionare più nulla. 
 
@@ -28,15 +28,17 @@ dei copia e incolla.
 
 Un sistema di controllo di versione tiene traccia di tutte le modifiche
 effettuate su un insieme di file (che compongono il progetto), ovvero di chi le
-ha fatte, quando, quali righe sono state tolte e quali aggiunte. L'autore di
-ogni modifica può anche allegare una descrizione a parole in cui annota che cosa
-ha modificato e perché. Con un sistema di controllo di versione è possibile
-tornare ad un qualsiasi punto dello sviluppo.
+ha fatte, quando, quali righe sono state tolte e quali aggiunte. Ogni registrazione
+di modifica riporta l'autore, un titolo e un descrizione che spiega in dettaglio
+il perche' e' stata necessaria o qualche peculiarita' della modifica stessa
+in modo da facilitare la comprensione ad altri sviluppatore o ad una rilettura
+in un futuro. Inoltre in questo modo e' possibile navigare e riportarsi in 
+qualsiasi punto della storia del progetto.
 
-Per permettere a più persone di lavorare nello stesso momento vengono create
-copie separate che, quando necessario, possono essere unite in modo automatico.
-In questo caso anche lo storico di tutte le modifiche apportate dai rispettivi
-autori viene unito.
+Per permettere a più persone di lavorare nello stesso momento vengono ognuno
+copia in locale il progetto preso da un punto di riferimento (server comune ad esempio)
+e dopo aver apportato le modifiche necessarie e' possibile unirle tenendo traccia
+di chi ha modificato cose ed in quale ordine.
 
 Esistono molti software di controllo versione, tra i più famosi ci sono Git,
 CVS, Subversion, Mercurial, Bazaar e BitKeeper.
