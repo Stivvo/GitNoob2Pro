@@ -2,7 +2,7 @@
 
 \title{Git} \date{\vspace{-5ex}} \author{Stefano Entatti}
 \usepackage{hyperref}
-\setlength{\parindent}{-10pt}
+\setlength{\parindent}{10pt}
 
 \begin{document}
 
@@ -281,11 +281,7 @@ Per posizionarsi su develop:
 
 \begin{verbatim}
 $ git checkout develop
-M	git.aux
-M	git.fdb_latexmk
-M	git.log
 M	git.pdf
-M	git.synctex.gz
 M	git.tex
 Si è passati al branch 'develop'
 \end{verbatim}
@@ -298,14 +294,6 @@ fatal: Il branch corrente develop non ha alcun branch upstream.
 Per eseguire il push del branch corrente ed impostare il remoto come upstream, usa
 
     git push --set-upstream origin develop
-\end{verbatim}
-
-L'opzione -d invece lo elimina. Non è possibile eliminare il branch corrente:
-
-\begin{verbatim}
-$ git branch -d develop
-error: Impossibile eliminare il branch 'develop' di cui è stato eseguito 
-il checkout in '/home/stefano/prog/GitNoob2ProIta'
 \end{verbatim}
 
 L'opzione --all mostra tutti i branch locali e remoti. Il branch seguito
@@ -321,9 +309,21 @@ $ git branch --all
   remotes/origin/master
 \end{verbatim}
 
-In questo caso, temp è solamente locale. Per passare da un branch ad un altro si utilzza checkout
+In questo caso, temp è solamente locale.
 
-esempio su checkout 
+L'opzione -d invece elimina un branch. Non è possibile eliminare il branch corrente:
+
+\begin{verbatim}
+$ git branch -d develop
+error: Impossibile eliminare il branch 'develop' di cui è stato eseguito 
+il checkout in '/home/stefano/prog/GitNoob2ProIta'
+\end{verbatim}
+
+Per eliminare lo stesso branch anche dal repository remoto:
+
+\begin{verbatim}
+$ git push -d origin develop
+\end{verbatim}
 
 L'opzione -b di checkout crea un branch se quello passato come parametro non
 esiste.
