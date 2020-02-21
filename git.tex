@@ -33,7 +33,7 @@ Un sistema di controllo di versione tiene traccia di tutte le modifiche
 effettuate su un insieme di file (che compongono il progetto), ovvero di chi le
 ha fatte, quando, quali righe sono state tolte e quali aggiunte. Ogni registrazione
 di modifica riporta l'autore, un titolo e un descrizione che spiega in dettaglio
-il perche' e' stata necessaria o qualche peculiarita' della modifica stessa
+il perche e stata necessaria o qualche peculiarità della modifica stessa
 in modo da facilitare la comprensione ad altri sviluppatore o ad una rilettura
 in un futuro. Inoltre in questo modo e' possibile navigare e riportarsi in 
 qualsiasi punto della storia del progetto.
@@ -54,7 +54,7 @@ creatore di Linux) per facilitare lo sviluppo del kernel di Linux, uno dei
 progetti opensource più grandi, a cui lavorano moltissime persone. Anche git è
 opensource.
 
-Git è distribuito, ciò significa che l'intero \textbf{repository}, ovvero il
+Git è distribuito, ciò significa che l'intero \textbf{repository}, ovvero
 tutti i file che compongono un progetto, tra cui sorgenti, readme e file creati
 da git per tenere traccia dello storico delle modifiche può essere memorizzato
 su un server a cui possono accedere tutti i membri del progetto. Allo stesso
@@ -70,11 +70,11 @@ git direttamente dall'IDE.
 
 \section{Branching}
 
-Git e' in grado di gestire contemporaneamente piu' sviluppi all'interno della
-stessa copia del progetto, questi si chiamano branch. Con piu' sviluppi si 
-intendono piu' tipologie di modifiche differenti anche all'interno dello stesso file.
-In questo si puo' saltare da uno sviluppo all'altro senza perdere nessuna modifica
-e senza avere piu' copie del progetto.
+Git è in grado di gestire contemporaneamente più sviluppi all'interno della
+stessa copia del progetto, questi si chiamano \textbf{branch}. Con più sviluppi si 
+intendono più tipologie di modifiche differenti anche all'interno dello stesso file.
+Si può saltare da uno sviluppo all'altro senza perdere nessuna modifica
+evitando di avere più copie del progetto.
 
 Ogni repository git possiede almeno un branch, chiamato \textbf{master}.
 Possono essere creati infiniti branch, ognuno dei quali può essere utilizzato
@@ -85,15 +85,16 @@ cambiamenti fatti da altri mentre svolge il suo compito.
 
 Oppure il branch master può essere quello che viene distribuito agli
 utilizzatori del software perchè considerato stabile, mentre gli altri possono
-essere sperimentali e dunque contenere bug, o addirittura essere utilizzati per
-apportare modifiche sperimentali che possono essere scartate senza compromettere
-tutto il resto. A volte vengono utilizzati branch diversi per separare versioni
+essere sperimentali e dunque contenere bug o modifiche che possono essere 
+scartate senza compromettere tutto il resto. 
+
+A volte vari branch servono a separare versioni
 con funzionalità leggermente diverse dello stesso software.
 
 Un branch viene creato a partire da un altro. Dopo la creazione di un branch
-figlio le modifiche che nel tempo vengono apportate su questo rimangono
+``figlio'' le modifiche che nel tempo vengono apportate su questo rimangono
 completamente separate da quelle che eventualmente continuano ad essere
-apportate sul padre. Se vengono creati più branch, almeno uno di questi discende
+apportate sul ``padre''. Se vengono creati più branch, almeno uno di questi discende
 da master.
 
 Ovviamente, due branch possono essere uniti tramite un \textbf{merge}. Gli
@@ -107,8 +108,8 @@ Si può passare in qualsiasi momento da un branch all'altro.
 \section{Comandi principali}
 
 Git offre moltissimi comandi, ognuno dei quali svolge un piccolo insieme di
-funzionalità. Ogni comando (di seguito i principali) è sempre preceduto da
-``git'', ognuno può accettare un diverso numero di argomenti e di opzioni
+funzionalità. Ogni comando (in questa sezione tratteremo i principali) è sempre preceduto da
+``git''. Ognuno può accettare un diverso numero di argomenti e di opzioni
 (tratteremo le principali per ogni comando), spesso precedute da un singolo o da
 un doppio meno. 
 
@@ -145,9 +146,9 @@ $ git commit
 Questo comando aprirà l'editor di default di git. Nella prima riga va scritto il
 titolo del commit. è una buona norma che il titolo mantenga una lunghezza
 massima di 72 caratteri e contenga solo nomi e verbi al presente. Dalla
-terza riga, si lascia una linea vuote, inizia la descrizione, che può avere una 
-lunghezza molto più ampia per spiegare in modo discorsivo cosa si è fatto, 
-perchè e se eventualmente ha causato dei problemi.
+terza riga, si lascia una linea vuote, inizia la descrizione, che può essere
+molto lunga e dettagliata per spiegare in modo discorsivo cosa si è fatto, 
+perché e se eventualmente ha causato dei problemi.
 
 \begin{figure}
 \includegraphics[width=6in]{vimEditCommit.png}
@@ -188,10 +189,10 @@ $ git add functions.cpp functions.hpp
 $ git commit -m "added get function"
 \end{verbatim}
 
-In questo caso le moficiche di main.cpp non verranno aggiunte al commit "added
-get function".
+In questo caso le moficiche di main.cpp non verranno aggiunte al commit \code{added
+get function}.
 
-Qualsiasi modifica effettuata su functions.cpp o functions.hpp dopo l'utilizzo
+Qualsiasi modifica effettuata su \code{functions.cpp} o \code{functions.hpp} dopo l'utilizzo
 di add verrebbe anch'essa esclusa dal commit.
 
 Git add si comporta in modo indifferente sia per file appena creati che per le
@@ -250,8 +251,8 @@ se ci sono branch nuovi o magari nuovi commit sul branch al quale si sta lavoran
 di rimanere disallineati con il repository di riferimento.
 
 \textbf{Pull} è in sostanza un fetch seguito da un merge, ed è quello che capita di
-utilzzare più spesso. In generale pull fonde ciò che si trova al momento sul branch del 
-repository remoto con quello locale.
+utilzzare più spesso. In generale pull fonde ciò che si trova al momento sul
+branch del repository remoto con quello locale.
 
 Pull e fetch chiamati senza argomenti vanno a prelevare la versione remota del
 branch su cui si è localmente.
@@ -264,15 +265,15 @@ class SecondClass {
 >>>>>>> 4ceb8e7c4fe78b59c00be99418f54280df19078c
 \end{verbatim}
 
-Questo è il caso in cui mentre il repository locale è rimasto indietro di alcuni
-commit la classe è stata rinominata in FirstClass. Nel frattempo un altro
-sviluppatore ha fatto un push di un commit in cui ha rinominato la stessa classe in
-SecondClass. Quando il primo si trova a dover fare il pull delle modifiche del
+Questo è il caso in cui mentre il repository locale rimaneva indietro di alcuni
+commit la classe è stata rinominata in FirstClass da un primo sviluppatore. Nel
+frattempo un secondo ha fatto un push di un commit in cui l'ha chiamata
+SecondClass. Quando il primo sviluppatore si trova a dover fare il pull delle modifiche del
 secondo, per risovere i conflitti di merge deve scegliere tra la versione locale
-(HEAD) e quella dell'altro,
-identificata dal codice hash del commit che ha rinominato la classe in
-SecondClass. Il prossimo push sarà quello del commit di merge, automaticamente
-creato da git.
+(HEAD) e quella dell'altro, identificata dal codice hash (lunga serie di numeri e
+caratteri) del commit che ha
+rinominato la classe in SecondClass. Il prossimo push sarà quello del commit di
+merge, automaticamente creato da git.
 
 \subsection{Checkout, Branch, merge}
 
@@ -347,9 +348,11 @@ utilizzare il parametro -a di ls per poterla vedere.
 
 \begin{verbatim}
 $ ls .git/
-...
+branches/  COMMIT_EDITMSG  config  description  FETCH_HEAD  HEAD  hooks/  index  
+info/  logs/  objects/  ORIG_HEAD  packed-refs  refs/
+
 $ ls .git/refs
-...
+heads/  remotes/  tags/
 \end{verbatim}
 
 è molto importante la cartella refs. Contiene:
@@ -360,14 +363,16 @@ In git una head è un riferimento ad un branch o ad un commit di un determinato
 branch, locale o remoto. Una lista delle head disponibili:
 
 \begin{verbatim}
-ls .git/refs/heads
+$ ls .git/refs/heads
+master/ develop/
 \end{verbatim}
 
 HEAD è un file che punta all'ultimo commit del branch in cui si sta lavorando
 nel repository locale.
 
 \begin{verbatim}
-cat .git/HEAD
+$ cat .git/HEAD
+ref: refs/heads/master
 \end{verbatim}
 
 Nel caso in cui si voglia ritornare ad un commit precedente si entra nello stato
