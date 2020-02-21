@@ -135,7 +135,8 @@ cartella del repository, che viene creata in automatico da clone e init.
 \subsection{Commit}
 
 Ogni volta che si fa una certa quantità di cambiamenti è utile fare un commit,
-ovvero segnare un punto nello sviluppo a cui sarà sempre possibile tornare. 
+ovvero segnare un punto nello sviluppo a cui sarà sempre possibile tornare,
+quindi registrare e descrivere queste modifiche. 
 
 \begin{verbatim}
 $ git commit
@@ -143,10 +144,10 @@ $ git commit
 
 Questo comando aprirà l'editor di default di git. Nella prima riga va scritto il
 titolo del commit. è una buona norma che il titolo mantenga una lunghezza
-massima di 72 o 80 caratteri e contenga solo nomi e verbi al presente. Dalla
-seconda riga inizia la descrizione, che può avere una lunghezza molto più ampia
-per spiegare in modo discorsivo cosa si è fatto, perchè e se eventualmente ha
-causato dei problemi.
+massima di 72 caratteri e contenga solo nomi e verbi al presente. Dalla
+terza riga, si lascia una linea vuote, inizia la descrizione, che può avere una 
+lunghezza molto più ampia per spiegare in modo discorsivo cosa si è fatto, 
+perchè e se eventualmente ha causato dei problemi.
 
 \begin{figure}
 \includegraphics[width=6in]{vimEditCommit.png}
@@ -177,9 +178,8 @@ Signed-off-by: user1 <user1@gmail.com>
 \subsection{Add, rm, reset}
 
 I file coinvolti dal commit devono essere prima selezionati con add. In questo
-modo si entra nella \textit{staging area}. è una copia intermedia tra la
-cartella locale e il repository che contiene tutte le modifiche che verranno
-comprese nel prossimo commit.
+modo si entra nella \textit{staging area}. è uno stato intermedio che sta prima di
+un commit per tracciare le modifiche momentanee in caso di piu' prove.
 
 Se ad esempio si modificano functions.cpp, functions.hpp e main.cpp:
 
@@ -197,7 +197,8 @@ di add verrebbe anch'essa esclusa dal commit.
 Git add si comporta in modo indifferente sia per file appena creati che per le
 modifiche di file già esistenti.
 
-L'opzione -a (``all'') di commit permette di saltare questo passaggio.
+L'opzione -a (``all'') passata al comando di commit include automaticamente tutte
+le modifiche attualmente pendenti.
 
 Alcune opzioni utili per add:
 
@@ -213,11 +214,12 @@ staging area.
 \subsection{Push}
 
 Permette di caricare un numero illimitato di commit su un branch di un
-repository remoto. Le modifiche remote vengono unite a quelle locali.
+repository remoto. Le modifiche locali vengono unite a quelle remote.
 
-Git non permette di effettuare un push se il repository remoto contiene commit
-che non sono presenti su quello locale, perchè sul repository remoto andrebbero
-persi. Se ci si trova in questa situazione occorre effettuare prima un pull.
+Git non permette di effettuare un push se la storia, inteso come sequenza di commit,
+del branch remoto non e' uguale al branch locale, ovviamente tranne i commit in aggiunta
+appena fatti in locale. Se ci si trova in questa situazione occorre effettuare un riallineamento,
+(pull/rebase).
 
 \begin{verbatim}
 $ git push
@@ -238,18 +240,17 @@ dettagli
 \subsection{Merge, Pull, fetch}
 
 \textbf{Merge} permette di fondere le modifiche di due branch, locali o remoti (o anche
-commit diversi dello stesso branch). Se si effettua un pull come suggerito
-sopra, avverrà infatti un merge. Se git rivela dei conflitti segnala all'utente
+commit diversi dello stesso branch) come ad esempio quando devo unire nel branch principale
+le modifiche fatte su un branch per correggere dei bug. Se si effettua un pull come suggerito
+sopra, avverrà infatti un merge. Se git rileva dei conflitti segnala all'utente
 di risolverli manualmente. 
 
-\textbf{Fetch} permette di aggiornare le copie locali ad un repository remoto. In questo
-modo si creeranno come due copie dello stesso repository, una su cui si sta
-lavorando offline e una aggiornata alla versione remota. Questo permette
-effettuare il merge tra la versione remota e quella locale anche in assenza di
-connessione.
+\textbf{Fetch} permette di aggiornare lo stato dei branch in remoto per controllore
+se ci sono branch nuovi o magari nuovi commit sul branch al quale si sta lavorando per evitare
+di rimanere disallineati con il repository di riferimento.
 
 \textbf{Pull} è in sostanza un fetch seguito da un merge, ed è quello che capita di
-utilzzare puù spesso. In generale pull fonnde ciò che si trova al momento sul
+utilzzare più spesso. In generale pull fonde ciò che si trova al momento sul branch del 
 repository remoto con quello locale.
 
 Pull e fetch chiamati senza argomenti vanno a prelevare la versione remota del
