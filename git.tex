@@ -411,11 +411,11 @@ Oppure puoi annullare quest'operazione con:
 
   git switch -
 
-HEAD si trova ora a 8b10ce3 refactoring server class
+HEAD si trova ora a b0451d9 immagine scrittura commit
 \end{verbatim}
 
 Se si vuole mantenere i commit fatti in questo stato è buona cosa spostarsi su
-un nuovo branch.
+un nuovo branch come suggerito.
 
 Se si sceglie di rimanere sullo stesso, non si può effettuare direttamente il push dei
 commit effettuati in questo stato, perché non si è di fatto posizionati su nessun branch:
@@ -437,15 +437,33 @@ cui si è entrati in deatached head. Quindi è necessario aggiungere l'opzione -
 (``force'') a push se si vuole eliminarle.
 
 Questo non risolve lo stato di deatached head.
-Se si ritorna subito con un checkout sul proprio branch (in questo caso master),
-che contiene ancora i commit che vogliamo eliminare, un push li riporterebbe sul 
+Occorre infatti ritornare sul proprio branch (in questo caso master),
+che però contiene ancora i commit che vogliamo eliminare: un push li riporterebbe sul 
 repository remoto.
-Quindi si può clonare nuovamente il progetto (è sempre la soluzione peggiore)
-oppure utilizzare reset: 
+Quindi dopo aver fatto \code{git checkout master}, tornando sul branch da cui ci
+si era distaccati, si può utilizzare reset, che è come un pull forzato che invece
+di fare un merge sovrascrive il branch remoto su quello locale:
 
 \begin{verbatim}
-git reset --hard origin/master
+$ git reset --hard origin/master
 \end{verbatim}
+
+Oppure si può sempre clonare nuovamente il progetto, ma è sempre la soluzione
+peggiore.
+
+C'è un modo migliore per ritornare a un commit precedente, senza modificare i
+commit già pushati:
+
+\begin{verbatim}
+$ git revert 0552dd1c6e3c11c8c5246836e9994e6fcd431a0f..HEAD
+$ git commit -m "torno al commit precedente"
+\end{verbatim}
+
+In questo modo il commit \code{torno al commit precedente} conterrà delle
+moficiche che riportano allo stato del commit di cui si è specificato il codice
+come argomento di revert. \code{..HEAD} indica che si ripristinano le modifiche
+effettuate da quel commit fino a HEAD (questo intervallo può dunque comprendere
+diversi commit), ovvero lo stato corrente del branch.
 
 \subsection{Tags}
 
