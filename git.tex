@@ -411,13 +411,13 @@ Oppure puoi annullare quest'operazione con:
 
   git switch -
 
-HEAD si trova ora a 8b10ce3 più italiano
+HEAD si trova ora a 8b10ce3 refactoring server class
 \end{verbatim}
 
 Se si vuole mantenere i commit fatti in questo stato è buona cosa spostarsi su
 un nuovo branch.
 
-Se si sceglie di rimanere sullo stesso, non si può effettuare il push dei
+Se si sceglie di rimanere sullo stesso, non si può effettuare direttamente il push dei
 commit effettuati in questo stato, perché non si è di fatto posizionati su nessun branch:
 
 \begin{verbatim}
@@ -429,14 +429,23 @@ allo stato corrente (HEAD scollegato), usa
     git push origin HEAD:<nome del branch remoto>
 \end{verbatim}
 
-è molto probabile che il comando suggerito non funzioni, perchè andrebbe ad
-eliminare delle modifiche remote, quindi è necessario aggiungere l'opzione -f
-(``force'') a push oppure effettuare prima un pull.
-Questo non risolve lo stato di deatached head. Per poter ritornare
-effettivamente sul proprio branch occorre 
-primo push sarà necessario un merge con i commit (presenti in remoto)
-successivi a quello su cui si ha fatto il checkout per entrare in
-deatached head.
+Il comando suggerito da git serve per caricare le modifiche effettuate in deatached head
+direttamente sul branch remoto, come spiegato nella sezione \ref{remoti}.
+è molto probabile che non funzioni, perchè andrebbe ad
+eliminare delle modifiche remote successive al commit in
+cui si è entrati in deatached head. Quindi è necessario aggiungere l'opzione -f
+(``force'') a push se si vuole eliminarle.
+
+Questo non risolve lo stato di deatached head.
+Se si ritorna subito con un checkout sul proprio branch (in questo caso master),
+che contiene ancora i commit che vogliamo eliminare, un push li riporterebbe sul 
+repository remoto.
+Quindi si può clonare nuovamente il progetto (è sempre la soluzione peggiore)
+oppure utilizzare reset: 
+
+\begin{verbatim}
+git reset --hard origin/master
+\end{verbatim}
 
 \subsection{Tags}
 
@@ -447,7 +456,7 @@ per visualizzare i tag...
 
 per aggiungere un tag...
 
-\subsection{Remote}
+\subsection{Remote\label{remoti}}
 
 Un remote è il percorso di un repository remoto, di solito è quello del
 repository sul server. Il primo remote che viene utilizzato in un repository
