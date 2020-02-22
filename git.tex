@@ -415,7 +415,25 @@ HEAD si trova ora a 8b10ce3 più italiano
 \end{verbatim}
 
 Se si vuole mantenere i commit fatti in questo stato è buona cosa spostarsi su
-un nuovo branch. Si può comunque rimanere sullo stesso ma prima di fare il
+un nuovo branch.
+
+Se si sceglie di rimanere sullo stesso, non si può effettuare il push dei
+commit effettuati in questo stato, perché non si è di fatto posizionati su nessun branch:
+
+\begin{verbatim}
+$ git push
+fatal: Attualmente non sei su un branch.
+Per eseguire ora il push della cronologia che ha condotto
+allo stato corrente (HEAD scollegato), usa
+
+    git push origin HEAD:<nome del branch remoto>
+\end{verbatim}
+
+è molto probabile che il comando suggerito non funzioni, perchè andrebbe ad
+eliminare delle modifiche remote, quindi è necessario aggiungere l'opzione -f
+(``force'') a push oppure effettuare prima un pull.
+Questo non risolve lo stato di deatached head. Per poter ritornare
+effettivamente sul proprio branch occorre 
 primo push sarà necessario un merge con i commit (presenti in remoto)
 successivi a quello su cui si ha fatto il checkout per entrare in
 deatached head.
