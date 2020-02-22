@@ -467,7 +467,7 @@ diversi commit), ovvero lo stato corrente del branch.
 
 \subsection{Tags}
 
-Vengono assegnati ad un gruppo di commit in cui si è raggiunto un traguardo nel
+Possono essere assegnati ad un commit in cui si è raggiunto un traguardo nel
 progetto (ad esempio 1.3.5).
 
 Per visualizzare i tag:
@@ -478,7 +478,44 @@ v1.0
 v2.0
 \end{verbatim}
 
-per aggiungere un tag...
+Per creare un tag basta dare al comando un argomento, che sarà il nome del tag:
+
+\begin{verbatim}
+$ git tag v2.1
+\end{verbatim}
+
+I tag possono essere utilizzati in questo modo per descrivere piccoli progressi
+nello sviluppo. Per segnare il punto di una release è bene utilizzare l'opzione
+-a (``annotated''): 
+
+\begin{verbatim}
+$ git tag -a v3.0
+\end{verbatim}
+
+In questo modo, verrà aperto l'editor di default per poter inserire informazioni
+su ciò che le novità portate da quella release. Come per i commit, l'opzione -m
+permette di scrivere un breve titolo senza aprire l'editor.
+
+Per visualzzare queste informazioni:
+
+\begin{verbatim}
+$ git show v3.0
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: User <user@email.com>
+Date:   Mon Mar 17 21:52:11 2020 -0700
+
+    new release 3.0!
+\end{verbatim}
+
+Si può aggiungere un tag ad un qualsiasi commit precedente specificando il suo
+codice:
+
+\begin{verbatim}
+$ git tag -a v1.2 9fceb02
+\end{verbatim}
+
+I tag possono anche essere eliminati con l'opzione -d e si può fare il checkout
+su uno specifico tag come si fa con i commit.
 
 \subsection{Remote\label{remoti}}
 
