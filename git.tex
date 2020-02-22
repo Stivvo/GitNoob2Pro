@@ -393,8 +393,32 @@ Nel caso in cui si voglia ritornare ad un commit precedente si entra nello stato
 di \emph{deatached head}, ovvero facendo il checkout su uno specifico commit
 (identificato con il suo codice hash).
 
-esempio di "dare un occhiata, apportare modifiche sperimentali ed eseguirne il
-commit..."
+\begin{verbatim}
+$ git checkout 8b10ce361a08e03179d46bab5d691148805bf8d8
+Nota: eseguo il checkout di '8b10ce361a08e03179d46bab5d691148805bf8d8'.
+
+Sei nello stato 'HEAD scollegato'. Puoi dare un'occhiata, apportare modifiche
+sperimentali ed eseguirne il commit, e puoi scartare qualunque commit eseguito
+in questo stato senza che ciò abbia alcuna influenza sugli altri branch tornando
+su un branch.
+
+Se vuoi creare un nuovo branch per mantenere i commit creati, puoi farlo
+(ora o in seguito) usando l'opzione -c con il comando switch. Ad esempio:
+
+  git switch -c <nome nuovo branch>
+
+Oppure puoi annullare quest'operazione con:
+
+  git switch -
+
+HEAD si trova ora a 8b10ce3 più italiano
+\end{verbatim}
+
+Se si vuole mantenere i commit fatti in questo stato è buona cosa spostarsi su
+un nuovo branch. Si può comunque rimanere sullo stesso ma prima di fare il
+primo push sarà necessario un merge con i commit (presenti in remoto)
+successivi a quello su cui si ha fatto il checkout per entrare in
+deatached head.
 
 \subsection{Tags}
 
@@ -405,7 +429,7 @@ per visualizzare i tag...
 
 per aggiungere un tag...
 
-\subsection{Remotes}
+\subsection{Remote}
 
 Un remote è il percorso di un repository remoto, di solito è quello del
 repository sul server. Il primo remote che viene utilizzato in un repository
