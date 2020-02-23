@@ -351,14 +351,36 @@ Fast-forward
 Molto di quanto appena spiegato sarebbe inutile se non si potesse vedere la
 storia dei commit.
 
-\begin{verbatim}
-$ git log
-\end{verbatim}
+\begin{figure}
+\includegraphics[width=6in]{logOutput.png}
+\centering
+\caption{scrittura del testo di un commit in vim}
+\end{figure}
 
-Mostra l'intera storia dei commit visualizzata nel pager
-(vedere \ref{configurazione}) di default.
-Le lunghe serie di caratteri sono i commit \textbf{hash}, univoci
-per ogni commit.
+Git log mostra l'intera storia dei commit visualizzata nel pager (vedere 
+\ref{configurazione}) di default.
+Le lunghe serie di caratteri sono i codici \textbf{hash}, univoci per ogni
+commit. L'output del comando mostra anche a quale commit puntano la HEAD e i
+repository remoti (se abbiamo dei commit di cui non abbiamo fatto ancora il push
+è probabile che quest'ultima sia più indietro rispetto ad HEAD).
+
+Questo comando può generare molto output. Sarà più semplice trovare un commit
+utilizzando l'opzione \code{pretty=oneline}, che assegna una sola
+riga ad ogni commit. Dopodichè sarà utile passare l'hash del commit trovato come
+argomento di log, per vedere informazioni puù dettagliate. L'output di log
+escluderà semplicemente tutti i commit precedenti a quello.
+
+è anche possibile ricercare il testo del commit interessato passandolo come
+argomento di log subito dopo \code{--grep=}:
+
+\begin{verbatim}
+$ git log --grep='git log'
+commit 4b64be5218bed736d357d61471b87c4f5363d954 (HEAD -> master, origin/master, origin/HEAD)
+Author: Stivvo <entattis15@itisvinci.com>
+Date:   Sun Feb 23 17:37:09 2020 +0100
+
+    git log
+\end{verbatim}
 
 \section{la cartella .git}
 
@@ -544,6 +566,9 @@ o rimosso (git remote remove).
 
 \section{Installazione e configurazione\label{configurazione}}
 
+less -r 
+config core.pager ""
+
 \section{Github}
 
 \section{Approfondimenti}
@@ -553,8 +578,6 @@ o rimosso (git remote remove).
 \subsection{Revisionare i commit}
 
 rebase, ammend
-
-\subsection{Cercare nella storia dei commit}
 
 \subsection{Gitignore}
 
@@ -576,21 +599,40 @@ rebase, ammend
 
 \subsection{stack overflow}
 \begin{itemize}
-    \item \href{https://stackoverflow.com/questions/9529497/what-is-origin-in-git}{che cos'è head}
-    \item \href{https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch}{differenza tra pull e fetch}
-    \item \href{https://stackoverflow.com/questions/348170/how-do-i-undo-git-add-before-commit?rq=1}{annullare add}
-    \item \href{https://stackoverflow.com/questions/572549/difference-between-git-add-a-and-git-add?rq=1}{parametri di add}
-    \item \href{https://stackoverflow.com/questions/1125968/how-do-i-force-git-pull-to-overwrite-local-files?rq=1}{sovrascrivere con pull}
-    \item \href{https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch?rq=1}{checkout di un branch remoto}
-    \item \href{https://stackoverflow.com/questions/2003505/how-do-i-delete-a-git-branch-locally-and-remotely?rq=1}{eliminare un branch}
-    \item \href{https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit?rq=1}{tornare a commit precedenti}
-    \item \href{https://stackoverflow.com/questions/6591213/how-do-i-rename-a-local-git-branch?rq=1}{rinominare un branch }
-    \item \href{https://stackoverflow.com/questions/2304087/what-is-head-in-git}{cos'è head}
-    \item \href{https://www.git-tower.com/learn/git/faq/detached-head-when-checkout-commit}{deatached head}
-    \item \href{https://stackoverflow.com/questions/8196544/what-are-the-git-concepts-of-head-master-origin}{differenza tra head, master e origin}
-    \item \href{https://stackoverflow.com/questions/20954566/what-is-the-difference-from-head-head-and-head1}{tipi di head}
-    \item \href{https://stackoverflow.com/questions/23241052/what-does-git-push-origin-head-mean}{push origin head}
-    \item \href{https://stackoverflow.com/questions/10228760/fix-a-git-detached-head}{uscire da deatached head}
+    \item \href{https://stackoverflow.com/questions/9529497/what-is-origin-in-git}
+        {che cos'è head}
+    \item \href{https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch}
+        {differenza tra pull e fetch}
+    \item \href{https://stackoverflow.com/questions/348170/how-do-i-undo-git-add-before-commit?rq=1}
+        {annullare add}
+    \item \href{https://stackoverflow.com/questions/572549/difference-between-git-add-a-and-git-add?rq=1}
+        {parametri di add}
+    \item \href{https://stackoverflow.com/questions/1125968/how-do-i-force-git-pull-to-overwrite-local-files?rq=1}
+        {sovrascrivere con pull}
+    \item \href{https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch?rq=1}
+        {checkout di un branch remoto}
+    \item \href{https://stackoverflow.com/questions/2003505/how-do-i-delete-a-git-branch-locally-and-remotely?rq=1}
+        {eliminare un branch}
+    \item \href{https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit?rq=1}
+        {tornare a commit precedenti}
+    \item \href{https://stackoverflow.com/questions/7124914/how-to-search-a-git-repository-by-commit-message}
+        {cercare il contenuto dei commit}
+    \item \href{https://stackoverflow.com/questions/6591213/how-do-i-rename-a-local-git-branch?rq=1}
+        {rinominare un branch }
+    \item \href{https://stackoverflow.com/questions/2304087/what-is-head-in-git}
+        {cos'è head}
+    \item \href{https://www.git-tower.com/learn/git/faq/detached-head-when-checkout-commit}
+        {deatached head}
+    \item \href{https://stackoverflow.com/questions/34519665/how-can-i-move-head-back-to-a-previous-location-detached-head-undo-commits}
+        {risolvere una deatached head}
+    \item \href{https://stackoverflow.com/questions/8196544/what-are-the-git-concepts-of-head-master-origin}
+        {differenza tra head, master e origin}
+    \item \href{https://stackoverflow.com/questions/20954566/what-is-the-difference-from-head-head-and-head1}
+        {tipi di head}
+    \item \href{https://stackoverflow.com/questions/23241052/what-does-git-push-origin-head-mean}
+        {push origin head}
+    \item \href{https://stackoverflow.com/questions/10228760/fix-a-git-detached-head}
+        {uscire da deatached head}
 \end{itemize}
 
 \end{document}
