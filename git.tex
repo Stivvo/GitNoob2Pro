@@ -164,7 +164,7 @@ $ git commit -m "add options page"
 \end{verbatim}
 
 Ci sono varie teorie  sulla lunghezza e il contenuto dei messaggi e delle
-descrizioni dei commit e su \emph{ogni quanto} si debba committare. In genere un
+descrizioni dei commit e su \textit{ogni quanto} si debba committare. In genere un
 commit deve essere relativo ad un solo argomento e non comprendere modifiche
 totalmente indipendenti tra di loro. I messaggi di commit non devono essere
 generici (come ``fix crash'') altrimenti col passare del tempo sarà impossibile
@@ -179,7 +179,7 @@ Signed-off-by: user1 <user1@gmail.com>
 \subsection{Add, rm, reset}
 
 I file coinvolti dal commit devono essere prima selezionati con add. In questo
-modo si entra nella \textit{staging area}. è uno stato intermedio che sta prima di
+modo si entra nella \textbf{staging area}. è uno stato intermedio che sta prima di
 un commit per tracciare le modifiche momentanee in caso di piu' prove.
 
 Se ad esempio si modificano functions.cpp, functions.hpp e main.cpp:
@@ -270,8 +270,7 @@ commit la classe è stata rinominata in FirstClass da un primo sviluppatore. Nel
 frattempo un secondo ha fatto un push di un commit in cui l'ha chiamata
 SecondClass. Quando il primo sviluppatore si trova a dover fare il pull delle modifiche del
 secondo, per risovere i conflitti di merge deve scegliere tra la versione locale
-(HEAD) e quella dell'altro, identificata dal codice hash (lunga serie di numeri e
-caratteri) del commit che ha
+(HEAD) e quella dell'altro, identificata dal codice hash (vedere \ref{log}) del commit che ha
 rinominato la classe in SecondClass. Il prossimo push sarà quello del commit di
 merge, automaticamente creato da git.
 
@@ -347,9 +346,19 @@ Fast-forward
  1 file changed, 2 insertions(+)
 \end{verbatim}
 
-\subsection{Log, status, Diff}
+\subsection{Log, status, Diff\label{log}}
 
-commit hash
+Molto di quanto appena spiegato sarebbe inutile se non si potesse vedere la
+storia dei commit.
+
+\begin{verbatim}
+$ git log
+\end{verbatim}
+
+Mostra l'intera storia dei commit visualizzata nel pager
+(vedere \ref{configurazione}) di default.
+Le lunghe serie di caratteri sono i commit \textbf{hash}, univoci
+per ogni commit.
 
 \section{la cartella .git}
 
@@ -533,7 +542,7 @@ essere eseguita su qualsiasi altro remote (ad esempio git pull nuovoRemote).
 I un remote può essere aggiunto (git remote add), rinominato (git remote rename)
 o rimosso (git remote remove).
 
-\section{Installazione e configurazione}
+\section{Installazione e configurazione\label{configurazione}}
 
 \section{Github}
 
@@ -544,6 +553,8 @@ o rimosso (git remote remove).
 \subsection{Revisionare i commit}
 
 rebase, ammend
+
+\subsection{Cercare nella storia dei commit}
 
 \subsection{Gitignore}
 
