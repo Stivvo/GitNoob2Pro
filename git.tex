@@ -404,6 +404,17 @@ Date:   Sun Feb 23 17:37:09 2020 +0100
     git log
 \end{verbatim}
 
+Si può ottenere la lista dei commit in cui è stata aggiunta o rimossa una
+determinata stringa all'interno dei file del repository passandola come
+parametro dopo l'opzione \code{-S} (``string'').
+
+Se invece si è interessati a vedere tutti i commit effettuati da una stessa
+persona:
+
+\begin{verbatim}
+$ git log --author="Stivvo"
+\end{verbatim}
+
 \section{la cartella .git}
 
 La cartella .git si trova nella root del repository e contiene tutti i file
@@ -617,6 +628,7 @@ rebase, ammend
     \item \href{https://www.atlassian.com/git/tutorials/what-is-version-control}{benefici dei version controllo}
     \item \href{https://chris.beams.io/posts/git-commit/}{norme sulla scrittura dei commit}
     \item \href{https://semver.org/}{norme sull'assegnazione dei nomi alle versioni}
+    \item \href{https://www.toolsqa.com/git/git-log/}{guida a git log}
 \end{itemize}
 
 \subsection{stack overflow}
@@ -638,7 +650,15 @@ rebase, ammend
     \item \href{https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit?rq=1}
         {tornare a commit precedenti}
     \item \href{https://stackoverflow.com/questions/7124914/how-to-search-a-git-repository-by-commit-message}
-        {cercare il contenuto dei commit}
+        {cercare il messaggio dei commit}
+    \item \href{https://stackoverflow.com/questions/5816134/how-to-find-the-git-commit-that-introduced-a-string-in-any-branch}
+        {cercare il testo modificato dai commit}
+    \item \href{https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history}
+        {grep del testo modificato dai commit}
+    \item \href{https://unix.stackexchange.com/questions/19317/can-less-retain-colored-output}
+        {git log sempre colorato}
+    \item \href{https://stackoverflow.com/questions/4259996/how-can-i-view-a-git-log-of-just-one-users-commits}
+        {commit di una persona}
     \item \href{https://stackoverflow.com/questions/6591213/how-do-i-rename-a-local-git-branch?rq=1}
         {rinominare un branch }
     \item \href{https://stackoverflow.com/questions/2304087/what-is-head-in-git}
