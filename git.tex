@@ -1,4 +1,4 @@
-\documentclass{article} \usepackage[textwidth=18cm,textheight=18cm]{geometry}
+\documentclass{article} \usepackage[textwidth=19cm,textheight=24cm]{geometry}
 
 \title{Git} \date{\vspace{-5ex}} \author{Stefano Entatti}
 \usepackage{hyperref}
@@ -16,7 +16,7 @@
 Nella realizzazione di un progetto software potresti esserti accorto di voler
 tenere traccia dei tuoi progressi, magari registrandoli in modo da sapere cosa
 hai fatto e quando, o di voler tornare al momento esattamente prima a quella
-modifica che non fa funzionare più nulla. 
+modifica che non fa funzionare più nulla.
 
 Potresti provare, ogni volta che apporti modifiche importanti, a creare una
 nuova copia del progetto, numerarla e magari annotarti quali cambiamenti ha
@@ -176,7 +176,7 @@ L'opzione -s (``signed'') aggiunge la firma dell'autore nella descrizione:
 Signed-off-by: user1 <user1@gmail.com>
 \end{verbatim}
 
-\subsection{Add, rm, reset}
+\subsection{Add, rm, reset, status}
 
 I file coinvolti dal commit devono essere prima selezionati con add. In questo
 modo si entra nella \textbf{staging area}. è uno stato intermedio che sta prima di
@@ -211,6 +211,28 @@ Alcune opzioni utili per add:
 
 Il comando git rm fa il contrario di add, mentre reset pulisce completamente la
 staging area.
+
+Per vedere quali modifiche sono nella staging area e quali invece non sono
+ancora state aggiunte con add:
+
+\begin{verbatim}
+$ git status
+Sul branch master
+Il tuo branch è aggiornato rispetto a 'origin/master'.
+
+Modifiche di cui verrà eseguito il commit:
+  (usa "git restore --staged <file>..." per rimuovere gli elementi dall'area di staging)
+	modificato:             git.pdf
+	modificato:             git.tex
+
+Modifiche non nell'area di staging per il commit:
+  (usa "git add <file>..." per aggiornare gli elementi di cui sarà eseguito il commit)
+  (usa "git restore <file>..." per scartare le modifiche nella directory di lavoro)
+	modificato:             README.md
+\end{verbatim}
+
+Questo comando mostra anche informazioni relative al branch su cui si è
+Posizionati e se si è aggiornati rispetto al remote (vedere \ref{remoti}).
 
 \subsection{Push}
 
@@ -274,7 +296,7 @@ secondo, per risovere i conflitti di merge deve scegliere tra la versione locale
 rinominato la classe in SecondClass. Il prossimo push sarà quello del commit di
 merge, automaticamente creato da git.
 
-\subsection{Checkout, Branch, merge}
+\subsection{Checkout, branch, merge}
 
 Git branch senza opzioni viene utilizzato per creare un nuovo branch locale. La
 creazione del branch develop:
@@ -346,7 +368,7 @@ Fast-forward
  1 file changed, 2 insertions(+)
 \end{verbatim}
 
-\subsection{Log, status, Diff\label{log}}
+\subsection{Log, Diff\label{log}}
 
 Molto di quanto appena spiegato sarebbe inutile se non si potesse vedere la
 storia dei commit.
