@@ -54,7 +54,7 @@ creatore di Linux) per facilitare lo sviluppo del kernel di Linux, uno dei
 progetti opensource più grandi, a cui lavorano moltissime persone. Anche git è
 opensource.
 
-Git è distribuito, ciò significa che l'intero \textbf{repository}, ovvero
+Git è \textbf{distribuito}, ciò significa che l'intero \textbf{repository}, ovvero
 tutti i file che compongono un progetto, tra cui sorgenti, readme e file creati
 da git per tenere traccia dello storico delle modifiche può essere memorizzato
 su un server a cui possono accedere tutti i membri del progetto. Allo stesso
@@ -78,7 +78,7 @@ evitando di avere più copie del progetto.
 
 Ogni repository git possiede almeno un branch, chiamato \textbf{master}.
 Possono essere creati infiniti branch, ognuno dei quali può essere utilizzato
-per la realizzazione di una particolare funzionalita', in modo che modifiche su parti
+per la realizzazione di una particolare funzionalità, in modo che modifiche su parti
 molto diverse del codice non possano causare conflitti. Spesso un singolo
 sviluppatore lavora su un proprio branch, in modo da non dover gestire anche i
 cambiamenti fatti da altri mentre svolge il suo compito. 
@@ -138,18 +138,24 @@ cartella del repository, che viene creata in automatico da clone e init.
 
 Ogni volta che si fa una certa quantità di cambiamenti è utile fare un commit,
 ovvero segnare un punto nello sviluppo a cui sarà sempre possibile tornare,
-quindi registrare e descrivere queste modifiche. 
+quindi registrare e descrivere queste modifiche.
 
 \begin{verbatim}
 $ git commit
 \end{verbatim}
 
-Questo comando aprirà l'editor di default di git. Nella prima riga va scritto il
-titolo del commit. è una buona norma che il titolo mantenga una lunghezza
-massima di 72 caratteri e contenga solo nomi e verbi al presente. La seconda si
-lascia sempre vuota e dalla terza inizia la descrizione, che può essere
+Questo comando aprirà l'editor di default (vedere \ref{configurazione}) di git.
+Nella prima riga va scritto il titolo del commit.
+è una buona norma che il titolo mantenga una lunghezza massima di 72 caratteri
+e contenga solo nomi e verbi al presente.
+La seconda si lascia sempre vuota e dalla terza inizia la descrizione, che può essere
 molto lunga e dettagliata per spiegare in modo discorsivo cosa si è fatto, 
 perché e se eventualmente ha causato dei problemi.
+
+Un commit rimane sempre associato al proprio autore, riconoscibile da come ha
+configurato il punto \ref{configurazione}, e all'orario in cui è stato fatto.
+
+Tutte queste informazioni sono visibili da git log (\ref{log}).
 
 \begin{figure}
 \includegraphics[width=6in]{vimEditCommit.png}
@@ -157,7 +163,7 @@ perché e se eventualmente ha causato dei problemi.
 \caption{scrittura del testo di un commit in vim}
 \end{figure}
 
-se non si necessita di una descrizione si può utilizzare l'opzione -m
+Se non si necessita di una descrizione si può utilizzare l'opzione -m
 (``message''):
 
 \begin{verbatim}
@@ -171,10 +177,10 @@ totalmente indipendenti tra di loro. I messaggi di commit non devono essere
 generici (come ``fix crash'') altrimenti col passare del tempo sarà impossibile
 capire cosa si era fatto senza controlare il codice.
 
-L'opzione -s (``signed'') aggiunge la firma dell'autore nella descrizione:
+L'opzione \code{-s} (``signed'') aggiunge la firma dell'autore nella descrizione:
 
 \begin{verbatim}
-Signed-off-by: user1 <user1@gmail.com>
+Signed-off-by: Stivvo entattis15@itsvinci.com
 \end{verbatim}
 
 \subsection{Add, rm, reset, status}
@@ -380,8 +386,8 @@ storia dei commit.
 \caption{scrittura del testo di un commit in vim}
 \end{figure}
 
-Git log mostra l'intera storia dei commit visualizzata nel pager (vedere 
-\ref{configurazione}) di default.
+Git log mostra l'intera storia dei commit visualizzata nel pager di default
+(vedere \ref{configurazione}).
 Le lunghe serie di caratteri sono i codici \textbf{hash}, univoci per ogni
 commit. L'output del comando mostra anche a quale commit puntano la HEAD e i
 repository remoti (se abbiamo dei commit di cui non abbiamo fatto ancora il push
@@ -600,17 +606,45 @@ origin	https://github.com/Stivvo/GitNoob2Pro.git (push)
 Con l'opzione \code{-v} (``verbose'') otteniamo una lista dei remote disponibili.
 Di default le operazioni come pull sottointendono che si voglia utilizzare il 
 remote origin, ma l'operazione può essere eseguita su qualsiasi altro remote
-(ad esempio git pull nuovoRemote).
+(ad esempio \code{git pull nuovoRemote}).
 
 I un remote può essere aggiunto (git remote add), rinominato (git remote rename)
 o rimosso (git remote remove).
 
 \section{Installazione e configurazione\label{configurazione}}
 
-less -r 
-config core.pager ""
+\begin{verbatim}
+$ git config --global user.email entattis15@itsvinci.com
+$ git config --global user.email entattis15@itsvinci.com
+\end{verbatim}
 
-\section{Github}
+In questo modo si imposta lo username e l'email che verranno associati a tutti i
+futuri commit. Non sono da confondere con le credenziali di Github \ref{github}.
+Per impostare editor e pager utilizzati git (di solito vim e less sono già 
+impostati di default):
+
+\begin{verbatim}
+$ git config --global core.editor vim
+$ git config --global core.pager less
+\end{verbatim}
+
+Un pager è un programma a linea di comando pensato per visualizzare in modo comodo
+l'output di qualsiasi programma o il contenuto di un file, permettendo di
+effettuare lo scroll avanti e indietro e ricerche sul testo.
+Se invece si preferisce visualizzare sempre l'output sul terminale:
+
+\begin{verbatim}
+$ git config --global core.pager ""
+\end{verbatim}
+
+Per utilizzare comunque less per visualizzare l'output di git log sarebbe
+necessario:
+
+\begin{verbatim}
+$ git log --color=always | less -r 
+\end{verbatim}
+
+\section{Github\label{github}}
 
 \section{Approfondimenti}
 
@@ -667,6 +701,10 @@ rebase, ammend
         {git log sempre colorato}
     \item \href{https://stackoverflow.com/questions/4259996/how-can-i-view-a-git-log-of-just-one-users-commits}
         {commit di una persona}
+    \item \href{https://stackoverflow.com/questions/278192/view-the-change-history-of-a-file-using-git-versioning}
+        {storia di un file}
+    \item \href{https://stackoverflow.com/questions/4456532/how-can-i-see-what-has-changed-in-a-file-before-committing-to-git}
+        {diff relativo ad un file}
     \item \href{https://stackoverflow.com/questions/6591213/how-do-i-rename-a-local-git-branch?rq=1}
         {rinominare un branch }
     \item \href{https://stackoverflow.com/questions/2304087/what-is-head-in-git}
