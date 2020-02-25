@@ -369,7 +369,7 @@ Fast-forward
  1 file changed, 2 insertions(+)
 \end{verbatim}
 
-\subsection{Log, Diff\label{log}}
+\subsection{Log\label{log}}
 
 Molto di quanto appena spiegato sarebbe inutile se non si potesse vedere la
 storia dei commit.
@@ -415,6 +415,8 @@ persona:
 \begin{verbatim}
 $ git log --author="Stivvo"
 \end{verbatim}
+
+\subsection{Diff}
 
 \section{la cartella .git}
 
@@ -589,11 +591,16 @@ repository sul server. Il primo remote che viene utilizzato in un repository
 viene chiamato di default \textbf{origin} (non è obbligatorio), ma ne possono
 essere aggiunti altri.
 
-... comando
+\begin{verbatim}
+$ git remote -v
+origin	https://github.com/Stivvo/GitNoob2Pro.git (fetch)
+origin	https://github.com/Stivvo/GitNoob2Pro.git (push)
+\end{verbatim}
 
-Otteniamo una lista dei remote disponibili. Di default le operazioni come pull
-sottointendono che si voglia utilizzare il remote origin, ma l'operazione può
-essere eseguita su qualsiasi altro remote (ad esempio git pull nuovoRemote).
+Con l'opzione \code{-v} (``verbose'') otteniamo una lista dei remote disponibili.
+Di default le operazioni come pull sottointendono che si voglia utilizzare il 
+remote origin, ma l'operazione può essere eseguita su qualsiasi altro remote
+(ad esempio git pull nuovoRemote).
 
 I un remote può essere aggiunto (git remote add), rinominato (git remote rename)
 o rimosso (git remote remove).
