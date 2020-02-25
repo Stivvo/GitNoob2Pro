@@ -428,6 +428,9 @@ persona:
 $ git log --author="Stivvo"
 \end{verbatim}
 
+Se si vuole vedere rapidamente i titoli di tutti i commit senza il loro hash 
+raggruppati per autore può tornare utile \code{git shortlog}.
+
 \subsection{Diff}
 
 Diff è un programma presente in tutti i sistemi unix-like che ha il semplice
@@ -484,6 +487,10 @@ $ git log -p
 Mostra tutti possibili output di diff, separandoli per commit. Se dopo l'opzione
 -p. L'output può essere ovviamente ristretto ad uno o più file passati come
 argomento.
+
+Infine il comando \code{git show} mostra tutte le mofidiche introdotte con un
+commit passato come parametro (se non presente mostra HEAD di default) e i file
+modificati utilizzando diff e il testo del commit utilizzando log.
 
 \section{la cartella .git}
 
@@ -724,25 +731,20 @@ rebase, ammend
 
 \section{fonti, link utuli}
 
-\subsection{pagine ufficiali di git}
+\subsection{generale}
 \begin{itemize}
-    \item \href{https://git-scm.com/book/en/v2}{pro git}
-    \item \href{https://git-scm.com/doc}{tutti i comandi}
+    \item \href{https://github.com/Stivvo/GitNoob2Pro}{questa stessa dispensa su
+        Github}
+    \item \href{https://www.atlassian.com/git/tutorials/what-is-version-control}{benefici dei version controllo}
     \item \href{https://git-scm.com/about/branching-and-merging}{vantaggi di git}
+    \item \href{https://git-scm.com/book/en/v2}{pro git (libro completo)}
+    \item \href{https://git-scm.com/doc}{tutti i comandi}
 \end{itemize}
 
-\subsection{correlato}
+\subsection{commit, push, pull, add}
 \begin{itemize}
-    \item \href{https://www.atlassian.com/git/tutorials/what-is-version-control}{benefici dei version controllo}
     \item \href{https://chris.beams.io/posts/git-commit/}{norme sulla scrittura dei commit}
     \item \href{https://semver.org/}{norme sull'assegnazione dei nomi alle versioni}
-    \item \href{https://www.toolsqa.com/git/git-log/}{guida a git log}
-\end{itemize}
-
-\subsection{stack overflow}
-\begin{itemize}
-    \item \href{https://stackoverflow.com/questions/9529497/what-is-origin-in-git}
-        {che cos'è head}
     \item \href{https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch}
         {differenza tra pull e fetch}
     \item \href{https://stackoverflow.com/questions/348170/how-do-i-undo-git-add-before-commit?rq=1}
@@ -751,30 +753,22 @@ rebase, ammend
         {parametri di add}
     \item \href{https://stackoverflow.com/questions/1125968/how-do-i-force-git-pull-to-overwrite-local-files?rq=1}
         {sovrascrivere con pull}
+    \item \href{https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit?rq=1}
+        {tornare a commit precedenti}
+\end{itemize}
+
+\subsection{head, remotes, branch}
+\begin{itemize}
     \item \href{https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch?rq=1}
         {checkout di un branch remoto}
     \item \href{https://stackoverflow.com/questions/2003505/how-do-i-delete-a-git-branch-locally-and-remotely?rq=1}
         {eliminare un branch}
-    \item \href{https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit?rq=1}
-        {tornare a commit precedenti}
-    \item \href{https://stackoverflow.com/questions/7124914/how-to-search-a-git-repository-by-commit-message}
-        {cercare il messaggio dei commit}
-    \item \href{https://stackoverflow.com/questions/5816134/how-to-find-the-git-commit-that-introduced-a-string-in-any-branch}
-        {cercare il testo modificato dai commit}
-    \item \href{https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history}
-        {grep del testo modificato dai commit}
-    \item \href{https://unix.stackexchange.com/questions/19317/can-less-retain-colored-output}
-        {git log sempre colorato}
-    \item \href{https://stackoverflow.com/questions/4259996/how-can-i-view-a-git-log-of-just-one-users-commits}
-        {commit di una persona}
-    \item \href{https://stackoverflow.com/questions/278192/view-the-change-history-of-a-file-using-git-versioning}
-        {storia di un file}
-    \item \href{https://stackoverflow.com/questions/4456532/how-can-i-see-what-has-changed-in-a-file-before-committing-to-git}
-        {diff relativo ad un file}
     \item \href{https://stackoverflow.com/questions/6591213/how-do-i-rename-a-local-git-branch?rq=1}
         {rinominare un branch }
     \item \href{https://stackoverflow.com/questions/2304087/what-is-head-in-git}
         {cos'è head}
+    \item \href{https://stackoverflow.com/questions/9529497/what-is-origin-in-git}
+        {che cos'è origin}
     \item \href{https://www.git-tower.com/learn/git/faq/detached-head-when-checkout-commit}
         {deatached head}
     \item \href{https://stackoverflow.com/questions/34519665/how-can-i-move-head-back-to-a-previous-location-detached-head-undo-commits}
@@ -787,6 +781,31 @@ rebase, ammend
         {push origin head}
     \item \href{https://stackoverflow.com/questions/10228760/fix-a-git-detached-head}
         {uscire da deatached head}
+    \item \href{https://stackoverflow.com/questions/16562121/git-diff-head-vs-staged}
+        {diff HEAD vs diff --staged}
+    \item \href{https://stackoverflow.com/questions/20889346/what-does-git-remote-mean}
+        {che cos'è un remote}
+\end{itemize}
+
+\subsection{log, diff}
+\begin{itemize}
+    \item \href{https://www.toolsqa.com/git/git-log/}{guida a git log}
+    \item \href{https://stackoverflow.com/questions/7124914/how-to-search-a-git-repository-by-commit-message}
+        {cercare il messaggio dei commit}
+    \item \href{https://stackoverflow.com/questions/5816134/how-to-find-the-git-commit-that-introduced-a-string-in-any-branch}
+        {cercare il testo modificato dai commit}
+    \item \href{https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history}
+        {grep del testo modificato dai commit}
+    \item \href{https://unix.stackexchange.com/questions/19317/can-less-retain-colored-output}
+        {git log sempre colorato}
+    \item \href{https://stackoverflow.com/questions/4259996/how-can-i-view-a-git-log-of-just-one-users-commits}
+        {ottenere tutti i commit di uno stesso autore}
+    \item \href{https://stackoverflow.com/questions/278192/view-the-change-history-of-a-file-using-git-versioning}
+        {storia di un file. log -p}
+    \item \href{https://stackoverflow.com/questions/4456532/how-can-i-see-what-has-changed-in-a-file-before-committing-to-git}
+        {diff relativo ad un file}
+    \item \href{https://stackoverflow.com/questions/2183900/how-do-i-prevent-git-diff-from-using-a-pager}
+        {non utilizzare un pager}
 \end{itemize}
 
 \end{document}
