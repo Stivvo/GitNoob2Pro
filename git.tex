@@ -3,6 +3,8 @@
 \title{Git} \date{\vspace{-5ex}} \author{Stefano Entatti}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{todonotes}
+\usepackage{listings}
 \setlength{\parindent}{10pt}
 
 \begin{document}
@@ -387,7 +389,7 @@ storia dei commit.
 \begin{figure}
 \includegraphics[width=6in]{logOutput.png}
 \centering
-\caption{scrittura del testo di un commit in vim}
+\caption{l'output del comando git log sul pager less}
 \end{figure}
 
 Git log mostra l'intera storia dei commit visualizzata nel pager di default
@@ -427,6 +429,61 @@ $ git log --author="Stivvo"
 \end{verbatim}
 
 \subsection{Diff}
+
+Diff è un programma presente in tutti i sistemi unix-like che ha il semplice
+compito di dare in output tutte le linee che differiscono tra due file,
+precedute da un < se quella determinata riga è presente solo file passato come
+primo argomento, altrimenti >.
+
+\begin{verbatim}
+$ cat file1
+prima
+seconda
+$ cat file2
+prima
+terza
+$ diff file1.txt file2.txt
+< seconda
+> terza
+\end{verbatim}
+
+Git utilizza una propria versione di diff, ad esempio per effettuare i merge,
+che mette anche a disposizione dell'utente. Aggiunge la capacità di non trattare
+un file rinominato o spostato come un nuovo file e di comparare la differenze
+tra i commit.
+
+\begin{verbatim}
+$ git diff 1fd15c30db68c1d9826204f571e4053a5ed89b49 9b004eae46dca7525156f57b9cf048ab147dd67d
+\end{verbatim}
+
+Visualizza le modifiche apportate tra due commit qualsiasi (compresi
+quelli in mezzo).
+Se si specifica un solo commit, si compara ad HEAD di default.
+
+\begin{verbatim}
+$ git diff --staged
+\end{verbatim}
+
+Mostra tutte le modifiche aggiunte alla staging area rispetto all'ultimo commit.
+
+\begin{verbatim}
+$ git diff HEAD
+\end{verbatim}
+
+Mostra anche le modifiche che non sono neanche entrate nella staging area.
+
+L'output di diff può essere ristretto ad uno o più file passati sempre come
+ultimi argomento.
+
+Diff diventa ancora più utile quando utilizzato insieme a log:
+
+\begin{verbatim}
+$ git log -p
+\end{verbatim}
+
+Mostra tutti possibili output di diff, separandoli per commit. Se dopo l'opzione
+-p. L'output può essere ovviamente ristretto ad uno o più file passati come
+argomento.
 
 \section{la cartella .git}
 
