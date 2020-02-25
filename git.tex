@@ -662,22 +662,28 @@ su uno specifico tag come si fa con i commit.
 
 Un remote è il percorso di un repository remoto, di solito è quello del
 repository sul server. Il primo remote che viene utilizzato in un repository
-viene chiamato di default \textbf{origin} (non è obbligatorio), ma ne possono
-essere aggiunti altri.
+viene chiamato di default \textbf{origin} (non è obbligatorio). I remote infatti
+possono essere aggiunti, rinominati o rimossi:
 
 \begin{verbatim}
-$ git remote -v
-origin	https://github.com/Stivvo/GitNoob2Pro.git (fetch)
-origin	https://github.com/Stivvo/GitNoob2Pro.git (push)
+$ git remote add amanjot https://github.com/samanjot/GitNoob2Pro
+$ git remote rename amanjot samanjot
+$ git remote remove samanjot
+$ git remote add amanjot https://github.com/samanjot/GitNoob2Pro
 \end{verbatim}
 
 Con l'opzione \code{-v} (``verbose'') otteniamo una lista dei remote disponibili.
 Di default le operazioni come pull sottointendono che si voglia utilizzare il 
 remote origin, ma l'operazione può essere eseguita su qualsiasi altro remote
-(ad esempio \code{git pull nuovoRemote}).
+(ad esempio \code{git pull amanjot}).
 
-I un remote può essere aggiunto (git remote add), rinominato (git remote rename)
-o rimosso (git remote remove).
+\begin{verbatim}
+$ git remote -v
+amanjot	https://github.com/samanjot/GitNoob2Pro (fetch)
+amanjot	https://github.com/samanjot/GitNoob2Pro (push)
+origin	https://github.com/Stivvo/GitNoob2Pro.git (fetch)
+origin	https://github.com/Stivvo/GitNoob2Pro.git (push)
+\end{verbatim}
 
 \section{Installazione e configurazione\label{configurazione}}
 
@@ -715,9 +721,32 @@ $ git log --color=always | less -r
 \section{Github\label{github}}
 
 Github è la più famosa piattaforma di hosting Git al mondo. è estremamente
-utilizzato da software opensource ma si rivolge anche al mondo closed
+utilizzato da software \textbf{opensource} ma si rivolge anche al mondo closed
 source attraverso github enterprise, che è ovviamente a pagamento, con il quale
-ci si può affidare ai server di github oppure installarlo su uno proprio. 
+ci si può affidare ai server di Github oppure installarlo su uno proprio.
+
+Per utilizzare Github è necessario registrarsi. Utente e password scelti
+verranno utilizzati richiesti al push su un qualsiasi repository Github e anche
+al pull o clone di un repository privato.
+
+Conoscendo Git l'interfaccia del sito diventa presto molto facile da usare, per
+alcuni più comoda rispetto a svolgere le stesse operazioni sul terminale.
+Sono comunque alcune funzionalità che vanno comprese, perchè si basano su
+concetti importanti spesso collegati a Git che non ho ancora affrontato.
+
+\subsection{Readme.md}
+Il readme è la prima cosa con cui un visitatore di un repository pubblico viene
+a contatto. Nel readme si scrive che cosa contiene il repository, come si
+utilizza il software, si forniscono istruzioni per chi vuole contribuire o 
+compilare il software da sorgente.
+è scritto in markdown, viene quindi compilato dal GitHub per dare un aspetto
+gradevole alla pagina iniziale di un repository.
+
+\subsection{Fork}
+
+\subsection{Pull request}
+
+\subsection{Issues}
 
 \section{Approfondimenti}
 
