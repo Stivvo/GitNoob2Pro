@@ -1,7 +1,11 @@
-\documentclass{article} \usepackage[textwidth=19cm,textheight=24cm]{geometry}
+\documentclass{article}
+\usepackage[textwidth=19cm,textheight=24cm]{geometry}
 
-\title{Git} \date{\vspace{-5ex}} \author{Stefano Entatti}
+\title{Git}
+\date{\vspace{-5ex}}
+\author{Stefano Entatti}
 \usepackage{hyperref}
+\usepackage{xcolor}
 
 \usepackage{graphicx}
 \usepackage{wrapfig}
@@ -16,9 +20,12 @@
 \maketitle
 
 \newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\links}[1]{{\color{blue}\underline{#1}}}
+
+\newcommand{\link}[2]{\href{#1}{\links{#2}}}
+\newcommand{\reff}[1]{\links{\ref{#1}}}
 
 \section{Cos'è un sistema di controllo di versione}
-
 Nella realizzazione di un progetto software potresti esserti accorto di voler
 tenere traccia dei tuoi progressi, magari registrandoli in modo da sapere cosa
 hai fatto e quando, o di voler tornare al momento esattamente prima a quella
@@ -40,7 +47,7 @@ effettuate su un insieme di file (che compongono il progetto), ovvero di chi le
 ha fatte, quando, quali righe sono state tolte e quali aggiunte. Ogni registrazione
 di modifica riporta l'autore, un titolo e una descrizione che spiega in dettaglio
 il perchè e stata necessaria o qualche peculiarità della modifica stessa
-in modo da facilitare la comprensione ad altri sviluppatore o ad una rilettura
+in modo da facilitare la comprensione ad altri sviluppatori o ad una rilettura
 in futuro. Inoltre in questo modo è possibile navigare e riportarsi in 
 qualsiasi punto della storia del progetto.
 
@@ -53,7 +60,6 @@ Esistono molti software di controllo versione, tra i più famosi ci sono Git,
 CVS, Subversion, Mercurial, Bazaar e BitKeeper.
 
 \section{Il sistema di controllo versione Git}
-
 Git è il sistema di controllo versione più utilizzato, ed è anche uno dei più
 semplici da usare. é nato nel 2005 ed è stato ideato da Linus Torvalds (il
 creatore di Linux) per facilitare lo sviluppo del kernel di Linux, uno dei
@@ -74,12 +80,11 @@ famose sono GitHub, GitLab, BitBuckets e Gitea. è tuttavia possibile creare un
 proprio server git.
 
 Git è nato come un programma a riga di comando, e anche se viene considerato più
-efficiente se utilizzato in questo modo, oggi esistono molti client grafici e
+efficiente se utilizzato in questo modo, oggi esistono molti client grafici ed
 estensioni che permettono di usufruire della maggior parte delle funzionalità di
 git direttamente dall'IDE.
 
 \section{Branching}
-
 Git è in grado di gestire contemporaneamente più sviluppi all'interno della
 stessa copia del progetto, questi si chiamano \textbf{branch}. Con più sviluppi si 
 intendono più tipologie di modifiche differenti anche all'interno dello stesso file.
@@ -116,7 +121,6 @@ risolverlo a mano.
 Si può passare in qualsiasi momento da un branch all'altro.
 
 \section{Comandi principali}
-
 Git offre moltissimi comandi, ognuno dei quali svolge un piccolo insieme di
 funzionalità. Ogni comando (in questa sezione tratteremo i principali) è sempre preceduto da
 ``git''. Ognuno può accettare un diverso numero di argomenti e di opzioni
@@ -125,7 +129,6 @@ un doppio meno. Gli argomenti e le opzioni dei comandi possono essere combinati
 in moltissimi modi per ottenere il comportamento desiderato da git.
 
 \subsection{init, clone}
-
 Per creare un nuovo repository locale si utilizza init (stando all'interno
 della cartella del progetto del quale si vuole tenere traccia):
 
@@ -145,7 +148,6 @@ Per utilizzare tutti gli altri comandi, occorre posizionarsi all' interno della
 cartella del repository, che viene creata in automatico da clone e init.
 
 \subsection{Commit}
-
 Ogni volta che si fa una certa quantità di cambiamenti è utile fare un commit,
 ovvero segnare un punto nello sviluppo a cui sarà sempre possibile tornare,
 quindi registrare e descrivere queste modifiche.
@@ -154,7 +156,7 @@ quindi registrare e descrivere queste modifiche.
 $ git commit
 \end{verbatim}
 
-Questo comando aprirà l'editor di default (vedere \ref{configurazione}) di git.
+Questo comando aprirà l'editor di default (vedere \reff{configurazione}) di git.
 Nella prima riga va scritto il titolo del commit.
 è una buona norma che il titolo mantenga una lunghezza massima di 72 caratteri
 e contenga solo nomi e verbi al presente.
@@ -163,9 +165,9 @@ molto lunga e dettagliata per spiegare in modo discorsivo cosa si è fatto,
 perché e se eventualmente ha causato dei problemi.
 
 Un commit rimane sempre associato al proprio autore, riconoscibile da come ha
-configurato il punto \ref{configurazione}, e all'orario in cui è stato fatto.
+configurato il punto \reff{configurazione}, e all'orario in cui è stato fatto.
 
-Tutte queste informazioni sono visibili da git log (\ref{log}).
+Tutte queste informazioni sono visibili da git log (\reff{log}).
 
 \begin{figure}
 \includegraphics[width=6in]{img/vimEditCommit.png}
@@ -194,7 +196,6 @@ Signed-off-by: Stivvo entattis15@itsvinci.com
 \end{verbatim}
 
 \subsection{Add, rm, reset, status}
-
 I file coinvolti dal commit devono essere prima selezionati con add. In questo
 modo si entra nella \textbf{staging area}. è uno stato intermedio che sta prima di
 un commit per tracciare le modifiche momentanee in caso di piu' prove.
@@ -249,10 +250,9 @@ Modifiche non nell'area di staging per il commit:
 \end{verbatim}
 
 Questo comando mostra anche informazioni relative al branch su cui si è
-Posizionati e se si è aggiornati rispetto al remote (vedere \ref{remoti}).
+Posizionati e se si è aggiornati rispetto al remote (vedere \reff{remoti}).
 
 \subsection{Push}
-
 Permette di caricare un numero illimitato di commit su un branch di un
 repository remoto. Le modifiche locali vengono unite a quelle remote.
 
@@ -278,9 +278,8 @@ dettagli
 \end{verbatim}
 
 \subsection{Merge, Pull, fetch}
-
 \textbf{Merge} permette di fondere le modifiche di due branch, locali o remoti (o anche
-commit diversi dello stesso branch) come ad esempio quando devo unire nel branch principale
+commit diversi dello stesso branch) come ad esempio quando bisogna unire nel branch principale
 le modifiche fatte su un branch per correggere dei bug. Se si effettua un pull come suggerito
 sopra, avverrà infatti un merge. Se git rileva dei conflitti segnala all'utente
 di risolverli manualmente. 
@@ -309,12 +308,11 @@ commit la classe è stata rinominata in FirstClass da un primo sviluppatore. Nel
 frattempo un secondo ha fatto un push di un commit in cui l'ha chiamata
 SecondClass. Quando il primo sviluppatore si trova a dover fare il pull delle modifiche del
 secondo, per risovere i conflitti di merge deve scegliere tra la versione locale
-(HEAD) e quella dell'altro, identificata dal codice hash (vedere \ref{log}) del commit che ha
-rinominato la classe in SecondClass. Il prossimo push sarà quello del commit di
-merge, automaticamente creato da git.
+(HEAD, vedere \reff{heads}) e quella dell'altro, identificata dal codice hash
+(vedere \reff{log}) del commit che ha rinominato la classe in SecondClass.
+Il prossimo push sarà quello del commit di merge, automaticamente creato da git.
 
 \subsection{Checkout, branch, merge}
-
 Git branch senza opzioni viene utilizzato per creare un nuovo branch locale. La
 creazione del branch develop:
 
@@ -386,7 +384,6 @@ Fast-forward
 \end{verbatim}
 
 \subsection{Log\label{log}}
-
 Molto di quanto appena spiegato sarebbe inutile se non si potesse vedere la
 storia dei commit.
 
@@ -397,7 +394,7 @@ storia dei commit.
 \end{figure}
 
 Git log mostra l'intera storia dei commit visualizzata nel pager di default
-(vedere \ref{configurazione}).
+(vedere \reff{configurazione}).
 Le lunghe serie di caratteri sono i codici \textbf{hash}, univoci per ogni
 commit. L'output del comando mostra anche a quale commit puntano la HEAD e i
 repository remoti (se abbiamo dei commit di cui non abbiamo fatto ancora il push
@@ -436,7 +433,6 @@ Se si vuole vedere rapidamente i titoli di tutti i commit senza il loro hash
 raggruppati per autore può tornare utile \code{git shortlog}.
 
 \subsection{Diff}
-
 Diff è un programma presente in tutti i sistemi unix-like che ha il semplice
 compito di dare in output tutte le linee che differiscono tra due file,
 precedute da un < se quella determinata riga è presente solo file passato come
@@ -497,7 +493,6 @@ commit passato come parametro (se non presente mostra HEAD di default) e i file
 modificati utilizzando diff e il testo del commit utilizzando log.
 
 \section{la cartella .git}
-
 La cartella .git si trova nella root del repository e contiene tutti i file
 utilizzati da git, tra cui informazioni sui branch, sui commit. Nei sistemi
 operativi unix una cartella preceduta da un punto è nascosta e quindi occorre
@@ -516,8 +511,7 @@ $ ls .git/refs
 heads/  remotes/  tags/
 \end{verbatim}
 
-\subsection{heads}
-
+\subsection{heads\label{heads}}
 In git una head è un riferimento ad un branch o ad un commit di un determinato
 branch, locale o remoto. Una lista delle head disponibili:
 
@@ -526,8 +520,8 @@ $ ls .git/refs/heads
 master/ develop/
 \end{verbatim}
 
-HEAD è un file che punta all'ultimo commit del branch in cui si è attualmente
-posizionati nel repository locale.
+\textbf{HEAD} è un file che punta all'ultimo commit del branch in cui si è
+attualmente posizionati nel repository locale.
 
 \begin{verbatim}
 $ cat .git/HEAD
@@ -535,7 +529,7 @@ ref: refs/heads/master
 \end{verbatim}
 
 Nel caso in cui si voglia ritornare ad un commit precedente si entra nello stato
-di \emph{deatached head}, ovvero facendo il checkout su uno specifico commit
+di \emph{\textbf{deatached head}}, ovvero facendo il checkout su uno specifico commit
 (identificato con il suo codice hash).
 
 \begin{verbatim}
@@ -575,7 +569,7 @@ allo stato corrente (HEAD scollegato), usa
 \end{verbatim}
 
 Il comando suggerito da git serve per caricare le modifiche effettuate in deatached head
-direttamente sul branch remoto, come spiegato nella sezione \ref{remoti}.
+direttamente sul branch remoto, come spiegato nella sezione \reff{remoti}.
 è molto probabile che non funzioni, perchè andrebbe ad
 eliminare delle modifiche remote successive al commit in
 cui si è entrati in deatached head. Quindi è necessario aggiungere l'opzione -f
@@ -611,7 +605,6 @@ effettuate da quel commit fino a HEAD (questo intervallo può dunque comprendere
 diversi commit), ovvero lo stato corrente del branch.
 
 \subsection{Tags}
-
 Possono essere assegnati ad un commit in cui si è raggiunto un traguardo nel
 progetto (ad esempio 1.3.5).
 
@@ -663,7 +656,6 @@ I tag possono anche essere eliminati con l'opzione -d e si può fare il checkout
 su uno specifico tag come si fa con i commit.
 
 \subsection{Remote\label{remoti}}
-
 Un remote è il percorso di un repository remoto, di solito è quello del
 repository sul server. Il primo remote che viene utilizzato in un repository
 viene chiamato di default \textbf{origin} (non è obbligatorio). I remote infatti
@@ -689,17 +681,16 @@ origin	https://github.com/Stivvo/GitNoob2Pro.git (fetch)
 origin	https://github.com/Stivvo/GitNoob2Pro.git (push)
 \end{verbatim}
 
-Il remote amanjot è un fork (\ref{fork}) del repository di questa dispensa.
+Il remote amanjot è un fork (\reff{fork}) del repository di questa dispensa.
 
 \section{Installazione e configurazione\label{configurazione}}
-
 \begin{verbatim}
-$ git config --global user.email entattis15@itsvinci.com
+$ git config --global user.name Stivvo
 $ git config --global user.email entattis15@itsvinci.com
 \end{verbatim}
 
 In questo modo si imposta lo username e l'email che verranno associati a tutti i
-futuri commit. Non sono da confondere con le credenziali di Github \ref{github}.
+futuri commit. Non sono da confondere con le credenziali di Github \reff{github}.
 Per impostare editor e pager utilizzati git (di solito vim e less sono già 
 impostati di default):
 
@@ -725,7 +716,6 @@ $ git log --color=always | less -r
 \end{verbatim}
 
 \section{Github\label{github}}
-
 Github è la più famosa piattaforma di hosting Git al mondo. è estremamente
 utilizzato da software \textbf{opensource} ma si rivolge anche al mondo closed
 source attraverso github enterprise, che è ovviamente a pagamento, con il quale
@@ -735,10 +725,11 @@ Per utilizzare Github è necessario registrarsi. Utente e password scelti
 verranno utilizzati richiesti al push su un qualsiasi repository Github e anche
 al pull o clone di un repository privato.
 
-Conoscendo Git l'interfaccia del sito diventa presto molto facile da usare, per
-alcuni più comoda rispetto a svolgere le stesse operazioni sul terminale.
-Sono comunque alcune funzionalità che vanno comprese, perchè si basano su
-concetti importanti spesso collegati a Git che non ho ancora affrontato.
+Conoscendo Git, l' interfaccia del sito diventa presto molto facile da usare.
+A volte può risultare più comodo svolgere alcune operazioni sul sito piuttosto
+che sul terminale.
+Ci sono comunque alcune funzionalità extra che vanno comprese, perchè si basano su
+concetti importanti spesso collegati a Git che non sono stati ancora trattati.
 
 \subsection{Readme\label{readme}}
 Il readme è la prima cosa con cui un visitatore di un repository pubblico viene
@@ -752,43 +743,42 @@ spesso compilato in file .html.
 \includegraphics[width=6in]{img/readme.png}
 \centering
 \caption{il readme di qt creator, uno dei maggiori progetti opensource 
-\ref{readme}}
+\reff{readme}}
 \end{figure}
 
 \subsection{Fork\label{fork}}
-Un fork avviene quando un gruppo di sviluppatori effettua la copia di un
-software per continuarne lo sviluppo in modo indipendente dal team originale. Il
-concetto è simile a quello della creazione di un branch, che diventa però
+Un gruppo di sviluppatori effettua il fork di un software quando ne crea una
+copia per continuarne lo sviluppo in modo indipendente dal team originale.
+Il concetto è simile a quello della creazione di un branch, che diventa però
 indipendente da tutti gli altri e viene sviluppato da persone diverse.
 Spesso un fork porta un nome diverso dal progetto originale.
 
-Come si potrà imaginare, i fork nascono la maggior parte delle volte da progetti
-opensource, coi quali la creazione di un fork è perfettamente lecita.
+Come si potrà immaginare, i fork nascono, la maggior parte delle volte, da progetti
+opensource, di cui è perfettamente lecito creare quanti fork si desiderino.
 Molte volte i fork avvengono quando il contributo di un gruppo di persone ad un
 progetto non viene accettato dal team originale, ad esempio perchè questi
 hanno obiettivi molto diversi per stesso software o perchè lo vogliono adattare
 a specifiche esigenze.
 Anche i 
-\href{https://en.wikipedia.org/wiki/Fork_(software_development)#/media/File:Linux_Distribution_Timeline.svg}
-{fork di fork}
-non sono qualcosa di così inusuale.
+\link{https://en.wikipedia.org/wiki/Fork\_(software\_development)\#/media/File:Linux\_Distribution\_Timeline.svg}{fork di fork}
+non sono così inusuali nel mondo opensource.
 
 Un fork può anche essere effettuato da uno sviluppatore che vuole contribuire ad
 un progetto pur non essendo collaboratore. Non può quindi apportare direttamente
 delle modifiche e dunque nemmeno creare un proprio branch.
 Quando all'interno del fork ha terminato di effettuare le proprie modifiche, può
 ricongiungersi col progetto principale attraverso una pull request
-({\ref{pullrequest}}).
+({\reff{pullrequest}}).
 
 Due fork possono in teoria essere sottoposti ad un merge. A volte però la
-differenze aumentano talmente tanto che diventa possibile effettuarlo
+differenze aumentano tanto che diventa possibile effettuarlo
 solamente sulle parti che sono state poco modificate dagli autori del fork.
 
 \begin{figure}
 \includegraphics[width=6in]{img/fork.png}
 \centering
 \caption{l'albero dei fork di Boost, libreria per HTML/CSS/JS, uno dei
-repository attualmente più forkati su GitHub \ref{fork}}
+repository attualmente più forkati su GitHub \reff{fork}}
 \end{figure}
 
 \subsection{Pull request\label{pullrequest}}
@@ -803,9 +793,9 @@ poi effettuato il merge.
 
 Le pull request possono essere effettuate ad esempio da un singolo sviluppatore
 per chiedere ai propri collaboratori se può integrare su master le modifiche che ha
-effettuato sul proprio branch. Se nel mentre che viene valutata continua a
-lavorare sul proprio branch, la pull request fatta in precedenza non viene
-aggiornata (è necessario crearne un'altra), in questo modo chi controlla le pull
+effettuato sul proprio branch. Se, mentre viene valutata, continua a lavorare
+sullo stesso branch, la pull request già fatta non viene aggiornata
+(è necessario crearne un'altra), in questo modo chi controlla le pull
 request può prendersi molto più tempo per valutarle, essendo sicuro che nel
 frattempo non possono cambiare.
 
@@ -818,7 +808,7 @@ nello storico delle pull request.
 \includegraphics[width=6in]{img/pullRequest.png}
 \centering
 \caption{una pullrequest per aggiornare il fork di questa dispensa 
-\ref{pullrequest}}
+\reff{pullrequest}}
 \end{figure}
 
 \subsection{Issue\label{issue}}
@@ -827,13 +817,12 @@ servizio aggiunto dalle piattaforme di hosting. Contengono un testo che spiega
 un problema o una feature che si vorrebbe introdurre e possono essere aperte da
 chiunque.
 A volte vengono aperte dagli stessi sviluppatori del progetto, per cui diventano
-una specie di todolist, o anche semplici utenti utenti che vogliono segnalare un
-bug.
+una specie di todolist, o anche semplici utenti che vogliono segnalare un bug.
 
 \begin{figure}
 \includegraphics[width=6in]{img/issue.png}
 \centering
-\caption{lista delle issue attualmente aperte su questo repository \ref{issue}}
+\caption{lista delle issue attualmente aperte su questo repository \reff{issue}}
 \end{figure}
 
 La grande utilità delle issue (questo è specifico per GitHub) è che possono
@@ -841,7 +830,7 @@ essere collegate a commit o pull request. Se ad esempio un commit risolve
 definitivamente i problemi evidenziati da una specifica issue, può essere
 collegato alla sua chiusura.
 Inserendo alcune 
-\href{https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue}
+\link{https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue}
 {parole chiave}
 nel titolo del commit, seguite da \# e poi dal numero della issue, la chiude in
 automatico. Inoltre, nella storia dei commit di github quel commit riporterà un
@@ -851,7 +840,7 @@ marcata come tale, ma resta visibile per preservare la memoria dello sviluppo.
 \begin{figure}
 \includegraphics[width=6in]{img/commitCloseIssue.png}
 \centering
-\caption{commit che chiude una issue \ref{issue}}
+\caption{commit che chiude una issue \reff{issue}}
 \end{figure}
 
 \section{Approfondimenti}
@@ -868,82 +857,82 @@ rebase, ammend
 
 \subsection{generale}
 \begin{itemize}
-    \item \href{https://github.com/Stivvo/GitNoob2Pro}
+    \item \link{https://github.com/Stivvo/GitNoob2Pro}
         {questa stessa dispensa su Github}
-    \item \href{https://www.atlassian.com/git/tutorials/what-is-version-control}
+    \item \link{https://www.atlassian.com/git/tutorials/what-is-version-control}
         {benefici dei version controllo}
-    \item \href{https://git-scm.com/about/branching-and-merging}
+    \item \link{https://git-scm.com/about/branching-and-merging}
         {vantaggi di git}
-    \item \href{https://git-scm.com/book/en/v2}
+    \item \link{https://git-scm.com/book/en/v2}
         {pro git (libro completo)}
-    \item \href{https://git-scm.com/doc}
+    \item \link{https://git-scm.com/doc}
         {tutti i comandi}
 \end{itemize}
 
 \subsection{commit, push, pull, add}
 \begin{itemize}
-    \item \href{https://chris.beams.io/posts/git-commit/}{norme sulla scrittura dei commit}
-    \item \href{https://semver.org/}{norme sull'assegnazione dei nomi alle versioni}
-    \item \href{https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch}
+    \item \link{https://chris.beams.io/posts/git-commit/}{norme sulla scrittura dei commit}
+    \item \link{https://semver.org/}{norme sull'assegnazione dei nomi alle versioni}
+    \item \link{https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch}
         {differenza tra pull e fetch}
-    \item \href{https://stackoverflow.com/questions/348170/how-do-i-undo-git-add-before-commit?rq=1}
+    \item \link{https://stackoverflow.com/questions/348170/how-do-i-undo-git-add-before-commit?rq=1}
         {annullare add}
-    \item \href{https://stackoverflow.com/questions/572549/difference-between-git-add-a-and-git-add?rq=1}
+    \item \link{https://stackoverflow.com/questions/572549/difference-between-git-add-a-and-git-add?rq=1}
         {parametri di add}
-    \item \href{https://stackoverflow.com/questions/1125968/how-do-i-force-git-pull-to-overwrite-local-files?rq=1}
+    \item \link{https://stackoverflow.com/questions/1125968/how-do-i-force-git-pull-to-overwrite-local-files?rq=1}
         {sovrascrivere con pull}
-    \item \href{https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit?rq=1}
+    \item \link{https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit?rq=1}
         {tornare a commit precedenti}
 \end{itemize}
 
 \subsection{head, remotes, branch}
 \begin{itemize}
-    \item \href{https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch?rq=1}
+    \item \link{https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch?rq=1}
         {checkout di un branch remoto}
-    \item \href{https://stackoverflow.com/questions/2003505/how-do-i-delete-a-git-branch-locally-and-remotely?rq=1}
+    \item \link{https://stackoverflow.com/questions/2003505/how-do-i-delete-a-git-branch-locally-and-remotely?rq=1}
         {eliminare un branch}
-    \item \href{https://stackoverflow.com/questions/6591213/how-do-i-rename-a-local-git-branch?rq=1}
+    \item \link{https://stackoverflow.com/questions/6591213/how-do-i-rename-a-local-git-branch?rq=1}
         {rinominare un branch }
-    \item \href{https://stackoverflow.com/questions/2304087/what-is-head-in-git}
+    \item \link{https://stackoverflow.com/questions/2304087/what-is-head-in-git}
         {cos'è head}
-    \item \href{https://stackoverflow.com/questions/9529497/what-is-origin-in-git}
+    \item \link{https://stackoverflow.com/questions/9529497/what-is-origin-in-git}
         {che cos'è origin}
-    \item \href{https://www.git-tower.com/learn/git/faq/detached-head-when-checkout-commit}
+    \item \link{https://www.git-tower.com/learn/git/faq/detached-head-when-checkout-commit}
         {deatached head}
-    \item \href{https://stackoverflow.com/questions/34519665/how-can-i-move-head-back-to-a-previous-location-detached-head-undo-commits}
+    \item \link{https://stackoverflow.com/questions/34519665/how-can-i-move-head-back-to-a-previous-location-detached-head-undo-commits}
         {risolvere una deatached head}
-    \item \href{https://stackoverflow.com/questions/8196544/what-are-the-git-concepts-of-head-master-origin}
+    \item \link{https://stackoverflow.com/questions/8196544/what-are-the-git-concepts-of-head-master-origin}
         {differenza tra head, master e origin}
-    \item \href{https://stackoverflow.com/questions/20954566/what-is-the-difference-from-head-head-and-head1}
+    \item \link{https://stackoverflow.com/questions/20954566/what-is-the-difference-from-head-head-and-head1}
         {tipi di head}
-    \item \href{https://stackoverflow.com/questions/23241052/what-does-git-push-origin-head-mean}
+    \item \link{https://stackoverflow.com/questions/23241052/what-does-git-push-origin-head-mean}
         {push origin head}
-    \item \href{https://stackoverflow.com/questions/10228760/fix-a-git-detached-head}
+    \item \link{https://stackoverflow.com/questions/10228760/fix-a-git-detached-head}
         {uscire da deatached head}
-    \item \href{https://stackoverflow.com/questions/16562121/git-diff-head-vs-staged}
+    \item \link{https://stackoverflow.com/questions/16562121/git-diff-head-vs-staged}
         {diff HEAD vs diff --staged}
-    \item \href{https://stackoverflow.com/questions/20889346/what-does-git-remote-mean}
+    \item \link{https://stackoverflow.com/questions/20889346/what-does-git-remote-mean}
         {che cos'è un remote}
 \end{itemize}
 
 \subsection{log, diff}
 \begin{itemize}
-    \item \href{https://www.toolsqa.com/git/git-log/}{guida a git log}
-    \item \href{https://stackoverflow.com/questions/7124914/how-to-search-a-git-repository-by-commit-message}
+    \item \link{https://www.toolsqa.com/git/git-log/}{guida a git log}
+    \item \link{https://stackoverflow.com/questions/7124914/how-to-search-a-git-repository-by-commit-message}
         {cercare il messaggio dei commit}
-    \item \href{https://stackoverflow.com/questions/5816134/how-to-find-the-git-commit-that-introduced-a-string-in-any-branch}
+    \item \link{https://stackoverflow.com/questions/5816134/how-to-find-the-git-commit-that-introduced-a-string-in-any-branch}
         {cercare il testo modificato dai commit}
-    \item \href{https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history}
+    \item \link{https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history}
         {grep del testo modificato dai commit}
-    \item \href{https://unix.stackexchange.com/questions/19317/can-less-retain-colored-output}
+    \item \link{https://unix.stackexchange.com/questions/19317/can-less-retain-colored-output}
         {git log sempre colorato}
-    \item \href{https://stackoverflow.com/questions/4259996/how-can-i-view-a-git-log-of-just-one-users-commits}
+    \item \link{https://stackoverflow.com/questions/4259996/how-can-i-view-a-git-log-of-just-one-users-commits}
         {ottenere tutti i commit di uno stesso autore}
-    \item \href{https://stackoverflow.com/questions/278192/view-the-change-history-of-a-file-using-git-versioning}
+    \item \link{https://stackoverflow.com/questions/278192/view-the-change-history-of-a-file-using-git-versioning}
         {storia di un file. log -p}
-    \item \href{https://stackoverflow.com/questions/4456532/how-can-i-see-what-has-changed-in-a-file-before-committing-to-git}
+    \item \link{https://stackoverflow.com/questions/4456532/how-can-i-see-what-has-changed-in-a-file-before-committing-to-git}
         {diff relativo ad un file}
-    \item \href{https://stackoverflow.com/questions/2183900/how-do-i-prevent-git-diff-from-using-a-pager}
+    \item \link{https://stackoverflow.com/questions/2183900/how-do-i-prevent-git-diff-from-using-a-pager}
         {non utilizzare un pager}
 \end{itemize}
 
