@@ -309,6 +309,8 @@ Questo permette di vedere prima le nuove modifiche remote (si possono guardare
 al volo facendo ad esempio \code{git checkout origin/develop}) per poi decidere
 se effettuare il merge o no.
 
+modifica inutile
+
 \begin{verbatim}
 $ git checkout master
 $ git pull develop
@@ -316,6 +318,8 @@ $ git pull develop
 
 Utilizzando pull si ottiene un risultato identico ma l'operazione di merge non è
 annullabile.
+In ogni caso è sempre necessario non avere modifiche non committate quando si
+effettua pull o merge.
 
 \begin{verbatim}
 <<<<<<< HEAD
