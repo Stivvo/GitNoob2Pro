@@ -252,7 +252,7 @@ Modifiche non nell'area di staging per il commit:
 Questo comando mostra anche informazioni relative al branch su cui si è
 Posizionati e se si è aggiornati rispetto al remote (vedere \reff{remoti}).
 
-\subsection{Push}
+\subsection{Push\label{push}}
 Permette di caricare un numero illimitato di commit su un branch di un
 repository remoto. Le modifiche locali vengono unite a quelle remote.
 
@@ -279,14 +279,16 @@ dettagli
 
 \subsection{Merge, Pull, fetch}
 \textbf{Merge} permette di fondere le modifiche di due branch, locali o remoti (o anche
-commit diversi dello stesso branch) come ad esempio quando bisogna unire nel branch principale
+commit diversi dello stesso branch). Si usa ad esempio quando bisogna unire nel branch principale
 le modifiche fatte su un branch per correggere dei bug. Se si effettua un pull come suggerito
-sopra, avverrà infatti un merge. Se git rileva dei conflitti segnala all'utente
-di risolverli manualmente. 
+nel codice della sezione \ref{push} avverrà infatti un merge.
+Se git rileva dei \textbf{conflitti} chiede all'utente di risolverli manualmente.
 
 \textbf{Fetch} permette di aggiornare lo stato dei branch in remoto per controllore
 se ci sono branch nuovi o magari nuovi commit sul branch al quale si sta lavorando per evitare
-di rimanere disallineati con il repository di riferimento.
+di rimanere disallineati con il repository di riferimento. Da solo infatti,
+git merge merge effettua il merge delle ultime mofidiche che si sono scaricate
+con fetch.
 
 \textbf{Pull} è in sostanza un fetch seguito da un merge, ed è quello che capita di
 utilzzare più spesso. In generale pull fonde ciò che si trova al momento sul
@@ -294,6 +296,26 @@ branch del repository remoto con quello locale.
 
 Pull e fetch chiamati senza argomenti vanno a prelevare la versione remota del
 branch su cui si è localmente.
+
+Quindi se si vuole fondere ad esempio le modifiche di develop su master:
+
+\begin{verbatim}
+$ git checkout master
+$ git fetch
+$ git merge develop
+\end{verbatim}
+
+Questo permette di vedere prima le nuove modifiche remote (si possono guardare
+al volo facendo ad esempio \code{git checkout origin develop}) per poi decidere
+se effettuare il merge o no.
+
+\begin{verbatim}
+$ git checkout master
+$ git pull develop
+\end{verbatim}
+
+Utilizzando pull si ottiene un risultato identico ma l'operazione di merge non è
+annullabile.
 
 \begin{verbatim}
 <<<<<<< HEAD
@@ -913,6 +935,14 @@ rebase, ammend
         {diff HEAD vs diff --staged}
     \item \link{https://stackoverflow.com/questions/20889346/what-does-git-remote-mean}
         {che cos'è un remote}
+    \item \link{https://stackoverflow.com/questions/21756614/difference-between-git-merge-origin-master-and-git-pull}
+        {differenza tra merge e pull}
+    \item \link{https://stackoverflow.com/questions/16666089/whats-the-difference-between-git-merge-and-git-rebase}
+        {differenza tra merge e rebase}
+    \item \link{https://stackoverflow.com/questions/3404294/merging-2-branches-together-in-git}
+        {fare il merge di due branch}
+    \item \link{https://stackoverflow.com/questions/18137175/in-git-what-is-the-difference-between-origin-master-vs-origin-master}
+        {differenza tra origin master e origin/master}
 \end{itemize}
 
 \subsection{log, diff}
