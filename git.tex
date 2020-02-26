@@ -164,7 +164,7 @@ configurato il punto \ref{configurazione}, e all'orario in cui è stato fatto.
 Tutte queste informazioni sono visibili da git log (\ref{log}).
 
 \begin{figure}
-\includegraphics[width=6in]{vimEditCommit.png}
+\includegraphics[width=6in]{img/vimEditCommit.png}
 \centering
 \caption{scrittura del testo di un commit in vim}
 \end{figure}
@@ -387,7 +387,7 @@ Molto di quanto appena spiegato sarebbe inutile se non si potesse vedere la
 storia dei commit.
 
 \begin{figure}
-\includegraphics[width=6in]{logOutput.png}
+\includegraphics[width=6in]{img/logOutput.png}
 \centering
 \caption{l'output del comando git log sul pager less}
 \end{figure}
@@ -685,6 +685,8 @@ origin	https://github.com/Stivvo/GitNoob2Pro.git (fetch)
 origin	https://github.com/Stivvo/GitNoob2Pro.git (push)
 \end{verbatim}
 
+Il remote amanjot è un fork (\ref{fork}) del repository di questa dispensa.
+
 \section{Installazione e configurazione\label{configurazione}}
 
 \begin{verbatim}
@@ -742,7 +744,13 @@ compilare il software da sorgente.
 è scritto in markdown, un metalinguaggo utilizzato per scrivere testi che viene
 spesso compilato in file .html.
 
-\subsection{Fork}
+\begin{figure}
+\includegraphics[width=6in]{img/readme.png}
+\centering
+\caption{il readme di qt creator, uno dei maggiori progetti opensource}
+\end{figure}
+
+\subsection{Fork\label{fork}}
 Un fork avviene quando un gruppo di sviluppatori effettua la copia di un
 software per continuarne lo sviluppo in modo indipendente dal team originale. Il
 concetto è simile a quello della creazione di un branch, che diventa però
@@ -771,12 +779,24 @@ Due fork possono in teoria essere sottoposti ad un merge. A volte però la
 differenze aumentano talmente tanto che diventa possibile effettuarlo
 solamente sulle parti che sono state poco modificate dagli autori del fork.
 
+\begin{figure}
+\includegraphics[width=6in]{img/fork.png}
+\centering
+\caption{l'albero dei fork del repository attualmente più forkato su GitHub}
+\end{figure}
+
 \subsection{Pull request\label{pullrequest}}
 Una pull request è di base uguale ad un merge. è tuttavia accompagnata da un
 testo che spiega quali sono i cambiamenti che da un determinato branch si
 vogliono unire a ad un altro, dello stesso repository o di un fork.
 Una pull request deve essere approvata da un collaboratore del progetto del
 repository su cui viene poi effettuato il merge.
+
+\begin{figure}
+\includegraphics[width=6in]{img/pullRequest.png}
+\centering
+\caption{una pullrequest per aggiornare il fork di questa dispensa}
+\end{figure}
 
 \subsection{Issue}
 Una issue non ha a che vedere direttamente con i comandi di Git, è invece un
@@ -789,6 +809,12 @@ La grande utilità delle issue (questo è specifico per GitHub) è che possono
 essere collegate a commit o pull request. Se ad esempio un commit risolve
 definitivamente i problemi evidenziati da una specifica issue, può essere
 collegato alla sua chiusura.
+
+\begin{figure}
+\includegraphics[width=6in]{img/issue.png}
+\centering
+\caption{lista delle issue attualmente aperte su questo repository}
+\end{figure}
 
 \section{Approfondimenti}
 
