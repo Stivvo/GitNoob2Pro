@@ -753,13 +753,30 @@ Come si potrà imaginare, i fork nascono la maggior parte delle volte da progett
 opensource, coi quali la creazione di un fork è perfettamente lecita.
 Molte volte i fork avvengono quando il contributo di un gruppo di persone ad un
 progetto non viene accettato dal team originale, ad esempio perchè questi
-hanno obiettivi molto diversi per stesso software.
+hanno obiettivi molto diversi per stesso software o perchè lo vogliono adattare
+a specifiche esigenze.
 Anche i 
 \href{https://en.wikipedia.org/wiki/Fork_(software_development)#/media/File:Linux_Distribution_Timeline.svg}
 {fork di fork}
 non sono qualcosa di così inusuale.
 
-\subsection{Pull request}
+Un fork può anche essere effettuato da uno sviluppatore che vuole contribuire ad
+un progetto pur non essendo collaboratore. Non può quindi può apportare direttamente
+delle modifiche dunque non può creare un proprio branch.
+Quando all'interno del fork ha terminato di effettuare le proprie modifiche, può
+ricongiungersi col progetto principale attraverso una pull request
+({\ref{pullrequest}}).
+
+Due fork possono in teoria essere sottoposti ad un merge. A volte però la
+differenze aumentano talmente tanto che diventa possibile effettuarlo
+solamente sulle parti che sono state poco modificate dagli autori del fork.
+
+\subsection{Pull request\label{pullrequest}}
+Una pull request è di base uguale ad un merge. è tuttavia accompagnata da un
+testo che spiega quali sono i cambiamenti che da un determinato branch si
+vogliono unire a ad un altro, dello stesso repository o di un fork.
+Una pull request deve essere approvata da un collaboratore del progetto del
+repository su cui viene poi effettuato il merge.
 
 \subsection{Issues}
 
@@ -777,12 +794,16 @@ rebase, ammend
 
 \subsection{generale}
 \begin{itemize}
-    \item \href{https://github.com/Stivvo/GitNoob2Pro}{questa stessa dispensa su
-        Github}
-    \item \href{https://www.atlassian.com/git/tutorials/what-is-version-control}{benefici dei version controllo}
-    \item \href{https://git-scm.com/about/branching-and-merging}{vantaggi di git}
-    \item \href{https://git-scm.com/book/en/v2}{pro git (libro completo)}
-    \item \href{https://git-scm.com/doc}{tutti i comandi}
+    \item \href{https://github.com/Stivvo/GitNoob2Pro}
+        {questa stessa dispensa su Github}
+    \item \href{https://www.atlassian.com/git/tutorials/what-is-version-control}
+        {benefici dei version controllo}
+    \item \href{https://git-scm.com/about/branching-and-merging}
+        {vantaggi di git}
+    \item \href{https://git-scm.com/book/en/v2}
+        {pro git (libro completo)}
+    \item \href{https://git-scm.com/doc}
+        {tutti i comandi}
 \end{itemize}
 
 \subsection{commit, push, pull, add}
