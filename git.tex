@@ -495,13 +495,21 @@ Se si specifica un solo commit, si compara ad HEAD di default.
 $ git diff --staged
 \end{verbatim}
 
-Mostra tutte le modifiche aggiunte alla staging area rispetto all'ultimo commit.
+\code{--staged} mostra tutte le modifiche aggiunte alla staging area rispetto
+all' ultimo commit.
 
 \begin{verbatim}
 $ git diff HEAD
 \end{verbatim}
 
-Mostra anche le modifiche che non sono neanche entrate nella staging area.
+Questo mostra anche le modifiche che non sono neanche entrate nella staging area.
+
+Un modo comodo per vedere quali modifiche si sono introdotte con i commit che si
+stanno per pushare su master:
+
+\begin{verbatim}
+$ git diff origin/master
+\end{verbatim}
 
 L'output di diff può essere ristretto ad uno o più file passati sempre come
 ultimi argomento.
