@@ -2,9 +2,13 @@
 
 \title{Git} \date{\vspace{-5ex}} \author{Stefano Entatti}
 \usepackage{hyperref}
+
 \usepackage{graphicx}
+\usepackage{wrapfig}
+
 \usepackage{todonotes}
 \usepackage{listings}
+
 \setlength{\parindent}{10pt}
 
 \begin{document}
@@ -769,8 +773,8 @@ Anche i
 non sono qualcosa di così inusuale.
 
 Un fork può anche essere effettuato da uno sviluppatore che vuole contribuire ad
-un progetto pur non essendo collaboratore. Non può quindi può apportare direttamente
-delle modifiche dunque non può creare un proprio branch.
+un progetto pur non essendo collaboratore. Non può quindi apportare direttamente
+delle modifiche e dunque nemmeno creare un proprio branch.
 Quando all'interno del fork ha terminato di effettuare le proprie modifiche, può
 ricongiungersi col progetto principale attraverso una pull request
 ({\ref{pullrequest}}).
@@ -782,15 +786,31 @@ solamente sulle parti che sono state poco modificate dagli autori del fork.
 \begin{figure}
 \includegraphics[width=6in]{img/fork.png}
 \centering
-\caption{l'albero dei fork del repository attualmente più forkato su GitHub}
+\caption{l'albero dei fork di Boost, libreria per HTML/CSS/JS, uno dei repository attualmente più forkati su GitHub}
 \end{figure}
 
 \subsection{Pull request\label{pullrequest}}
-Una pull request è di base uguale ad un merge. è tuttavia accompagnata da un
-testo che spiega quali sono i cambiamenti che da un determinato branch si
-vogliono unire a ad un altro, dello stesso repository o di un fork.
-Una pull request deve essere approvata da un collaboratore del progetto del
-repository su cui viene poi effettuato il merge.
+Una pull request è di base un merge tra branch, accompagnato da un testo che
+spiega quali sono i cambiamenti che da un determinato branch si vogliono unire a
+ad un altro, dello stesso repository o di un fork.
+Riporta anche tutti i commit che coinvolge, in modo che oltre al testo sia
+facilmente comprensibile quali modifiche verranno integrate.
+La differenza principale rispetto ad un merge è che una pull request deve essere
+\textbf{approvata} da un collaboratore del progetto del repository su cui viene
+poi effettuato il merge.
+
+Le pull request possono essere effettuate ad esempio da un singolo sviluppatore
+per chiedere ai propri collaboratori se può integrare su master le modifiche che ha
+effettuato sul proprio branch. Se nel mentre che viene valutata continua a
+lavorare sul proprio branch, la pull request fatta in precedenza non viene
+aggiornata (è necessario crearne un'altra), in questo modo chi controlla le pull
+request può prendersi molto più tempo per valutarle, essendo sicuro che nel
+frattempo non possono cambiare.
+
+Le pull request potrebbero sostituire i merge tra branch, tuttavia se si
+tratta di un' operazione che non richiede l' approvazione di altri è meglio
+utilizzare solamente i comandi di git perchè si andrebbe a creare confusione 
+nello storico delle pull request.
 
 \begin{figure}
 \includegraphics[width=6in]{img/pullRequest.png}
@@ -803,8 +823,10 @@ Una issue non ha a che vedere direttamente con i comandi di Git, è invece un
 servizio aggiunto dalle piattaforme di hosting. Contengono un testo che spiega
 un problema o una feature che si vorrebbe introdurre e possono essere aperte da
 chiunque.
-A volte vengono aperte dagli stessi sviluppatori del progetto per cui diventano
-una specie di todolist o anche semplici utenti utenti.
+A volte vengono aperte dagli stessi sviluppatori del progetto, per cui diventano
+una specie di todolist, o anche semplici utenti utenti che vogliono segnalare un
+bug.
+
 La grande utilità delle issue (questo è specifico per GitHub) è che possono
 essere collegate a commit o pull request. Se ad esempio un commit risolve
 definitivamente i problemi evidenziati da una specifica issue, può essere
