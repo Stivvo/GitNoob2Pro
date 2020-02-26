@@ -277,25 +277,30 @@ Vedi la 'Nota sui fast forward' in 'git push --help' per ulteriori
 dettagli
 \end{verbatim}
 
-\subsection{Merge, Pull, fetch}
-\textbf{Merge} permette di fondere le modifiche di due branch, locali o remoti (o anche
-commit diversi dello stesso branch). Si usa ad esempio quando bisogna unire nel branch principale
-le modifiche fatte su un branch per correggere dei bug. Se si effettua un pull come suggerito
-nel codice della sezione \ref{push} avverrà infatti un merge.
-Se git rileva dei \textbf{conflitti} chiede all'utente di risolverli manualmente.
+\subsection{Fetch, merge, pull}
+\textbf{Fetch} permette di aggiornare lo stato dei branch in remoto per
+controllore se ci sono branch nuovi o magari nuovi commit sul branch al quale si
+sta lavorando per evitare di rimanere disallineati con il repository di riferimento.
+Fetch da solo tuttavia non modifica mai alcu file sul repository locale.
 
-\textbf{Fetch} permette di aggiornare lo stato dei branch in remoto per controllore
-se ci sono branch nuovi o magari nuovi commit sul branch al quale si sta lavorando per evitare
-di rimanere disallineati con il repository di riferimento. Da solo infatti,
-git merge merge effettua il merge delle ultime mofidiche che si sono scaricate
-con fetch.
+\textbf{Merge} permette di fondere le modifiche di due branch, locali o remoti,
+o commit diversi dello stesso branch.
+Si usa se ad esempio la versione locale è rimasta indietro rispetto a quella remota.
+oppure quando bisogna unire su un branch le modifiche fatte su un altro.
+Tuttavia, merge non preleva mai nulla dal repository remoto, per farlo occorre
+effettuare prima un fetch.
 
-\textbf{Pull} è in sostanza un fetch seguito da un merge, ed è quello che capita di
-utilzzare più spesso. In generale pull fonde ciò che si trova al momento sul
-branch del repository remoto con quello locale.
+\textbf{Pull} è in sostanza un fetch seguito da un merge, ed è quello che capita
+di utilzzare più spesso, anche se la combinazione fetch e merge sarebbe sempre
+un alternativa più sicura.
+In generale pull fonde ciò che si trova al momento sul branch del repository
+remoto con quello locale.
+Se si effettua un pull come suggerito nel codice della sezione \ref{push}
+avverrà infatti un merge.
 
-Pull e fetch chiamati senza argomenti vanno a prelevare la versione remota del
-branch su cui si è localmente.
+Pull e fetch e merge chiamati senza argomenti vanno a prelevare la versione
+remota del branch su cui si è localmente, ma nel caso di merge è aggiornata alla
+all' ultimo fetch.
 
 Quindi se si vuole fondere ad esempio le modifiche di develop su master:
 
@@ -305,11 +310,12 @@ $ git fetch
 $ git merge develop
 \end{verbatim}
 
-Questo permette di vedere prima le nuove modifiche remote (si possono guardare
-al volo facendo ad esempio \code{git checkout origin/develop}) per poi decidere
-se effettuare il merge o no.
-
-modifica inutile
+Questo permette di vedere prima le nuove modifiche remote: dopo l'utilizzo di
+fetch, si possono guardare al volo facendo ad esempio
+\code{git checkout origin/develop} (si entra in deatached head \ref{heads}).
+Poi si può decidere se effettuare il merge o no, oppure di effettuare il merge
+in assenza di internet (in casi estremi le modifiche solitamente prelevate con
+fetch potrebbero venire da un altro disco).
 
 \begin{verbatim}
 $ git checkout master
@@ -333,9 +339,10 @@ Questo è il caso in cui mentre il repository locale rimaneva indietro di alcuni
 commit la classe è stata rinominata in FirstClass da un primo sviluppatore. Nel
 frattempo un secondo ha fatto un push di un commit in cui l'ha chiamata
 SecondClass. Quando il primo sviluppatore si trova a dover fare il pull delle modifiche del
-secondo, per risovere i conflitti di merge deve scegliere tra la versione locale
-(HEAD, vedere \reff{heads}) e quella dell'altro, identificata dal codice hash
-(vedere \reff{log}) del commit che ha rinominato la classe in SecondClass.
+secondo, si creano dei conflitti di merge, e git obbliga l'utente a risolverli.
+Per farlo, deve scegliere tra la versione locale (HEAD, vedere \reff{heads}) e 
+quella dell'altro, identificata dal codice hash (vedere \reff{log}) del commit
+che ha rinominato la classe in SecondClass.
 Il prossimo push sarà quello del commit di merge, automaticamente creato da git.
 
 \subsection{Checkout, branch, merge}
