@@ -675,7 +675,7 @@ $ git remote add amanjot https://github.com/samanjot/GitNoob2Pro
 Con l'opzione \code{-v} (``verbose'') otteniamo una lista dei remote disponibili.
 Di default le operazioni come pull sottointendono che si voglia utilizzare il 
 remote origin, ma l'operazione può essere eseguita su qualsiasi altro remote
-(ad esempio \code{git pull amanjot}).
+(ad esempio \code{git pull amanjot master}).
 
 \begin{verbatim}
 $ git remote -v
@@ -778,7 +778,17 @@ vogliono unire a ad un altro, dello stesso repository o di un fork.
 Una pull request deve essere approvata da un collaboratore del progetto del
 repository su cui viene poi effettuato il merge.
 
-\subsection{Issues}
+\subsection{Issue}
+Una issue non ha a che vedere direttamente con i comandi di Git, è invece un
+servizio aggiunto dalle piattaforme di hosting. Contengono un testo che spiega
+un problema o una feature che si vorrebbe introdurre e possono essere aperte da
+chiunque.
+A volte vengono aperte dagli stessi sviluppatori del progetto per cui diventano
+una specie di todolist o anche semplici utenti utenti.
+La grande utilità delle issue (questo è specifico per GitHub) è che possono
+essere collegate a commit o pull request. Se ad esempio un commit risolve
+definitivamente i problemi evidenziati da una specifica issue, può essere
+collegato alla sua chiusura.
 
 \section{Approfondimenti}
 
