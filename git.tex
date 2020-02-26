@@ -827,15 +827,28 @@ A volte vengono aperte dagli stessi sviluppatori del progetto, per cui diventano
 una specie di todolist, o anche semplici utenti utenti che vogliono segnalare un
 bug.
 
-La grande utilità delle issue (questo è specifico per GitHub) è che possono
-essere collegate a commit o pull request. Se ad esempio un commit risolve
-definitivamente i problemi evidenziati da una specifica issue, può essere
-collegato alla sua chiusura.
-
 \begin{figure}
 \includegraphics[width=6in]{img/issue.png}
 \centering
 \caption{lista delle issue attualmente aperte su questo repository}
+\end{figure}
+
+La grande utilità delle issue (questo è specifico per GitHub) è che possono
+essere collegate a commit o pull request. Se ad esempio un commit risolve
+definitivamente i problemi evidenziati da una specifica issue, può essere
+collegato alla sua chiusura.
+Inserendo alcune 
+\href{https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue}
+{parole chiave}
+nel titolo del commit, seguite da \# e poi dal numero della issue, la chiude in
+automatico. Inoltre, nella storia dei commit di github quel commit riporterà un
+link alla pullrequest che chiude. Una pullrequest chiusta infatti viene solo
+marcata come tale, ma resta visibile per preservare la memoria dello sviluppo.
+
+\begin{figure}
+\includegraphics[width=6in]{img/commitCloseIssue.png}
+\centering
+\caption{commit che chiude la una issue}
 \end{figure}
 
 \section{Approfondimenti}
