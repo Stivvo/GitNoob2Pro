@@ -250,7 +250,7 @@ Modifiche non nell'area di staging per il commit:
 \end{verbatim}
 
 Questo comando mostra anche informazioni relative al branch su cui si è
-Posizionati e se si è aggiornati rispetto al remote (vedere \reff{remoti}).
+posizionati e se si è aggiornati rispetto al remote (vedere \reff{remoti}).
 
 \subsection{Push\label{push}}
 Permette di caricare un numero illimitato di commit su un branch di un
@@ -277,7 +277,7 @@ Vedi la 'Nota sui fast forward' in 'git push --help' per ulteriori
 dettagli
 \end{verbatim}
 
-\subsection{Fetch, merge, pull}
+\subsection{Fetch, merge, pull\label{merge}}
 \textbf{Fetch} permette di aggiornare lo stato dei branch in remoto per
 controllore se ci sono branch nuovi o magari nuovi commit sul branch al quale si
 sta lavorando per evitare di rimanere disallineati con il repository di riferimento.
@@ -345,7 +345,7 @@ quella dell'altro, identificata dal codice hash (vedere \reff{log}) del commit
 che ha rinominato la classe in SecondClass.
 Il prossimo push sarà quello del commit di merge, automaticamente creato da git.
 
-\subsection{Checkout, branch, merge}
+\subsection{Checkout, branch}
 Git branch senza opzioni viene utilizzato per creare un nuovo branch locale. La
 creazione del branch develop:
 
@@ -404,17 +404,7 @@ $ git push -d origin develop
 L'opzione -b di checkout crea un branch se quello passato come parametro non
 esiste, utilizzando quindi prima un git branch e poi un git checkout.
 
-Per fondere due branch si utilizza ovviamente merge. In questo caso si vuole
-portare le modifiche di develop su master:
-
-\begin{verbatim}
-$ git checkout master
-$ git merge develop
-Updating f42c576..3a0874c
-Fast-forward
- git.tex | 2 ++
- 1 file changed, 2 insertions(+)
-\end{verbatim}
+Per fondere due branch si utilizza ovviamente merge (\ref{merge}).
 
 \subsection{Log\label{log}}
 Molto di quanto appena spiegato sarebbe inutile se non si potesse vedere la
@@ -562,8 +552,8 @@ ref: refs/heads/master
 \end{verbatim}
 
 Nel caso in cui si voglia ritornare ad un commit precedente si entra nello stato
-di \emph{\textbf{deatached head}}, ovvero facendo il checkout su uno specifico commit
-(identificato con il suo codice hash).
+di \emph{\textbf{deatached head}}, ovvero facendo il checkout su uno specifico
+commit (identificato con il suo codice hash).
 
 \begin{verbatim}
 $ git checkout 8b10ce361a08e03179d46bab5d691148805bf8d8
@@ -585,6 +575,15 @@ Oppure puoi annullare quest'operazione con:
 
 HEAD si trova ora a b0451d9 immagine scrittura commit
 \end{verbatim}
+
+Al posto di andare a recuperare l'hash del commit:
+
+\begin{verbatim}
+$ git checkout master~2
+\end{verbatim}
+
+Il numero dopo il caratterie ~ indica di quanti commit si deve tornare indietro.
+è un eccezzione il fatto che ~ e ~1 siano equivalenti.
 
 Se si vuole mantenere i commit fatti in questo stato è buona cosa spostarsi su
 un nuovo branch come suggerito.
@@ -613,18 +612,20 @@ Occorre infatti ritornare sul proprio branch (in questo caso master),
 che però contiene ancora i commit che vogliamo eliminare: un push li riporterebbe sul 
 repository remoto.
 Quindi dopo aver fatto \code{git checkout master}, tornando sul branch da cui ci
-si era distaccati, si può utilizzare reset, che è come un pull forzato che invece
-di fare un merge sovrascrive il branch remoto su quello locale:
+si era distaccati, si può utilizzare \textbf{reset}, che è come un merge forzato
+che invece di fondere le moficiche sovrascrive il branch remoto su quello locale:
 
 \begin{verbatim}
 $ git reset --hard origin/master
 \end{verbatim}
 
 Oppure si può sempre clonare nuovamente il progetto, ma è sempre la soluzione
-peggiore.
+peggiore. Sia in questo modo che utilizzando reset c'è sempre il pericolo di
+eliminare qualcosa che invece si voleva tenere, perchè si cancellano dei commit
+o delle modifiche non committate.
 
-C'è un modo migliore per ritornare a un commit precedente, senza modificare i
-commit già pushati:
+Per questo esiste un modo migliore per ritornare a un commit precedente, senza
+modificare i commit già effettuati:
 
 \begin{verbatim}
 $ git revert 0552dd1c6e3c11c8c5246836e9994e6fcd431a0f..HEAD
@@ -633,7 +634,7 @@ $ git commit -m "torno al commit precedente"
 
 In questo modo il commit \code{torno al commit precedente} conterrà delle
 moficiche che riportano allo stato del commit di cui si è specificato il codice
-come argomento di revert. \code{..HEAD} indica che si ripristinano le modifiche
+come argomento di \textbf{revert}. \code{..HEAD} indica che si ripristinano le modifiche
 effettuate da quel commit fino a HEAD (questo intervallo può dunque comprendere
 diversi commit), ovvero lo stato corrente del branch.
 
