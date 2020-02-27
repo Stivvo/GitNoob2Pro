@@ -188,6 +188,8 @@ commit deve essere relativo ad un solo argomento e non comprendere modifiche
 totalmente indipendenti tra di loro. I messaggi di commit non devono essere
 generici (come ``fix crash'') altrimenti col passare del tempo sarà impossibile
 capire cosa si era fatto senza controlare il codice.
+\link{https://chris.beams.io/posts/git-commit/}{Questo} è un buon
+approfondimento dell' argomento.
 
 L'opzione \code{-s} (``signed'') aggiunge la firma dell'autore nella descrizione:
 
@@ -435,7 +437,8 @@ argomento di log, per vedere informazioni puù dettagliate. L'output di log
 escluderà semplicemente tutti i commit precedenti a quello.
 
 è anche possibile ricercare il testo del commit interessato passandolo come
-argomento di log subito dopo \code{--grep=}:
+argomento di log subito dopo \code{--grep=} (grep è un altro tool unix
+utilizzato da git):
 
 \begin{verbatim}
 $ git log --grep='git log'
@@ -520,12 +523,11 @@ Diff diventa ancora più utile quando utilizzato insieme a log:
 $ git log -p
 \end{verbatim}
 
-Mostra tutti possibili output di diff, separandoli per commit. Se dopo l'opzione
--p. L'output può essere ovviamente ristretto ad uno o più file passati come
-argomento.
+Mostra tutti possibili output di diff, separandoli per commit. L'output può
+essere ovviamente ristretto ad uno o più file passati come argomento.
 
 Infine il comando \code{git show} mostra tutte le mofidiche introdotte con un
-commit passato come parametro (se non presente mostra HEAD di default) e i file
+commit passato come parametro (se non presente mostra HEAD di default), i file
 modificati utilizzando diff e il testo del commit utilizzando log.
 
 \section{la cartella .git}
@@ -616,9 +618,9 @@ allo stato corrente (HEAD scollegato), usa
 Il comando suggerito da git serve per caricare le modifiche effettuate in deatached head
 direttamente sul branch remoto, come spiegato nella sezione \reff{remoti}.
 è molto probabile che non funzioni, perchè andrebbe ad
-eliminare delle modifiche remote successive al commit in
-cui si è entrati in deatached head. Quindi è necessario aggiungere l'opzione -f
-(``force'') a push se si vuole eliminarle.
+eliminare delle modifiche remote successive al commit in cui ci si è
+posizionati; è necessario aggiungere l'opzione -f (``force'') a push se si vuole
+eliminarle.
 
 Questo non risolve lo stato di deatached head.
 Occorre infatti ritornare sul proprio branch (in questo caso master),
@@ -701,6 +703,8 @@ $ git tag -a v1.2 9fceb02
 
 I tag possono anche essere eliminati con l'opzione -d e si può fare il checkout
 su uno specifico tag come si fa con i commit.
+Anche sull' assegnazione dei nomi alle versioni ci sono
+\link{https://semver.org/}{norme} da seguire.
 
 \subsection{Remote\label{remoti}}
 Un remote è il percorso di un repository remoto, di solito è quello del
@@ -910,9 +914,37 @@ marcata come tale, ma resta visibile per preservare la memoria dello sviluppo.
 
 \subsection{I submodule}
 
-\subsection{Revisionare i commit}
+Un caso d'uso dei submodule è quello in cui si vuole utilizzare nel proprio
+progetto una libreria opensource. Si potrebbe copiare sigolarmente i file
+necessari oppure installare la libreria sul proprio computer ma spesso
+l'utilizzo dei submodule risulta più appropriato.
+L'utilizzo dei submodule permette di integrare un intero repository git all'
+interno di un altro. In questo modo c'è una separazione netta di quali file
+appartengono ad uno e quali all' altro, è possibile avere facilmente gli
+aggiornamenti del submodule e quando una persona qualsiasi effettua il clone
+del repository non si deve preoccupare di installare la libreria a parte.
+Infine, è un modo per dare il giusto credito a chi ha creato il repository che
+si integra come submodule (github ad esempio genera automaticamente il link che
+riporta a quel repository, rendendo noto a chiunque chi ha fatto che cosa).
 
-rebase, ammend
+Per clonare un repository e tutti i suoi submodule:
+
+\begin{verbatim}
+$ git clone --recursive
+\end{verbatim}
+
+Per aggiungere un submodule:
+
+\begin{verbatim}
+$ git submodule add 
+\end{verbatim}
+
+Da notare come viene aggiornato il file \code{.gitmodules}, da cui è possibile
+fare ulteriori modifiche ai submodule.
+
+\subsection{Rebase}
+
+Rebase è 
 
 \subsection{Gitignore}
 
@@ -932,10 +964,8 @@ rebase, ammend
         {tutti i comandi}
 \end{itemize}
 
-\subsection{commit, push, pull, add}
+\subsection{commit, push, add}
 \begin{itemize}
-    \item \link{https://chris.beams.io/posts/git-commit/}{norme sulla scrittura dei commit}
-    \item \link{https://semver.org/}{norme sull'assegnazione dei nomi alle versioni}
     \item \link{https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch}
         {differenza tra pull e fetch}
     \item \link{https://stackoverflow.com/questions/348170/how-do-i-undo-git-add-before-commit?rq=1}
@@ -950,15 +980,6 @@ rebase, ammend
         {tornare a commit precedenti}
     \item \link{https://stackoverflow.com/questions/8358035/whats-the-difference-between-git-revert-checkout-and-reset}
         {differenza tra revert e reset}
-\end{itemize}
-
-\subsection{head, remotes, branch}
-\begin{itemize}
-    \item \link{https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch?rq=1}
-        {checkout di un branch remoto}
-        {sovrascrivere con pull}
-    \item \link{https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit?rq=1}
-        {tornare a commit precedenti}
 \end{itemize}
 
 \subsection{head, remotes, branch}
