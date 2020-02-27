@@ -1036,6 +1036,30 @@ Rebase permette invece di effettuare intere revisioni della storia in modo da
 renderla più chiara e leggibile.
 
 \subsection{Gitignore}
+Il file .gitignore, posizionato nella root del repository, permette di
+selezionare file o cartelle di cui git non deve tenere traccia.
+Esiste una 
+\link{https://github.com/github/gitignore}{raccolta }
+di file .gitignore per la magggior parte di linguaggi e IDE. Alcuni esempi sono:
+\begin{itemize}
+    \item i file .swp, utilizzati da vim come cache per i file aperti
+    \item i file .user, creati dall'IDE qtcreator all'apertura di un progetto per
+        memorizzare quali compilatori sono disponibili sulla macchina
+    \item ogni tipo di eseguibile, vengono ricavati con la compliazione
+\end{itemize}
+
+Il gitignore del repository di questa dispensa esclude file generati dal
+compilatore latex. Così facendo, si ottiene uno storico dei commit più pulito
+perchè questi file verrebbero costantemente segnati come modificati.
+
+un ulteriore esempio:
+
+\begin{verbatim}
+*.exe
+*.dll
+cartellaDaEsclidere/*
+Makefile
+\end{verbatim}
 
 \section{fonti, link utuli}
 
