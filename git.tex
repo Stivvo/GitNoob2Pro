@@ -768,6 +768,14 @@ necessario:
 $ git log --color=always | less -r 
 \end{verbatim}
 
+Può capitare di trovare scomodo scrivere \code{git} davanti ad ogni comando.
+Esiste tuttavia un modo per evitarlo, sfruttando le funzionalità di alias messe
+a disposizione dalla shell. Per impostarli occorre modificare il file di
+configurazione della propria shell, \code{.bashrc} situtato nella propria home,
+se si utilizza bash.
+\link{https://github.com/Stivvo/dotfiles/blob/master/fish}{Questo}
+è un esempio.
+
 \section{Github\label{github}}
 Github è la più famosa piattaforma di hosting Git al mondo. è estremamente
 utilizzato da software \textbf{opensource} ma si rivolge anche al mondo closed
@@ -871,6 +879,8 @@ un problema o una feature che si vorrebbe introdurre e possono essere aperte da
 chiunque.
 A volte vengono aperte dagli stessi sviluppatori del progetto, per cui diventano
 una specie di todolist, o anche semplici utenti che vogliono segnalare un bug.
+Quindi, se avete delle proposte o trovate degli errori su questa dispensa
+\link{https://github.com/Stivvo/GitNoob2Pro/issues}{non esitate}.
 
 \begin{figure}
 \includegraphics[width=6in]{img/issue.png}
@@ -887,7 +897,7 @@ Inserendo alcune
 {parole chiave}
 nel titolo del commit, seguite da \# e poi dal numero della issue, la chiude in
 automatico. Inoltre, nella storia dei commit di github quel commit riporterà un
-link alla pullrequest che chiude. Una pullrequest chiusta infatti viene solo
+link alla pullrequest che chiude. Una pullrequest chiusa infatti viene solo
 marcata come tale, ma resta visibile per preservare la memoria dello sviluppo.
 
 \begin{figure}
