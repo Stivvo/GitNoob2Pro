@@ -944,7 +944,89 @@ fare ulteriori modifiche ai submodule.
 
 \subsection{Rebase}
 
-Rebase è 
+Rebase ha lo stesso compito di merge, ma lo svolge in modo molto diverso. Quando
+si effettua un merge tra due branch, i commit vengono ordinati per data. Se sono
+state fatte modifiche in entrambi i branch su cui si effettua il merge, si avrà
+come risultato che i commit di uno e dell'altro saranno mischiati.
+Rebase risolve questo problema, perchè sposta semplicemente un intervallo di
+commit da un punto all'altro.
+
+Per esempio, si vuole portare i commit di develop su master:
+
+\begin{verbatim}
+-A-B-C-D master
+   \
+    G-H-I develop
+\end{verbatim}
+
+Il risultato utilizzando merge:
+
+\begin{verbatim}
+-A-B-C-D- master
+   \    \ 
+    G-H-I
+\end{verbatim}
+
+E con rebase:
+
+\begin{verbatim}
+-A-B-C-D
+       \
+        G-H-I master
+\end{verbatim}
+
+In questo caso si sposta la \emph{base} dei commit da G a I, che non è più B ma
+D, proprio perchè è stato cambiato il loro posto all'interno dello storico
+per copiarli su un nuovo branch.
+
+Rebase offre anche la possibilità di riscrivere interamente la storia dei commit
+quando si uniscono due branch, utilizzando l'opzione
+\code{-i} (``interactive''').
+In questo modo si aprirà l' editor di default con la lsita di tutti i commit
+interessati dal rebase, per ognuno di questi si può scegliere ad esempio di
+cambiare il contenuto del suo messaggio o unirlo a quello precedente. Dopodichè
+vengono analizzati uno per volta, a partire dal meno recente. Se sono stati
+selezionati viene aperto l'editor di default con cui è possibile modificare il
+messaggio di commit.
+Quest'ultima opzione è molto utile perchè permette di ripulire lo storico dei 
+commit.
+
+\begin{verbatim}
+$ git checkout master
+$ git rebase -i develop
+\end{verbatim}
+
+Questo comando tenta di spostare la \emph{base} di develop, ovvero il punto in
+cui si è staccato da master, sull'ultimo commit di master, il branch in cui si è
+attualmente posizionati.
+Nel processo, i commit presi in considerazione dal rebase vengono analizati uno
+ad uno a partire dal meno recente e possono essere modificati, uniti ecc prima
+di essere effettivamente copiati su master perchè è stata aggiunta l'opzione
+\code{-i}.
+
+Se si tiene ad avere uno storico dei commit ordinato, capiterà più spesso di
+utilizzare questo comando su un solo branch per modificare il suo storico dei
+commit.
+
+\begin{verbatim}
+$ git rebase -i HEAD~4
+\end{verbatim}
+
+Quello che si ottiene in questo modo è prendere gli ultimi 4 commit di master e
+riposizionarli nello stesso punto infatti lo stesso comando senza \code{-i} non
+farebbe assolutamente nulla.
+Mettere il nome del branch corrente al posto di HEAD sarebbe indifferente.
+Si può utilizzare ~ anche con branch diversi.
+
+Alla fine di ogni rebase non si potrà effettuare direttamente il push: alcuni
+commit remoti che non sono più presenti in locale perchè modificati o eliminati
+andrebbero persi per sempre. \code{push -f} forza la loro cancellazione.
+
+In conclusione, merge rappresenta la vera storia dello sviluppo, anche se questa
+è spesso confusionaria perchè fatta dai commit appartenenti a vari branch che si
+incrociano, scritti male o inutili (compresi quelli di merge).
+Rebase permette invece di effettuare intere revisioni della storia in modo da
+renderla più chiara e leggibile.
 
 \subsection{Gitignore}
 
@@ -1018,6 +1100,10 @@ Rebase è
         {fare il merge di due branch}
     \item \link{https://stackoverflow.com/questions/18137175/in-git-what-is-the-difference-between-origin-master-vs-origin-master}
         {differenza tra origin master e origin/master}
+    \item \link{https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase}
+        {git rebase}
+    \item \link{https://www.atlassian.com/git/tutorials/merging-vs-rebasing}
+        {merge vs rebase}
 \end{itemize}
 
 \subsection{log, diff}
