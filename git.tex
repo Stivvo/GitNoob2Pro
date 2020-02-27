@@ -983,13 +983,20 @@ Rebase offre anche la possibilità di riscrivere interamente la storia dei commi
 quando si uniscono due branch, utilizzando l'opzione
 \code{-i} (``interactive''').
 In questo modo si aprirà l' editor di default con la lsita di tutti i commit
-interessati dal rebase, per ognuno di questi si può scegliere ad esempio di
+interessati dal rebase (figura \ref{rebaseImg}), per ognuno di questi si può scegliere ad esempio di
 cambiare il contenuto del suo messaggio o unirlo a quello precedente. Dopodichè
 vengono analizzati uno per volta, a partire dal meno recente. Se sono stati
 selezionati viene aperto l'editor di default con cui è possibile modificare il
 messaggio di commit.
 Quest'ultima opzione è molto utile perchè permette di ripulire lo storico dei 
 commit.
+
+\begin{figure}
+\includegraphics[width=6in]{img/rebase.png}
+\centering
+\caption{il file per selezionare i commit da modificare prima di un
+rebase\label{rebaseImg}}
+\end{figure}
 
 \begin{verbatim}
 $ git checkout master
