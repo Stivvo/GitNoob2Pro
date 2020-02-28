@@ -959,7 +959,10 @@ Per aggiungere questa dispensa come submodule:
 $ git submodule add https://github.com/Stivvo/GitNoob2Pro
 \end{verbatim}
 
-Per aggiornare 
+Per aggiornare i submodule occorre andare nella loro cartella e aggiornarli alle
+modifiche remote come se il proprio repository (quindi con pull ecc). è bene
+eseguire un commit in cui si effettua solamente l'aggiornamento dei submodule
+per non confonderlo con le effettive modifiche del proprio repository.
 
 Da notare come viene aggiornato il file \code{.gitmodules}, da cui è possibile
 fare ulteriori modifiche ai submodule.
