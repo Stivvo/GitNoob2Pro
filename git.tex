@@ -37,24 +37,24 @@ portato. Man mano che il progetto avanza, le copie possono diventare moltissime
 e serve comunque confrontare i file riga per riga per capire cosa cambia da una
 copia all'altra.
 
-Se al progetto lavorano più persone, (e quindi carichi il progetto su drive) non
-è comunque possibile che più persone modifichino il codice nello stesso momento,
-e se ognuno modifica una copia diversa, queste vanno poi unite sempre a mano con
+Se al progetto lavorano più persone (e quindi carichi il progetto su drive) non
+è comunque possibile che modifichino il codice nello stesso momento.
+Se ognuno modifica una copia diversa, queste vanno poi unite sempre a mano con
 dei copia e incolla.
 
 Un sistema di controllo di versione tiene traccia di tutte le modifiche
-effettuate su un insieme di file (che compongono il progetto), ovvero di chi le
-ha fatte, quando, quali righe sono state tolte e quali aggiunte. Ogni registrazione
-di modifica riporta l'autore, un titolo e una descrizione che spiega in dettaglio
-il perchè e stata necessaria o qualche peculiarità della modifica stessa
-in modo da facilitare la comprensione ad altri sviluppatori o ad una rilettura
-in futuro. Inoltre in questo modo è possibile navigare e riportarsi in 
-qualsiasi punto della storia del progetto.
+effettuate ad un insieme di file (che compongono il progetto), di chi le
+ha fatte, quando, quali righe sono state tolte e quali aggiunte.
+Ogni registrazione di modifica è associata ad un titolo e ad una descrizione che
+la spiega in dettaglio, in modo da facilitarne la comprensione ad altri sviluppatori
+e la rilettura in futuro
+è possibile tornare a qualsiasi punto della storia del progetto.
 
-Per permettere a più persone di lavorare nello stesso momento ognuno
+Per permettere a più persone di lavorare nello stesso momento, ognuno
 copia in locale il progetto da un punto di riferimento (server comune ad
-esempio), e dopo aver apportato le modifiche necessarie è possibile unirle 
-tenendo traccia di chi ha modificato cosa ed in quale ordine.
+esempio), e dopo aver apportato le modifiche necessarie è possibile caricarle
+sul server e unirle a quelle degli altri tenendo traccia di chi ha modificato
+cosa ed in quale ordine.
 
 Esistono molti software di controllo versione, tra i più famosi ci sono Git,
 CVS, Subversion, Mercurial, Bazaar e BitKeeper.
@@ -161,8 +161,8 @@ Nella prima riga va scritto il titolo del commit.
 è una buona norma che il titolo mantenga una lunghezza massima di 72 caratteri
 e contenga solo nomi e verbi al presente.
 La seconda si lascia sempre vuota e dalla terza inizia la descrizione, che può essere
-molto lunga e dettagliata per spiegare in modo discorsivo cosa si è fatto, 
-perché e se eventualmente ha causato dei problemi.
+molto lunga e dettagliata per spiegare in modo discorsivo cosa si è fatto e se
+eventualmente ha causato dei problemi.
 
 Un commit rimane sempre associato al proprio autore, riconoscibile da come ha
 configurato il punto \reff{configurazione}, e all'orario in cui è stato fatto.
@@ -187,7 +187,7 @@ descrizioni dei commit e su \textit{ogni quanto} si debba committare. In genere 
 commit deve essere relativo ad un solo argomento e non comprendere modifiche
 totalmente indipendenti tra di loro. I messaggi di commit non devono essere
 generici (come ``fix crash'') altrimenti col passare del tempo sarà impossibile
-capire cosa si era fatto senza controlare il codice.
+capire cosa è stato fatto senza controllare il codice.
 \link{https://chris.beams.io/posts/git-commit/}{Questo} è un buon
 approfondimento dell' argomento.
 
@@ -204,8 +204,13 @@ In questi casi l'opzione \code{--amend} permette di riscrivere il commit.
 
 \subsection{Add, reset, status}
 I file coinvolti dal commit devono essere prima selezionati con add. In questo
-modo si entra nella \textbf{staging area}. è uno stato intermedio che sta prima di
-un commit per tracciare le modifiche momentanee in caso di piu' prove.
+modo si entra nella \textbf{staging area}. è uno stato intermedio che sta prima
+di un commit per tracciare le modifiche momentanee in caso di più prove.
+In un determinato momento, si può decidere di mettere le modifiche effettuate ad
+alcuni file nella staging area per poi committarle, mentre quelle effettate su
+altri lasciarle nello stadio precedente, chiamato \textbf{working tree},
+anche per diversi commit di fila; non verranno incluse in alcun commit fino a
+quando non le si aggiugerà alla staging area.
 
 Se ad esempio si modificano functions.cpp, functions.hpp e main.cpp:
 
@@ -290,7 +295,7 @@ dettagli
 \textbf{Fetch} permette di aggiornare lo stato dei branch in remoto per
 controllore se ci sono branch nuovi o magari nuovi commit sul branch al quale si
 sta lavorando per evitare di rimanere disallineati con il repository di riferimento.
-Fetch da solo tuttavia non modifica mai alcu file sul repository locale.
+Fetch da solo tuttavia non modifica mai alcun file sul repository locale.
 
 \textbf{Merge} permette di fondere le modifiche di due branch, locali o remoti,
 o commit diversi dello stesso branch.
@@ -308,7 +313,7 @@ Se si effettua un pull come suggerito nel codice della sezione \ref{push}
 avverrà infatti un merge.
 
 Pull e fetch e merge chiamati senza argomenti vanno a prelevare la versione
-remota del branch su cui si è localmente, ma nel caso di merge è aggiornata alla
+remota del branch su cui si è localmente, ma nel caso di merge è aggiornata
 all' ultimo fetch.
 
 Quindi se si vuole fondere ad esempio le modifiche di develop su master:
@@ -427,7 +432,7 @@ storia dei commit.
 
 Git log mostra l'intera storia dei commit visualizzata nel pager di default
 (vedere \reff{configurazione}).
-Le lunghe serie di caratteri sono i codici \textbf{hash}, univoci per ogni
+La lunga serie di caratteri sono i codici \textbf{hash}, univoci per ogni
 commit. L'output del comando mostra anche a quale commit puntano la HEAD e i
 repository remoti (se abbiamo dei commit di cui non abbiamo fatto ancora il push
 è probabile che quest'ultima sia più indietro rispetto ad HEAD).
@@ -468,8 +473,8 @@ raggruppati per autore può tornare utile \code{git shortlog}.
 \subsection{Diff}
 Diff è un programma presente in tutti i sistemi unix-like che ha il semplice
 compito di dare in output tutte le linee che differiscono tra due file,
-precedute da un < se quella determinata riga è presente solo file passato come
-primo argomento, altrimenti >.
+precedute da un \code{<} se quella determinata riga è presente solo nel file
+passato come primo argomento, altrimenti \code{>}.
 
 \begin{verbatim}
 $ cat file1
@@ -517,7 +522,7 @@ $ git diff origin/master
 \end{verbatim}
 
 L'output di diff può essere ristretto ad uno o più file passati sempre come
-ultimi argomento.
+ultimi argomenti.
 
 Diff diventa ancora più utile quando utilizzato insieme a log:
 
@@ -602,7 +607,7 @@ Al posto di andare a recuperare l'hash del commit:
 $ git checkout master~2
 \end{verbatim}
 
-Il numero dopo il caratterie \code{\textasciitilde} indica di quanti commit si
+Il numero dopo il carattere \code{\textasciitilde} indica di quanti commit si
 deve tornare indietro per trovare il commit su cui effettaure il checkout.
 è un eccezzione il fatto che \code{\textasciitilde} e \code{\textasciitilde1}
 siano equivalenti.
@@ -644,7 +649,7 @@ $ git reset --hard origin/master
 Oppure si può sempre clonare nuovamente il progetto, ma è sempre la soluzione
 peggiore. Sia in questo modo che utilizzando reset c'è sempre il pericolo di
 eliminare qualcosa che invece si voleva tenere, perchè si cancellano dei commit
-o delle modifiche non committate.
+o delle modifiche non ancora committate.
 
 Per questo esiste un modo migliore per ritornare a un commit precedente, senza
 modificare i commit già effettuati:
@@ -655,8 +660,10 @@ $ git commit -m "torno al commit precedente"
 \end{verbatim}
 
 In questo modo il commit \code{torno al commit precedente} conterrà delle
-moficiche che riportano allo stato del commit di cui si è specificato il codice
-come argomento di \textbf{revert}. \code{..HEAD} indica che si ripristinano le modifiche
+modifiche che riportano allo stato del commit di cui si è specificato il codice
+come argomento di \textbf{revert}.
+
+\code{..HEAD} indica che si ripristinano le modifiche
 effettuate da quel commit fino a HEAD (questo intervallo può dunque comprendere
 diversi commit), ovvero lo stato corrente del branch.
 
@@ -694,7 +701,7 @@ $ git tag -a v3.0
 \end{verbatim}
 
 In questo modo, verrà aperto l'editor di default per poter inserire informazioni
-su ciò che le novità portate da quella release. Come per i commit, l'opzione -m
+su sulle le novità portate da quella release. Come per i commit, l'opzione -m
 permette di scrivere un breve titolo senza aprire l'editor.
 
 Per visualzzare queste informazioni:
@@ -760,7 +767,7 @@ Il remote amanjot è un fork (\reff{fork}) del repository di questa dispensa.
 
 \section{Installazione e configurazione\label{configurazione}}
 L'installazione di Git su Linux avviene dal package manager della propria
-distribuzione eed è un processo che richiede pochi secondi.
+distribuzione ed è un processo che richiede pochi secondi.
 Su Windows, occorre \link{https://git-scm.com/download/win}{scaricare} un wizard
 che installa un emulatore di una versione minimale di linux che comprende tool
 come bash e openssh, da cui Git dipende.
@@ -772,7 +779,7 @@ $ git config --global user.email entattis15@itsvinci.com
 
 In questo modo si imposta lo username e l'email che verranno associati a tutti i
 futuri commit. Non sono da confondere con le credenziali di Github \reff{github}.
-Per impostare editor e pager utilizzati git (di solito vim e less sono già 
+Per impostare editor e pager utilizzati da git (di solito vim e less sono già 
 impostati di default):
 
 \begin{verbatim}
@@ -811,7 +818,7 @@ source attraverso github enterprise, che è ovviamente a pagamento, con il quale
 ci si può affidare ai server di Github oppure installarlo su uno proprio.
 
 Per utilizzare Github è necessario registrarsi. Utente e password scelti
-verranno utilizzati richiesti al push su un qualsiasi repository Github e anche
+verranno richiesti al push su un qualsiasi repository Github e anche
 al pull o clone di un repository privato.
 
 Conoscendo Git, l' interfaccia del sito diventa presto molto facile da usare.
