@@ -64,7 +64,7 @@ Git è il sistema di controllo versione più utilizzato, ed è anche uno dei pi�
 semplici da usare. é nato nel 2005 ed è stato ideato da Linus Torvalds (il
 creatore di Linux) per facilitare lo sviluppo del kernel di Linux, uno dei
 progetti opensource più grandi, a cui lavorano moltissime persone. Anche git è
-opensource.
+opensource. è scritto principalmente in C e shell.
 
 Git è \textbf{distribuito}, ciò significa che l'intero \textbf{repository}, ovvero
 tutti i file che compongono un progetto, tra cui sorgenti, readme e file creati
@@ -123,7 +123,7 @@ Si può passare in qualsiasi momento da un branch all'altro.
 \section{Comandi principali}
 Git offre moltissimi comandi, ognuno dei quali svolge un piccolo insieme di
 funzionalità. Ogni comando (in questa sezione tratteremo i principali) è sempre preceduto da
-``git''. Ognuno può accettare un diverso numero di argomenti e di opzioni
+\code{git}. Ognuno può accettare un diverso numero di argomenti e di opzioni
 (tratteremo le principali per ogni comando), spesso precedute da un singolo o da
 un doppio meno. Gli argomenti e le opzioni dei comandi possono essere combinati
 in moltissimi modi per ottenere il comportamento desiderato da git.
@@ -197,7 +197,7 @@ L'opzione \code{-s} (``signed'') aggiunge la firma dell'autore nella descrizione
 Signed-off-by: Stivvo entattis15@itsvinci.com
 \end{verbatim}
 
-Infine, può capitare di essersi dimenticati di aggiungere un file di aver
+Infine, può capitare di essersi dimenticati di aggiungere un file, di aver
 effettuato il commit troppo presto o di aver sbagliato la scrittura del
 messaggio.
 In questi casi l'opzione \code{--amend} permette di riscrivere il commit.
@@ -236,7 +236,8 @@ Alcune opzioni utili per add:
 
 Il comando \code{git reset} fa il contrario di add, rimuovendo dalla staging
 area i file o cartelle passati per argomento; invocato senza argomento li
-rimuove tutti.
+rimuove tutti. Può essere molto utile se si sono svolte contemporaneamente
+modifiche che si vuole dividere in commit diversi.
 
 Per vedere quali modifiche sono nella staging area e quali invece non sono
 ancora state aggiunte con add:
@@ -601,8 +602,10 @@ Al posto di andare a recuperare l'hash del commit:
 $ git checkout master~2
 \end{verbatim}
 
-Il numero dopo il caratterie ~ indica di quanti commit si deve tornare indietro.
-è un eccezzione il fatto che ~ e ~1 siano equivalenti.
+Il numero dopo il caratterie \code{\textasciitilde} indica di quanti commit si
+deve tornare indietro per trovare il commit su cui effettaure il checkout.
+è un eccezzione il fatto che \code{\textasciitilde} e \code{\textasciitilde1}
+siano equivalenti.
 
 Se si vuole mantenere i commit fatti in questo stato è buona cosa spostarsi su
 un nuovo branch come suggerito.
@@ -793,10 +796,10 @@ necessario:
 $ git log --color=always | less -r 
 \end{verbatim}
 
-Può capitare di trovare scomodo scrivere \code{git} davanti ad ogni comando.
-Esiste tuttavia un modo per evitarlo, sfruttando le funzionalità di alias messe
+Scrivere \code{git} davanti ad ogni comando può risultare scomodo.
+Esiste un modo per evitarlo, sfruttando le funzionalità di alias messe
 a disposizione dalla shell. Per impostarli occorre modificare il file di
-configurazione della propria shell, \code{.bashrc} situtato nella propria home,
+configurazione della propria shell, \code{\textasciitilde/.bashrc} 
 se si utilizza bash.
 \link{https://github.com/Stivvo/dotfiles/blob/master/fish}{Questo}
 è un esempio.
