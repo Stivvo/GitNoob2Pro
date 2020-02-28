@@ -202,7 +202,7 @@ effettuato il commit troppo presto o di aver sbagliato la scrittura del
 messaggio.
 In questi casi l'opzione \code{--amend} permette di riscrivere il commit.
 
-\subsection{Add, rm, reset, status}
+\subsection{Add, reset, status}
 I file coinvolti dal commit devono essere prima selezionati con add. In questo
 modo si entra nella \textbf{staging area}. è uno stato intermedio che sta prima di
 un commit per tracciare le modifiche momentanee in caso di piu' prove.
@@ -234,8 +234,9 @@ Alcune opzioni utili per add:
     \item \code{-u} non aggiunge i nuovi file
 \end{itemize}
 
-Il comando git rm fa il contrario di add, mentre reset pulisce completamente la
-staging area.
+Il comando \code{git reset} fa il contrario di add, rimuovendo dalla staging
+area i file o cartelle passati per argomento; invocato senza argomento li
+rimuove tutti.
 
 Per vedere quali modifiche sono nella staging area e quali invece non sono
 ancora state aggiunte con add:
