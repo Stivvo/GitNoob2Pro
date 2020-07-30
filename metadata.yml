@@ -1,0 +1,20 @@
+title: Git Noob 2 Pro
+author: Stefano Entatti
+date: 2020-7-30
+numbersections: true
+autoEqnLabels: true
+lang: it
+toc: true
+fontfamily: sourcesanspro
+fontfamilyoptions: default
+geometry:
+  - top=30mm
+  - left=20mm
+  - right=20mm
+  - bottom=30mm
+header-includes:
+  - \usepackage{hyperref}
+  - \usepackage{xcolor}
+  - \usepackage{graphicx}
+  - \usepackage{wrapfig}
+  - \usepackage{listings}
