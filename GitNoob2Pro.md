@@ -218,7 +218,9 @@ $ git restore --worktree --staged README.md
 ```
 
 In questo modo README.md viene ripristinano, anche se era già stato aggiunto alla staging area. Se
-non si specifica nessuna opzione, ``--worktree`` viene aggiunta di default.
+non si specifica nessuna opzione, ``--worktree`` viene aggiunta di default. Prima dell'aggiunta di
+restore, parte delle sue funzionalità erano già offerte da reset [@sec:heads], che vedremo in
+contesti diversi; se non si desidera modificare i commit restore è più appropriato.
 
 Per vedere quali modifiche sono già nella staging area e quali invece non sono ancora state aggiunte
 con add:
@@ -591,11 +593,12 @@ direttamente sul branch remoto, come spiegato nella sezione [@sec:remoti]. è mo
 funzioni, perchè andrebbe ad eliminare delle modifiche remote successive al commit in cui ci si è
 posizionati; è necessario aggiungere l'opzione -f "force" a push se si vuole eliminarle.
 
-Questo non risolve lo stato di deatached head. Occorre infatti ritornare sul proprio branch (in
-questo caso master), che però contiene ancora i commit che vogliamo eliminare: un push li
-riporterebbe sul repository remoto. ``git checkout master``, tornando sul branch da cui ci si era
-distaccati, si può utilizzare __reset__, che è come un merge forzato che invece di fondere le
-moficiche sovrascrive il branch remoto su quello locale:
+Questo non risolve lo stato di deatached head. Infatti il branch (in questo caso master), contiene
+contiene ancora i commit che vogliamo eliminare: un push li riporterebbe sul repository remoto.
+
+Quindi dopo aver fatto ``git checkout master``, tornando sul branch da cui ci si era distaccati, si
+può utilizzare __reset__, che è come un merge forzato che invece di fondere le modifiche sovrascrive
+il branch remoto su quello locale:
 
 ```
 $ git reset --hard origin/master
@@ -618,6 +621,34 @@ si è specificato il codice come argomento di __revert__.
 
 ``..HEAD`` indica che si ripristinano le modifiche effettuate da quel commit fino a HEAD (questo
 intervallo può dunque comprendere diversi commit), ovvero lo stato corrente del branch.
+
+è sempre bene evitare di modificare o eliminare commit già pushati, soprattutto se si collabora con
+altri. Infatti reset è più appropriato per operare su commit locali. A differenza di checkout, non
+sposta solo il puntatore HEAD su un determinato commit, ma elimina localmente tutti i commit
+precedenti. Infatti revert è il comando di git che più ci espone a __perdite di dati__ in caso di
+errore.
+
+``git reset --mixed README.md`` è equivalente a ``git restore --staged README.md``.
+
+``git reset --hard README.md`` è equivalente a ``git restore --staged --worktree README.md``.
+
+``git reset --mixed HEAD~2`` torna indietro di due commit ma non modifica nessun file. Infatti tutti
+i file vengono rimossi dall'area di staging e le modifiche non ancora committate tornano tutte nel
+worktree insieme a quelle dei due commit precedenti. Questo comportamento è simile allo squash con
+rebase [@sec:rebase].
+
+Con ``git reset --hard HEAD~2`` è come se tutte le modifiche non committate e gli ultimi due commit
+non fossero mai esistiti.
+
+``git reset --soft`` non fa nulla. Infatti a differenza di ``--mixed`` non toglie le modifiche dalla
+staging area: lascia tutto così com'è. Si limita ad annullare i commit, per questo ha effetto solo
+se si specifica un commit precedente. Le modifiche dei commit precedenti vengono automaticamente
+aggiunte alla staging area.
+
+Se nessuna opzione viene specificata per reset, ``--mixed`` è utilizzata di default. Se non viene
+specificato nessun file, agisce su tutti i file del repository. Se non viene specificato nessun
+commit, viene utilizzato ``HEAD`` di default (l'ultimo commit) diventando in parte analogo a restore
+[@sec:restore].
 
 ## Tags {#sec:tags}
 
@@ -1051,7 +1082,6 @@ Makefile
 + \link{https://www.git-tower.com/learn/git/faq/difference-between-git-fetch-git-pull}{differenza tra fetch e pull}
 + \link{https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit?rq=1}{tornare a commit precedenti}
 + \link{https://stackoverflow.com/questions/8358035/whats-the-difference-between-git-revert-checkout-and-reset}{differenza tra revert e reset}
-+ \link{https://stackoverflow.com/questions/58003030/what-is-git-restore-command-what-is-the-different-between-git-restore-and-git}{differenza tra restore e reset}
 
 ## head, remotes, branch
 
@@ -1070,6 +1100,8 @@ Makefile
 + \link{https://stackoverflow.com/questions/20889346/what-does-git-remote-mean}{che cos'è un remote}
 + \link{https://stackoverflow.com/questions/3404294/merging-2-branches-together-in-git}{fare il merge di due branch}
 + \link{https://stackoverflow.com/questions/18137175/in-git-what-is-the-difference-between-origin-master-vs-origin-master}{differenza tra origin master e origin/master}
++ \link{https://stackoverflow.com/questions/58003030/what-is-git-restore-command-what-is-the-different-between-git-restore-and-git}{differenza tra restore e reset}
++ \link{https://www.atlassian.com/git/tutorials/undoing-changes/git-reset}{spiegazione dettagliata delle opzioni di reset}
 
 ## merge, rebase
 
