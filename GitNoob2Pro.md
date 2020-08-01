@@ -51,7 +51,7 @@ server.
 Il server viene spesso fornito da una __piattaforma di hosting__. Le più famose sono GitHub, GitLab,
 BitBuckets e Gitea. è tuttavia possibile creare un proprio server git.
 
-Git è nato come un programma a riga di comando, e anche se viene considerato più efficiente se
+Git è nato come un programma a riga di comando, e anche se viene considerato più efficiente quando
 utilizzato in questo modo, oggi esistono molti client grafici ed estensioni che permettono di
 usufruire della maggior parte delle funzionalità di git direttamente dagli IDE.
 
@@ -81,9 +81,9 @@ eventualmente continuano ad essere apportate sul padre. Se vengono creati più b
 questi discende da master.
 
 Ovviamente, due branch possono essere uniti tramite un __merge__. Gli algoritmi di merge confrontano
-due branch riga per riga, manentendo quella appartenente al branch in cui è stata modificata. Se
-però la stessa riga è stata cambiata in entrambi i branch si crea un conflitto e git richiede
-all'utente di risolverlo a mano.
+due branch riga per riga, manentendo quella appartenente al branch in cui è stata modificata a
+partire della divisione tra i branch. Se però la stessa riga è stata cambiata in entrambi i branch
+si crea un conflitto e git richiede all'utente di risolverlo a mano.
 
 Si può passare in qualsiasi momento da un branch all'altro.
 
@@ -107,14 +107,14 @@ $ git init prova
 Inizializzato repository Git vuoto in /home/user/prova/.git/
 ```
 
-Per copiare un intero repository remoto si utilizza git clone. Viene scaricato solo il branch
-master, ma una volta clonato si può accedere a tutti gli altri
+Per copiare un intero repository remoto si utilizza clone. Viene scaricato solo il branch master, ma
+una volta clonato si può accedere a tutti gli altri
 
 ```
 $ git clone https://github.com/torvalds/linux.git
 ```
 
-Per utilizzare tutti gli altri comandi, occorre posizionarsi all' interno della cartella del
+Per utilizzare tutti gli altri comandi, occorre posizionarsi all'interno della cartella del
 repository, che viene creata in automatico da clone e init.
 
 ## Commit \label{commit} {#sec:commit}
@@ -136,7 +136,7 @@ si è fatto e se eventualmente ha causato dei problemi.
 Un commit rimane sempre associato al proprio autore, riconoscibile da come ha configurato il punto
 [@sec:configurazione], e all'orario in cui è stato fatto.
 
-Tutte queste informazioni sono visibili da git log ([@sec:log]).
+Tutte queste informazioni sono visibili con log ([@sec:log]).
 
 <!-- latex -->
 \begin{figure}
@@ -172,24 +172,27 @@ commit.
 ## Add, reset, status {#sec:add}
 
 I file coinvolti dal commit devono essere prima selezionati con add. In questo modo si entra nella
-__staging area__. è uno stato intermedio che sta prima di un commit per tracciare le modifiche
-momentanee in caso di più prove. In un determinato momento, si può decidere di mettere le modifiche
-effettuate ad alcuni file nella staging area per poi committarle, mentre quelle effettate su altri
-lasciarle nello stadio precedente, chiamato __working tree__, anche per diversi commit di fila; non
-verranno incluse in alcun commit fino a quando non le si aggiugerà alla staging area.
+__staging area__ o index. è uno stato intermedio che sta prima del commit per tracciare le modifiche
+momentanee in caso di più prove.
 
-Se ad esempio si modificano functions.cpp, functions.hpp e main.cpp:
+In un determinato momento, si può decidere di mettere le modifiche effettuate ad alcuni file nella
+staging area per poi committarle, mentre quelle effettuate su altri lasciarle nello stadio
+precedente, chiamato __working tree__, anche per diversi commit di fila; non verranno incluse in
+alcun commit fino a quando non le si aggiungerà alla staging area. Capita spesso infatti di volere
+dividere modifiche sovlte contemporaneamente su commit diversi.
+
+Se ad esempio si modificano ``functions.cpp``, ``functions.hpp`` e ``main.cpp``:
 
 ```
 $ git add functions.cpp functions.hpp
 $ git commit -m "added get function"
 ```
 
-In questo caso le moficiche di main.cpp non verranno aggiunte al commit ``added get function``.
+In questo caso le modifiche di main.cpp non verranno aggiunte al commit ``added get function``.
 Qualsiasi modifica effettuata su ``functions.cpp`` o ``functions.hpp`` dopo l'utilizzo di add
 verrebbe anch'essa esclusa dal commit.
 
-Git add si comporta in modo indifferente sia per file appena creati che per le modifiche di file già
+Add si comporta in modo indifferente sia per file appena creati che per le modifiche di file già
 esistenti.
 
 L'opzione ``-a`` "all" passata al comando di commit include automaticamente tutte le modifiche
@@ -201,12 +204,11 @@ Alcune opzioni utili per add:
 + ``.`` come ``-A`` ma non aggiunge file eliminati
 + ``-u`` non aggiunge i nuovi file
 
-``git reset`` fa il contrario di add, rimuovendo dalla staging area i file o cartelle passati per
-argomento; invocato senza argomento li rimuove tutti. Può essere molto utile se si sono svolte
-contemporaneamente modifiche che si vuole dividere in commit diversi.
+__Reset__ fa il contrario di add, rimuovendo dalla staging area i file o cartelle passati per
+argomento; invocato senza argomento li rimuove tutti.
 
-Per vedere quali modifiche sono nella staging area e quali invece non sono ancora state aggiunte con
-add:
+Per vedere quali modifiche sono già nella staging area e quali invece non sono ancora state aggiunte
+con add:
 
 ```
 $ git status
@@ -391,10 +393,10 @@ L'output del comando mostra anche a quale commit puntano la HEAD e i repository 
 dei commit di cui non abbiamo fatto ancora il push è probabile che quest'ultima sia più indietro
 rispetto ad HEAD).
 
-Questo comando può generare molto output. Sarà più semplice trovare un commit ``pretty=oneline``,
-che assegna una sola riga ad ogni commit. Dopodichè sarà utile passare l'hash del commit trovato
-come argomento di log, per vedere informazioni puù dettagliate. L'output di log escluderà
-semplicemente tutti i commit precedenti a quello.
+Questo comando può generare molto output. Sarà più semplice trovare un commit con l'opzione
+``pretty=oneline``, che assegna una sola riga ad ogni commit. Dopodichè sarà utile passare l'hash
+del commit trovato come argomento di log, per vedere informazioni puù dettagliate. L'output di log
+escluderà semplicemente tutti i commit precedenti a quello.
 
 è anche possibile ricercare il testo del commit interessato passandolo come ``--grep=`` (grep è un
 altro tool unix utilizzato da git):
@@ -458,7 +460,7 @@ $ git diff --staged
 $ git diff HEAD
 ```
 
-Questo mostra anche le modifiche che non sono neanche entrate nella staging area.
+Questo mostra le modifiche nel working tree.
 
 Un modo comodo per vedere quali modifiche si sono introdotte con i commit che si stanno per pushare
 su master:
@@ -586,9 +588,9 @@ moficiche sovrascrive il branch remoto su quello locale:
 $ git reset --hard origin/master
 ```
 
-Oppure si può sempre clonare nuovamente il progetto, ma è sempre la soluzione peggiore. Sia in
-questo modo che utilizzando reset c'è sempre il pericolo di eliminare qualcosa che invece si voleva
-tenere, perchè si cancellano dei commit o delle modifiche non ancora committate.
+Oppure si può clonare nuovamente il progetto, ma è sempre la soluzione peggiore. Sia in questo modo
+che utilizzando reset c'è sempre il pericolo di eliminare qualcosa che invece si voleva tenere,
+perchè si cancellano dei commit o delle modifiche non ancora committate.
 
 Per questo esiste un modo migliore per ritornare a un commit precedente, senza modificare i commit
 già effettuati:
@@ -665,6 +667,12 @@ I tag possono anche essere eliminati con l'opzione -d e si può fare il checkout
 come si fa con i commit. Anche sull' assegnazione dei nomi alle versioni ci sono
 \link{https://semver.org/}{norme} da seguire.
 
+Per eliminare un tag remoto:
+
+```
+$ git push --delete origin v1.2
+```
+
 ## Remotes {#sec:remoti}
 
 Un remote è il percorso di un repository remoto, di solito è quello del repository sul server. Il
@@ -706,7 +714,7 @@ Il remote amanjot è un fork ([@sec:fork]) del repository di questa dispensa.
 L'installazione di Git su Linux avviene dal package manager della propria distribuzione ed è un
 processo che richiede pochi secondi. Su Windows, occorre
 \link{https://git-scm.com/download/win}{scaricare} un wizard che installa un emulatore di una versione
-minimale di linux che comprende tool come bash e openssh, da cui Git dipende.
+minimale di linux che comprende tool come bash, rm e diff, da cui Git dipende.
 
 ```
 $ git config --global user.name Stivvo
@@ -895,10 +903,12 @@ Per aggiungere questa dispensa come submodule:
 $ git submodule add https://github.com/Stivvo/GitNoob2Pro
 ```
 
-Per aggiornare i submodule occorre andare nella loro cartella e aggiornarli alle modifiche remote
-come se il proprio repository (quindi con pull ecc). è bene eseguire un commit in cui si effettua
-solamente l'aggiornamento dei submodule per non confonderlo con le effettive modifiche del proprio
-repository.
+Quando si aggiunge un submodule, questo resta fermo al proprio commit più recente in quel momento.
+Anche dopo un clone, il submodule continua a fare il checkout sullo stesso commit. L'aggiornamento
+(a proprio rischio e pericolo) deve essere fatto manualmente ogni volta. Occorre andare nella
+rispettiva cartella e aggiornarlo alle modifiche remote come con un normale repository (quindi con
+pull ecc). è bene eseguire un commit in cui si effettua solamente l'aggiornamento dei submodule per
+non confonderlo con le effettive modifiche del proprio repository.
 
 ``.gitmodules``, da cui è possibile fare ulteriori modifiche ai submodule.
 
