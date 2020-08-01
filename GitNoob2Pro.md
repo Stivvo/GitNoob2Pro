@@ -53,7 +53,7 @@ BitBuckets e Gitea. è tuttavia possibile creare un proprio server git.
 
 Git è nato come un programma a riga di comando, e anche se viene considerato più efficiente se
 utilizzato in questo modo, oggi esistono molti client grafici ed estensioni che permettono di
-usufruire della maggior parte delle funzionalità di git direttamente dall'IDE.
+usufruire della maggior parte delle funzionalità di git direttamente dagli IDE.
 
 # Branching {#sec:branching}
 
@@ -146,18 +146,18 @@ Tutte queste informazioni sono visibili da git log ([@sec:log]).
 \end{figure}
 <!-- end latex -->
 
-Se non si necessita di una descrizione si può utilizzare l'opzione -m (message):
+Se non si necessita di una descrizione si può utilizzare l'opzione ``-m`` "message":
 
 ```
 $ git commit -m "add options page"
 ```
 
 Ci sono varie teorie sulla lunghezza e il contenuto dei messaggi e delle descrizioni dei commit e su
-\textit{ogni quanto} si debba committare. In genere un commit deve essere relativo ad un solo
-argomento e non comprendere modifiche totalmente indipendenti tra di loro. I messaggi di commit non
-devono essere generici (come _fix crash_) altrimenti col passare del tempo sarà impossibile capire
-cosa è stato fatto senza controllare il codice.
-\link{https://chris.beams.io/posts/git-commit/}{Questo} è un buon approfondimento dell' argomento.
+_ogni quanto_ si debba committare. In genere un commit deve essere relativo ad un solo argomento e
+non comprendere modifiche totalmente indipendenti tra di loro. I messaggi di commit non devono
+essere generici (come _fix crash_) altrimenti col passare del tempo sarà impossibile capire cosa è
+stato fatto senza controllare il codice.
+\link{https://chris.beams.io/posts/git-commit/}{Questo} è un buon approfondimento dell'argomento.
 
 ``-s`` ( _signed_ ) aggiunge la firma dell'autore nella descrizione:
 
@@ -192,13 +192,14 @@ verrebbe anch'essa esclusa dal commit.
 Git add si comporta in modo indifferente sia per file appena creati che per le modifiche di file già
 esistenti.
 
-L'opzione -a ( _all_ ) passata al comando di commit include automaticamente tutte le modifiche
+L'opzione ``-a`` "all" passata al comando di commit include automaticamente tutte le modifiche
 attualmente pendenti.
 
 Alcune opzioni utili per add:
 
-+ ``-A`` aggiunge qualsiasi modifica all'area di staging ``.`` come -A ma non aggiunge la rimozione
-+ dei file ``-u`` non aggiunge i nuovi file
++ ``-A`` aggiunge qualsiasi modifica all'area di staging
++ ``.`` come ``-A`` ma non aggiunge file eliminati
++ ``-u`` non aggiunge i nuovi file
 
 ``git reset`` fa il contrario di add, rimuovendo dalla staging area i file o cartelle passati per
 argomento; invocato senza argomento li rimuove tutti. Può essere molto utile se si sono svolte
@@ -251,7 +252,7 @@ Vedi la 'Nota sui fast forward' in 'git push --help' per ulteriori
 dettagli
 ```
 
-## Fetch, merge, pull {#label:merge}
+## Fetch, merge, pull \label{merge} {#sec:merge}
 
 __Fetch__ permette di aggiornare lo stato dei branch in remoto per controllore se ci sono branch
 nuovi o magari nuovi commit sul branch al quale si sta lavorando per evitare di rimanere
@@ -281,7 +282,7 @@ $ git merge develop
 
 Questo permette di vedere prima le nuove modifiche remote: dopo l'utilizzo di fetch, si possono
 guardare al volo facendo ad esempio ``git checkout origin/develop`` (si entra in deatached head
-\ref{heads}). Poi si può decidere se effettuare il merge o no, oppure di effettuare il merge in
+[@sec:heads]). Poi si può decidere se effettuare il merge o no, oppure di effettuare il merge in
 assenza di internet (in casi estremi le modifiche solitamente prelevate con fetch potrebbero venire
 da un altro disco).
 
@@ -352,7 +353,8 @@ $ git branch --all
 
 In questo caso, temp è solamente locale.
 
-L'opzione -d invece elimina un branch. Non è possibile eliminare il branch corrente:
+L'opzione ``-d`` invece elimina un branch. Non è possibile eliminare il branch su cui si è attualmente
+posizionati:
 
 ```
 $ git branch -d develop
@@ -369,7 +371,7 @@ $ git push -d origin develop
 L'opzione -b di checkout crea un branch se quello passato come parametro non esiste, utilizzando
 quindi prima un git branch e poi un git checkout.
 
-Per fondere due branch si utilizza ovviamente merge (\ref{merge}).
+Per fondere due branch si utilizza ovviamente merge ([@sec:merge]).
 
 ## Log \label{log} {#sec:log}
 
@@ -407,7 +409,7 @@ Date:   Sun Feb 23 17:37:09 2020 +0100
 ```
 
 Si può ottenere la lista dei commit in cui è stata aggiunta o rimossa una determinata stringa
-all'interno dei file del repository passandola come ``-S`` ( _string_ ).
+all'interno dei file del repository passandola come ``-S`` "string".
 
 Se invece si è interessati a vedere tutti i commit effettuati da una stessa persona:
 
@@ -450,7 +452,7 @@ specifica un solo commit, si compara ad HEAD di default.
 $ git diff --staged
 ```
 
-``--staged`` mostra tutte le modifiche aggiunte alla staging area rispetto all' ultimo commit.
+``--staged`` mostra tutte le modifiche aggiunte alla staging area rispetto all'ultimo commit.
 
 ```
 $ git diff HEAD
@@ -572,7 +574,7 @@ git push origin HEAD:<nome del branch remoto>
 Il comando suggerito da git serve per caricare le modifiche effettuate in deatached head
 direttamente sul branch remoto, come spiegato nella sezione [@sec:remoti]. è molto probabile che non
 funzioni, perchè andrebbe ad eliminare delle modifiche remote successive al commit in cui ci si è
-posizionati; è necessario aggiungere l'opzione -f ( _force_ ) a push se si vuole eliminarle.
+posizionati; è necessario aggiungere l'opzione -f "force" a push se si vuole eliminarle.
 
 Questo non risolve lo stato di deatached head. Occorre infatti ritornare sul proprio branch (in
 questo caso master), che però contiene ancora i commit che vogliamo eliminare: un push li
@@ -629,7 +631,7 @@ $ git tag v2.1
 ```
 
 I tag possono essere utilizzati in questo modo per descrivere piccoli progressi nello sviluppo. Per
-segnare il punto di una release è bene utilizzare l'opzione -a ( _annotated_ ):
+segnare il punto di una release è bene utilizzare l'opzione -a "annotated":
 
 ```
 $ git tag -a v3.0
@@ -650,7 +652,8 @@ Date:   Mon Mar 17 21:52:11 2020 -0700
     new release 3.0!
 ```
 
-``git log``. Se si vuole vedere le ``git show`` senza argomenti.
+L'output è molto simile a quello di log. Se si vuole vedere le descrizioni di tutti i tag basta
+chiamare show senza argomenti.
 
 Si può aggiungere un tag ad un qualsiasi commit precedente specificando il suo codice:
 
@@ -675,7 +678,7 @@ $ git remote remove samanjot
 $ git remote add amanjot https://github.com/samanjot/GitNoob2Pro
 ```
 
-``-v`` ( _verbose_ ) otteniamo una lista dei remote disponibili. Di default le operazioni come pull
+Con ``-v`` "verbose" otteniamo una lista dei remote disponibili. Di default le operazioni come pull
 sottointendono che si voglia utilizzare il remote origin, ma l'operazione può essere eseguita su
 qualsiasi altro remote ``git pull amanjot master``).
 
@@ -735,8 +738,8 @@ $ git log --color=always | less -r
 
 ``git`` davanti ad ogni comando può risultare scomodo. Esiste un modo per evitarlo, sfruttando le
 funzionalità di alias messe a disposizione dalla shell. Per impostarli occorre modificare il file di
-``\textasciitilde/.bashrc`` se si utilizza bash.
-\link{https://github.com/Stivvo/dotfiles/blob/master/fish}{Questo} è un esempio.
+configurazione della propria shell (``~/.bashrc`` se si utilizza bash).
+\link{https://github.com/Stivvo/dotfiles/blob/master/fish/common.fish}{Questo} è un esempio.
 
 \pagebreak
 
@@ -842,7 +845,7 @@ esitate](https://github.com/Stivvo/GitNoob2Pro/issues).
 \begin{figure}
 \includegraphics[width=6in]{img/issue.png}
 \centering
-\caption{lista delle issue attualmente aperte su questo repository \ref{issue}}
+\caption{lista delle issue attualmente aperte su questo repository (sec. \ref{issue})}
 \end{figure}
 <!-- end latex -->
 
@@ -850,9 +853,9 @@ La grande utilità delle issue (questo è specifico per GitHub) è che possono e
 commit o pull request. Se ad esempio un commit risolve definitivamente i problemi evidenziati da una
 specifica issue, può essere collegato alla sua chiusura. Inserendo alcune [parole
 chiave](https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue)
-nel titolo del commit, seguite da \# e poi dal numero della issue, la chiude in automatico. Inoltre,
-nella storia dei commit di github quel commit riporterà un link alla pullrequest che chiude. Una
-pullrequest chiusa infatti viene solo marcata come tale, ma resta visibile per preservare la memoria
+nel titolo del commit, seguite da ``#`` e poi dal numero della issue, la chiude in automatico. Inoltre,
+nella storia dei commit di github quel commit riporterà un link alla issue che chiude. Una
+issue chiusa infatti viene solo marcata come tale, ma resta visibile per preservare la memoria
 dello sviluppo.
 
 <!-- latex -->
