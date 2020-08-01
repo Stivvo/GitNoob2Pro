@@ -591,7 +591,7 @@ git push origin HEAD:<nome del branch remoto>
 
 Il comando suggerito da git serve per caricare le modifiche effettuate in deatached head
 direttamente sul branch remoto, come spiegato nella sezione [@sec:remoti]. è molto probabile che non
-funzioni, perchè andrebbe ad eliminare delle modifiche remote successive al commit in cui ci si è
+funzioni, perché andrebbe ad eliminare delle modifiche remote successive al commit in cui ci si è
 posizionati; è necessario aggiungere l'opzione -f "force" a push se si vuole eliminarle.
 
 Questo non risolve lo stato di deatached head. Infatti il branch (in questo caso master), contiene
@@ -607,7 +607,7 @@ $ git reset --hard origin/master
 
 Oppure si può clonare nuovamente il progetto, ma è sempre la soluzione peggiore. Sia in questo modo
 che utilizzando reset c'è sempre il pericolo di eliminare qualcosa che invece si voleva tenere,
-perchè si cancellano dei commit o delle modifiche non ancora committate.
+perché si cancellano dei commit o delle modifiche non ancora committate.
 
 Per questo esiste un modo migliore per ritornare a un commit precedente, senza modificare i commit
 già effettuati:
@@ -1064,15 +1064,16 @@ Makefile
 
 \pagebreak
 
-# fonti, link utuli
+# fonti, link utili
 
 ## generale
 
 + \link{https://github.com/Stivvo/GitNoob2Pro}{questa stessa dispensa su Github}
-+ \link{https://www.atlassian.com/git/tutorials/what-is-version-control}{benefici dei version controllo}
 + \link{https://git-scm.com/about/branching-and-merging}{vantaggi di git}
 + \link{https://git-scm.com/book/en/v2}{pro git (libro completo)}
 + \link{https://git-scm.com/doc}{tutti i comandi}
++ \link{https://www.atlassian.com/git/tutorials}{guida di bitbucket (guardare "beginner" e "getting started")}
++ \link{https://www.git-tower.com/learn/git/faq}{FAQ di git tower (soprattutto "Understanding the detached HEAD state e "difference between fetch e pull")}
 
 ## commit, push, add
 
@@ -1080,7 +1081,6 @@ Makefile
 + \link{https://stackoverflow.com/questions/348170/how-do-i-undo-git-add-before-commit?rq=1}{annullare add}
 + \link{https://stackoverflow.com/questions/572549/difference-between-git-add-a-and-git-add?rq=1}{parametri di add}
 + \link{https://stackoverflow.com/questions/1125968/how-do-i-force-git-pull-to-overwrite-local-files?rq=1}{sovrascrivere le modifiche locali con quelle remote}
-+ \link{https://www.git-tower.com/learn/git/faq/difference-between-git-fetch-git-pull}{differenza tra fetch e pull}
 + \link{https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit?rq=1}{tornare a commit precedenti}
 + \link{https://stackoverflow.com/questions/8358035/whats-the-difference-between-git-revert-checkout-and-reset}{differenza tra revert e reset}
 
@@ -1091,7 +1091,6 @@ Makefile
 + \link{https://stackoverflow.com/questions/6591213/how-do-i-rename-a-local-git-branch?rq=1}{rinominare un branch }
 + \link{https://stackoverflow.com/questions/2304087/what-is-head-in-git}{cos'è head}
 + \link{https://stackoverflow.com/questions/9529497/what-is-origin-in-git}{che cos'è origin}
-+ \link{https://www.git-tower.com/learn/git/faq/detached-head-when-checkout-commit}{deatached head}
 + \link{https://stackoverflow.com/questions/34519665/how-can-i-move-head-back-to-a-previous-location-detached-head-undo-commits}{risolvere una deatached head}
 + \link{https://stackoverflow.com/questions/8196544/what-are-the-git-concepts-of-head-master-origin}{differenza tra head, master e origin}
 + \link{https://stackoverflow.com/questions/20954566/what-is-the-difference-from-head-head-and-head1}{tipi di head}
@@ -1108,8 +1107,6 @@ Makefile
 
 + \link{https://stackoverflow.com/questions/179123/how-to-modify-existing-unpushed-commit-messages}{modificare commit esistenti}
 + \link{https://stackoverflow.com/questions/21756614/difference-between-git-merge-origin-master-and-git-pull}{differenza tra merge e pull}
-+ \link{https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase}{git rebase}
-+ \link{https://www.atlassian.com/git/tutorials/merging-vs-rebasing}{merge vs rebase}
 + \link{https://stackoverflow.com/questions/16666089/whats-the-difference-between-git-merge-and-git-rebase}{differenza tra merge e rebase}
 + \link{https://stackoverflow.com/questions/5828324/update-git-submodule-to-latest-commit-on-origin}{aggiornare i submodule}
 
