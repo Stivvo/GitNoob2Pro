@@ -246,12 +246,13 @@ aggiornati rispetto al remote (vedere [@sec:remoti]).
 
 ## Push {#sec:push}
 
-Permette di caricare un numero illimitato di commit su un branch di un repository remoto. Le
-modifiche locali vengono unite a quelle remote.
+è __l'unico__ comando che permette di modificare il repository remoto. Le modifiche locali vengono
+unite a quelle remote.
 
 Git non permette di effettuare un push se la __storia__, intesa come sequenza di commit, del branch
 remoto non è uguale al branch locale, escludendo i commit appena aggiunti fatti in locale. Se ci si
-trova in questa situazione occorre effettuare un riallineamento, (pull/rebase).
+trova in questa situazione occorre effettuare un riallineamento (pull/rebase) oppure utilizzare
+l'opzione ``-f`` (a tuo rischio e pericolo).
 
 ```
 $ git push
