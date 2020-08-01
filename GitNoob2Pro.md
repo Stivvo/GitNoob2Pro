@@ -204,8 +204,21 @@ Alcune opzioni utili per add:
 + ``.`` come ``-A`` ma non aggiunge file eliminati
 + ``-u`` non aggiunge i nuovi file
 
-__Reset__ fa il contrario di add, rimuovendo dalla staging area i file o cartelle passati per
-argomento; invocato senza argomento li rimuove tutti.
+__Restore__ annulla l'azione di add. Prende come parametri uno o più file e ha due funzionalità:
+
+L'opzione ``--worktree`` riporta i file nel working tree (non sottoposti ad add) alle modifiche
+dell'ultimo commit locale, anche se sono stati eliminati. ``--staged``, rimuove i file dalla
+staging area. è possibile combinare entrambe le opzioni:
+
+```
+$ git commmit -m "new commit"
+$ rm README.md
+$ add README.md
+$ git restore --worktree --staged README.md
+```
+
+In questo modo README.md viene ripristinano, anche se era già stato aggiunto alla staging area. Se
+non si specifica nessuna opzione, ``--worktree`` viene aggiunta di default.
 
 Per vedere quali modifiche sono già nella staging area e quali invece non sono ancora state aggiunte
 con add:
@@ -1038,6 +1051,7 @@ Makefile
 + \link{https://www.git-tower.com/learn/git/faq/difference-between-git-fetch-git-pull}{differenza tra fetch e pull}
 + \link{https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit?rq=1}{tornare a commit precedenti}
 + \link{https://stackoverflow.com/questions/8358035/whats-the-difference-between-git-revert-checkout-and-reset}{differenza tra revert e reset}
++ \link{https://stackoverflow.com/questions/58003030/what-is-git-restore-command-what-is-the-different-between-git-restore-and-git}{differenza tra restore e reset}
 
 ## head, remotes, branch
 
