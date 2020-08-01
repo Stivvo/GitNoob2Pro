@@ -355,8 +355,8 @@ $ git branch --all
 
 In questo caso, temp è solamente locale.
 
-L'opzione ``-d`` invece elimina un branch. Non è possibile eliminare il branch su cui si è attualmente
-posizionati:
+L'opzione ``-d`` invece elimina un branch. Non è possibile eliminare il branch su cui si è
+attualmente posizionati:
 
 ```
 $ git branch -d develop
@@ -713,8 +713,8 @@ Il remote amanjot è un fork ([@sec:fork]) del repository di questa dispensa.
 
 L'installazione di Git su Linux avviene dal package manager della propria distribuzione ed è un
 processo che richiede pochi secondi. Su Windows, occorre
-\link{https://git-scm.com/download/win}{scaricare} un wizard che installa un emulatore di una versione
-minimale di linux che comprende tool come bash, rm e diff, da cui Git dipende.
+\link{https://git-scm.com/download/win}{scaricare} un wizard che installa un emulatore di una
+versione minimale di linux che comprende tool come bash, rm e diff, da cui Git dipende.
 
 ```
 $ git config --global user.name Stivvo
@@ -843,11 +843,11 @@ andrebbe a creare confusione nello storico delle pull request.
 ## Issue \label{issue} {#sec:issue}
 
 Una issue non ha a che vedere direttamente con i comandi di Git, è invece un servizio aggiunto dalle
-piattaforme di hosting. Contengono un testo che spiega un problema o una feature che si vorrebbe
-introdurre e possono essere aperte da chiunque. A volte vengono aperte dagli stessi sviluppatori
-del progetto, per cui diventano una specie di todolist, o anche semplici utenti che vogliono
-segnalare un bug. Quindi, se avete delle proposte o trovate degli errori su questa dispensa [non
-esitate](https://github.com/Stivvo/GitNoob2Pro/issues).
+iattaforme di hosting. Contengono un testo che spiega un problema o una feature che si vorrebbe
+introdurre e possono essere aperte da chiunque. A volte vengono aperte dagli stessi sviluppatori del
+progetto, per cui diventano una specie di todolist, o anche semplici utenti che vogliono segnalare
+un bug. Quindi, se avete delle proposte o trovate degli errori su questa dispensa
+[non esitate](https://github.com/Stivvo/GitNoob2Pro/issues).
 
 <!-- latex -->
 \begin{figure}
@@ -859,12 +859,12 @@ esitate](https://github.com/Stivvo/GitNoob2Pro/issues).
 
 La grande utilità delle issue (questo è specifico per GitHub) è che possono essere collegate a
 commit o pull request. Se ad esempio un commit risolve definitivamente i problemi evidenziati da una
-specifica issue, può essere collegato alla sua chiusura. Inserendo alcune [parole
-chiave](https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue)
-nel titolo del commit, seguite da ``#`` e poi dal numero della issue, la chiude in automatico. Inoltre,
-nella storia dei commit di github quel commit riporterà un link alla issue che chiude. Una
-issue chiusa infatti viene solo marcata come tale, ma resta visibile per preservare la memoria
-dello sviluppo.
+specifica issue, può essere collegato alla sua chiusura. Inserendo alcune
+[parole chiave](https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue)
+nel titolo del commit, seguite da ``#`` e poi dal numero della issue, la chiude in automatico.
+Inoltre, nella storia dei commit di github quel commit riporterà un link alla issue che chiude. Una
+issue chiusa infatti viene solo marcata come tale, ma resta visibile per preservare la memoria dello
+sviluppo.
 
 <!-- latex -->
 \begin{figure}
@@ -981,28 +981,22 @@ comando su un solo branch per modificare il suo storico dei commit.
 $ git rebase -i HEAD~4
 ```
 
-Quello che si ottiene in questo modo è prendere gli ultimi 4 commit di master e
-``-i`` non
-farebbe assolutamente nulla.
-Mettere il nome del branch corrente al posto di HEAD sarebbe indifferente.
-Si può utilizzare ~ anche con branch diversi.
+Quello che si ottiene in questo modo è prendere gli ultimi 4 commit di master e ``-i`` non farebbe
+assolutamente nulla. Mettere il nome del branch corrente al posto di HEAD sarebbe indifferente. Si
+può utilizzare ~ anche con branch diversi.
 
-Alla fine di ogni rebase non si potrà effettuare direttamente il push: alcuni
-commit remoti che non sono più presenti in locale perchè modificati o eliminati
-``push -f`` forza la loro cancellazione.
+Alla fine di ogni rebase non si potrà effettuare direttamente il push: alcuni commit remoti che non
+sono più presenti in locale perchè modificati o eliminati ``push -f`` forza la loro cancellazione.
 
-In conclusione, merge rappresenta la vera storia dello sviluppo, anche se questa
-è spesso confusionaria perchè fatta dai commit appartenenti a vari branch che si
-incrociano, scritti male o inutili (compresi quelli di merge).
-Rebase permette invece di effettuare intere revisioni della storia in modo da
-renderla più chiara e leggibile.
+In conclusione, merge rappresenta la vera storia dello sviluppo, anche se questa è spesso
+confusionaria perchè fatta dai commit appartenenti a vari branch che si incrociano, scritti male o
+inutili (compresi quelli di merge). Rebase permette invece di effettuare intere revisioni della
+storia in modo da renderla più chiara e leggibile.
 
 ## Gitignore
 
-Il file .gitignore, posizionato nella root del repository, permette di
-selezionare file o cartelle di cui git non deve tenere traccia.
-Esiste una
-\link{https://github.com/github/gitignore}{raccolta}
+Il file .gitignore, posizionato nella root del repository, permette di selezionare file o cartelle
+di cui git non deve tenere traccia. Esiste una \link{https://github.com/github/gitignore}{raccolta}
 di file .gitignore per la magggior parte di linguaggi e IDE. Alcuni esempi sono:
 
 + i file .swp, utilizzati da vim come cache per i file aperti
@@ -1010,11 +1004,11 @@ di file .gitignore per la magggior parte di linguaggi e IDE. Alcuni esempi sono:
   compilatori sono disponibili sulla macchina
 + ogni tipo di eseguibile, vengono ricavati con la compliazione
 
-Il gitignore del repository di questa dispensa esclude file generati dal
-compilatore latex. Così facendo, si ottiene uno storico dei commit più pulito
-perchè questi file verrebbero costantemente segnati come modificati.
+Il gitignore del repository di questa dispensa esclude file generati dal compilatore latex. Così
+facendo, si ottiene uno storico dei commit più pulito perchè questi file verrebbero costantemente
+segnati come modificati.
 
-un ulteriore esempio:
+Un ulteriore esempio:
 
 ```
 *.exe
