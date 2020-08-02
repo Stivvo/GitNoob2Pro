@@ -169,7 +169,7 @@ Infine, può capitare di essersi dimenticati di aggiungere un file, di aver effe
 troppo presto o di aver sbagliato la scrittura del messaggio. ``--amend`` permette di riscrivere il
 commit.
 
-## Add, reset, status {#sec:add}
+## Add, restore, status {#sec:add}
 
 I file coinvolti dal commit devono essere prima selezionati con add. In questo modo si entra nella
 __staging area__ o index. è uno stato intermedio che sta prima del commit per tracciare le modifiche
@@ -212,14 +212,20 @@ staging area. è possibile combinare entrambe le opzioni:
 
 ```
 $ git commmit -m "new commit"
-$ rm README.md
+$ echo "newline" >> README.md
 $ add README.md
+$ echo "yet another line" >> README.md
 $ git restore --worktree --staged README.md
+$ git status
+Sul branch master
+non c'è nulla di cui eseguire il commit, l'albero di lavoro è pulito
 ```
 
-In questo modo README.md viene ripristinano, anche se era già stato aggiunto alla staging area. Se
-non si specifica nessuna opzione, ``--worktree`` viene aggiunta di default. Prima dell'aggiunta di
-restore, parte delle sue funzionalità erano già offerte da reset [@sec:heads], che vedremo in
+In questo modo README.md tutte le modifiche effettuate a README.md vengono annullate (si può anche
+ripristinare file eliminati).
+
+Se non si specifica nessuna opzione, ``--worktree`` viene aggiunta di default. Prima dell'aggiunta
+di restore, parte delle sue funzionalità erano già offerte da reset [@sec:heads], che vedremo in
 contesti diversi; se non si desidera modificare i commit restore è più appropriato.
 
 Per vedere quali modifiche sono già nella staging area e quali invece non sono ancora state aggiunte
@@ -328,7 +334,7 @@ risolverli. Per farlo, deve scegliere tra la versione locale (HEAD, vedere [@sec
 dell'altro, identificata dal codice hash (vedere [@sec:log]) del commit che ha rinominato la classe
 in SecondClass. Il prossimo push sarà quello del commit di merge, automaticamente creato da git.
 
-## Checkout, branch {#sec:checkout}
+## Checkout, branch, switch {#sec:checkout}
 
 Git branch senza opzioni viene utilizzato per creare un nuovo branch locale. La creazione del branch
 develop:
@@ -340,11 +346,14 @@ $ git branch develop
 Per posizionarsi su develop:
 
 ```
-$ git checkout develop
-M	git.pdf
-M	git.tex
+$ git switch develop
 Si è passati al branch 'develop'
 ```
+
+Prima dell'aggiunta di switch veniva utilizzato checkout, che però è finito con accorpare troppe
+funzionalità. Così, come nel caso di reset [@sec:heads] la propria funzionalità principale (cambiare
+branch) è stata spostata su switch. ``git checkout file.txt`` infatti elimina tutte le modifiche nel
+worktree di quel file (equivalente a ``git restore --worktree file.txt``).
 
 Se si prova a eseguire un push dal branch appena creato occorre aggiungerlo alla lista dei branch
 remoti:
@@ -386,8 +395,8 @@ Per eliminare lo stesso branch anche dal repository remoto:
 $ git push -d origin develop
 ```
 
-L'opzione -b di checkout crea un branch se quello passato come parametro non esiste, utilizzando
-quindi prima un git branch e poi un git checkout.
+L'opzione ``-C`` di switch (equivalente all'opzione ``-b`` di checkout) crea un branch se quello
+passato come parametro non esiste, utilizzando quindi prima ``git branch`` e poi un ``git switch``.
 
 Per fondere due branch si utilizza ovviamente merge ([@sec:merge]).
 
