@@ -128,15 +128,17 @@ $ git commit
 ```
 
 Questo comando aprirà l'editor di default (vedere [@sec:configurazione]) di git. Nella prima riga va
-scritto il titolo del commit. è una buona norma che il titolo mantenga una lunghezza massima di 72
-caratteri e contenga solo nomi e verbi al presente. La seconda si lascia sempre vuota e dalla terza
-inizia la descrizione, che può essere molto lunga e dettagliata per spiegare in modo discorsivo cosa
-si è fatto e se eventualmente ha causato dei problemi.
+scritto il titolo del commit, è pensato per contenere solo nomi e verbi al presente. La seconda si
+lascia sempre vuota e dalla terza inizia la descrizione, che può essere molto lunga e dettagliata
+per spiegare in modo discorsivo cosa si è fatto e se eventualmente ha causato dei problemi. é
+consigliato mantenere il una lunghezza massima di 50 caratteri per il titolo e di 75 per il testo
+del commit in modo da poter visualizzare l'output di ``git log`` ([@sec:log]) e ``git log
+--oneline`` su uno split.
 
 Un commit rimane sempre associato al proprio autore, riconoscibile da come ha configurato il punto
 [@sec:configurazione], e all'orario in cui è stato fatto.
 
-Tutte queste informazioni sono visibili con log ([@sec:log]).
+Tutte queste informazioni sono visibili con log.
 
 <!-- latex -->
 \begin{figure}
@@ -1092,6 +1094,7 @@ Makefile
 + \link{https://stackoverflow.com/questions/1125968/how-do-i-force-git-pull-to-overwrite-local-files?rq=1}{sovrascrivere le modifiche locali con quelle remote}
 + \link{https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit?rq=1}{tornare a commit precedenti}
 + \link{https://stackoverflow.com/questions/8358035/whats-the-difference-between-git-revert-checkout-and-reset}{differenza tra revert e reset}
++ \link{https://stackoverflow.com/questions/22731126/writing-long-commit-messages-in-git}{lunghezza consigliata per i commit}
 
 ## head, remotes, branch
 
