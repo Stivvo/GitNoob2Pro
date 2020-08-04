@@ -355,7 +355,10 @@ Si è passati al branch 'develop'
 Prima dell'aggiunta di switch veniva utilizzato checkout, che però è finito con accorpare troppe
 funzionalità. Così, come nel caso di reset [@sec:heads] la propria funzionalità principale (cambiare
 branch) è stata spostata su switch. ``git checkout file.txt`` infatti elimina tutte le modifiche nel
-worktree di quel file (equivalente a ``git restore --worktree file.txt``).
+worktree di quel file (equivalente a ``git restore --worktree file.txt``). In presenza di un file ed
+un branch omonimi, questo può creare confusione e __perdite di dati__ involontarie. Inoltre nel caso
+di switch è necessario aggiungere l'opzione ``--detach`` (o ``-d``) per posizionarsi su un commit
+(entrando nello stato di deatached head (sec:heads)).
 
 Se si prova a eseguire un push dal branch appena creato occorre aggiungerlo alla lista dei branch
 remoti:
@@ -367,8 +370,8 @@ Per eseguire il push del branch corrente ed impostare il remoto come upstream, u
     git push --set-upstream origin develop
 ```
 
-L'opzione --all mostra tutti i branch locali e remoti. Il branch seguito dall'asterisco è quello su
-cui si è posizionati correntemtente.
+L'opzione ``--all`` mostra tutti i branch locali e remoti. Il branch seguito dall'asterisco è quello
+su cui si è posizionati correntemtente.
 
 ```
 $ git branch --all
@@ -398,7 +401,7 @@ $ git push -d origin develop
 ```
 
 L'opzione ``-C`` di switch (equivalente all'opzione ``-b`` di checkout) crea un branch se quello
-passato come parametro non esiste, utilizzando quindi prima ``git branch`` e poi un ``git switch``.
+passato come parametro non esiste, utilizzando quindi prima ``git branch`` e poi ``git switch``.
 
 Per fondere due branch si utilizza ovviamente merge ([@sec:merge]).
 
@@ -1114,6 +1117,7 @@ Makefile
 + \link{https://stackoverflow.com/questions/18137175/in-git-what-is-the-difference-between-origin-master-vs-origin-master}{differenza tra origin master e origin/master}
 + \link{https://stackoverflow.com/questions/58003030/what-is-git-restore-command-what-is-the-different-between-git-restore-and-git}{differenza tra restore e reset}
 + \link{https://www.atlassian.com/git/tutorials/undoing-changes/git-reset}{spiegazione dettagliata delle opzioni di reset}
++ \link{https://stackoverflow.com/questions/57265785/whats-the-difference-between-git-switch-and-git-checkout-branch}{differenza tra checkout e switch}
 
 ## merge, rebase
 
