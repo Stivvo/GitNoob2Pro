@@ -97,7 +97,7 @@ accettare un diverso numero di argomenti e di opzioni (tratteremo le principali 
 spesso precedute da un singolo o da un doppio meno. Gli argomenti e le opzioni dei comandi possono
 essere combinati in moltissimi modi per ottenere il comportamento desiderato da git.
 
-## init, clone {#sec:initClone}
+## Init, clone {#sec:initClone}
 
 Per creare un nuovo repository locale si utilizza init (stando all'interno della cartella del
 progetto del quale si vuole tenere traccia):
@@ -148,7 +148,7 @@ Tutte queste informazioni sono visibili con log.
 \end{figure}
 <!-- end latex -->
 
-Se non si necessita di una descrizione si può utilizzare l'opzione ``-m`` "message":
+Se non si necessita di una descrizione si può utilizzare l'opzione ``-m`` _message_:
 
 ```
 $ git commit -m "add options page"
@@ -161,7 +161,7 @@ essere generici (come _fix crash_) altrimenti col passare del tempo sarà imposs
 stato fatto senza controllare il codice.
 \link{https://chris.beams.io/posts/git-commit/}{Questo} è un buon approfondimento dell'argomento.
 
-``-s`` ( _signed_ ) aggiunge la firma dell'autore nella descrizione:
+``-s`` _signed_ aggiunge la firma dell'autore nella descrizione:
 
 ```
 Signed-off-by: Stivvo entattis15@itsvinci.com
@@ -197,7 +197,7 @@ verrebbe anch'essa esclusa dal commit.
 Add si comporta in modo indifferente sia per file appena creati che per le modifiche di file già
 esistenti.
 
-L'opzione ``-a`` "all" passata al comando di commit include automaticamente tutte le modifiche
+L'opzione ``-a`` _all_ passata al comando di commit include automaticamente tutte le modifiche
 attualmente pendenti.
 
 Alcune opzioni utili per add:
@@ -441,7 +441,7 @@ Date:   Sun Feb 23 17:37:09 2020 +0100
 ```
 
 Si può ottenere la lista dei commit in cui è stata aggiunta o rimossa una determinata stringa
-all'interno dei file del repository passandola come ``-S`` "string".
+all'interno dei file del repository passandola come ``-S`` _string_.
 
 Se invece si è interessati a vedere tutti i commit effettuati da una stessa persona:
 
@@ -516,7 +516,7 @@ utilizzando log.
 
 \pagebreak
 
-# la cartella .git {#sec:dotGit}
+# La cartella .git {#sec:dotGit}
 
 La cartella .git si trova nella root del repository e contiene tutti i file utilizzati da git, tra
 cui informazioni sui branch, sui commit. Nei sistemi operativi unix una cartella preceduta da un
@@ -538,7 +538,7 @@ heads/  remotes/  tags/
 Dietro a questi tre nomi ci sono concetti importanti di git che tornano utili con la maggior parte
 dei comandi
 
-## heads {#sec:heads}
+## Heads {#sec:heads}
 
 In git una head è un riferimento ad un branch o ad un commit di un determinato branch, locale o
 remoto. Una lista delle head disponibili:
@@ -606,7 +606,7 @@ git push origin HEAD:<nome del branch remoto>
 Il comando suggerito da git serve per caricare le modifiche effettuate in deatached head
 direttamente sul branch remoto, come spiegato nella sezione [@sec:remoti]. è molto probabile che non
 funzioni, perché andrebbe ad eliminare delle modifiche remote successive al commit in cui ci si è
-posizionati; è necessario aggiungere l'opzione -f "force" a push se si vuole eliminarle.
+posizionati; è necessario aggiungere l'opzione -f _force_ a push se si vuole eliminarle.
 
 Questo non risolve lo stato di deatached head. Infatti il branch (in questo caso master), contiene
 contiene ancora i commit che vogliamo eliminare: un push li riporterebbe sul repository remoto.
@@ -692,7 +692,7 @@ $ git tag v2.1
 ```
 
 I tag possono essere utilizzati in questo modo per descrivere piccoli progressi nello sviluppo. Per
-segnare il punto di una release è bene utilizzare l'opzione -a "annotated":
+segnare il punto di una release è bene utilizzare l'opzione -a _annotated_:
 
 ```
 $ git tag -a v3.0
@@ -745,9 +745,9 @@ $ git remote remove samanjot
 $ git remote add amanjot https://github.com/samanjot/GitNoob2Pro
 ```
 
-Con ``-v`` "verbose" otteniamo una lista dei remote disponibili. Di default le operazioni come pull
+Con ``-v`` _verbose_ otteniamo una lista dei remote disponibili. Di default le operazioni come pull
 sottointendono che si voglia utilizzare il remote origin, ma l'operazione può essere eseguita su
-qualsiasi altro remote ``git pull amanjot master``).
+qualsiasi altro remote ``git pull amanjot master``.
 
 ```
 $ git remote -v
@@ -1078,9 +1078,9 @@ Makefile
 
 \pagebreak
 
-# fonti, link utili
+# Fonti, link utili
 
-## generale
+## Generale
 
 + \link{https://github.com/Stivvo/GitNoob2Pro}{questa stessa dispensa su Github}
 + \link{https://git-scm.com/about/branching-and-merging}{vantaggi di git}
@@ -1089,7 +1089,7 @@ Makefile
 + \link{https://www.atlassian.com/git/tutorials}{guida di bitbucket (guardare "beginner" e "getting started")}
 + \link{https://www.git-tower.com/learn/git/faq}{FAQ di git tower (soprattutto "Understanding the detached HEAD state e "difference between fetch e pull")}
 
-## commit, push, add
+## Commit, push, add
 
 + \link{https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch}{differenza tra pull e fetch}
 + \link{https://stackoverflow.com/questions/348170/how-do-i-undo-git-add-before-commit?rq=1}{annullare add}
@@ -1099,7 +1099,7 @@ Makefile
 + \link{https://stackoverflow.com/questions/8358035/whats-the-difference-between-git-revert-checkout-and-reset}{differenza tra revert e reset}
 + \link{https://stackoverflow.com/questions/22731126/writing-long-commit-messages-in-git}{lunghezza consigliata per i commit}
 
-## head, remotes, branch
+## Head, remotes, branch, switch
 
 + \link{https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch?rq=1}{checkout di un branch remoto}
 + \link{https://stackoverflow.com/questions/2003505/how-do-i-delete-a-git-branch-locally-and-remotely?rq=1}{eliminare un branch}
@@ -1119,14 +1119,14 @@ Makefile
 + \link{https://www.atlassian.com/git/tutorials/undoing-changes/git-reset}{spiegazione dettagliata delle opzioni di reset}
 + \link{https://stackoverflow.com/questions/57265785/whats-the-difference-between-git-switch-and-git-checkout-branch}{differenza tra checkout e switch}
 
-## merge, rebase
+## Merge, rebase
 
 + \link{https://stackoverflow.com/questions/179123/how-to-modify-existing-unpushed-commit-messages}{modificare commit esistenti}
 + \link{https://stackoverflow.com/questions/21756614/difference-between-git-merge-origin-master-and-git-pull}{differenza tra merge e pull}
 + \link{https://stackoverflow.com/questions/16666089/whats-the-difference-between-git-merge-and-git-rebase}{differenza tra merge e rebase}
 + \link{https://stackoverflow.com/questions/5828324/update-git-submodule-to-latest-commit-on-origin}{aggiornare i submodule}
 
-## log, diff
+## Log, diff
 
 + \link{https://www.toolsqa.com/git/git-log/}{guida a git log}
 + \link{https://stackoverflow.com/questions/7124914/how-to-search-a-git-repository-by-commit-message}{cercare il messaggio dei commit}
