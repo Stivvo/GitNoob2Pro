@@ -131,9 +131,11 @@ Questo comando aprirà l'editor di default (vedere [@sec:configurazione]) di git
 va scritto il titolo del commit, è pensato per contenere solo nomi e verbi al presente. La seconda
 si lascia sempre vuota e dalla terza inizia la descrizione, che può essere molto lunga e
 dettagliata per spiegare in modo discorsivo cosa si è fatto e se eventualmente ha causato dei
-problemi. é consigliato mantenere il una lunghezza massima di 50 caratteri per il titolo e di 75
+problemi. é consigliato mantenere il una lunghezza massima di 50 caratteri per il titolo e di 72
 per il testo del commit in modo da poter visualizzare l'output di ``git log`` ([@sec:log]) e ``git
-log --oneline`` su uno split.
+log --oneline`` su uno split. Per approfondire:
+\link{https://stackoverflow.com/questions/22731126/writing-long-commit-messages-in-git}{lunghezza
+consigliata per i commit}
 
 Un commit rimane sempre associato al proprio autore, riconoscibile da come ha configurato il punto
 [@sec:configurazione], e all'orario in cui è stato fatto.
@@ -199,6 +201,7 @@ L'opzione ``-a`` _all_ passata al comando di commit include automaticamente tutt
 attualmente pendenti.
 
 Alcune opzioni utili per add:
+(\link{https://stackoverflow.com/questions/572549/difference-between-git-add-a-and-git-add?rq=1}{approfondimento sulle differenze})
 
 + ``-A`` aggiunge qualsiasi modifica all'area di staging
 + ``.`` come ``-A`` ma non aggiunge file eliminati
@@ -269,7 +272,7 @@ $ git commit -m "remove file"
 
 Questi due metodi sono equivalenti ma il secondo è più rapido.
 
-## Push {#sec:push}
+## Push {#sec:push} {#sec:push}
 
 è __l'unico__ comando che permette di modificare il repository remoto. Le modifiche locali vengono
 unite a quelle remote.
@@ -310,8 +313,11 @@ non preleva mai nulla dal repository remoto, per farlo occorre effettuare prima 
 __Pull__ è in sostanza un fetch seguito da un merge, ed è quello che capita di utilzzare più
 spesso, anche se la combinazione fetch e merge sarebbe sempre un alternativa più sicura. In
 generale pull fonde ciò che si trova al momento sul branch del repository remoto con quello
-locale. Se si effettua un pull come suggerito nel codice della sezione \ref{push} avverrà infatti
-un merge.
+locale. Se si effettua un pull come suggerito nel codice della sezione ([@sec:push]) avverrà
+infatti un merge.
+
++ \link{https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch}{differenza tra pull e fetch}
++ \link{https://stackoverflow.com/questions/21756614/difference-between-git-merge-origin-master-and-git-pull}{differenza tra pull e merge}
 
 Pull e fetch e merge chiamati senza argomenti vanno a prelevare la versione remota del branch su
 cui si è localmente, ma nel caso di merge è aggiornata all' ultimo fetch.
@@ -377,7 +383,9 @@ funzionalità. Così, come nel caso di reset [@sec:heads] la propria funzionalit
 modifiche nel worktree di quel file (equivalente a ``git restore --worktree file.txt``). In
 presenza di un file ed un branch omonimi, questo può creare confusione e __perdite di dati__
 involontarie. Inoltre nel caso di switch è necessario aggiungere l'opzione ``--detach`` (o ``-d``)
-per posizionarsi su un commit (entrando nello stato di deatached head (sec:heads)).
+per posizionarsi su un commit (entrando nello stato di detached head (sec:heads)).
+\link{https://stackoverflow.com/questions/57265785/whats-the-difference-between-git-switch-and-git-checkout-branch}{Approfondimento
+sulla differenza tra checkout e switch}
 
 Se si prova a eseguire un push dal branch appena creato occorre aggiungerlo alla lista dei branch
 remoti:
@@ -424,6 +432,9 @@ passato come parametro non esiste, utilizzando quindi prima ``git branch`` e poi
 
 Per fondere due branch si utilizza ovviamente merge ([@sec:merge]).
 
++ \link{https://stackoverflow.com/questions/6591213/how-do-i-rename-a-local-git-branch?rq=1}{rinominare un branch }
++ \link{https://stackoverflow.com/questions/3404294/merging-2-branches-together-in-git}{fare il merge di due branch}
+
 ## Log \label{log} {#sec:log}
 
 Molto di quanto appena spiegato sarebbe inutile se non si potesse vedere la storia dei commit.
@@ -467,6 +478,11 @@ $ git log --author="Stivvo"
 ```
 
 Se si vuole vedere rapidamente i titoli di tutti i commit senza il loro hash ``git shortlog``.
+
++ \link{https://stackoverflow.com/questions/7124914/how-to-search-a-git-repository-by-commit-message}{cercare il messaggio dei commit}
++ \link{https://stackoverflow.com/questions/5816134/how-to-find-the-git-commit-that-introduced-a-string-in-any-branch}{cercare il testo modificato dai commit}
++ \link{https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history}{grep del testo modificato dai commit}
++ \link{https://unix.stackexchange.com/questions/19317/can-less-retain-colored-output}{git log sempre colorato}
 
 ## Diff {#sec:diff}
 
@@ -516,6 +532,9 @@ pushare su master:
 $ git diff origin/master
 ```
 
+\link{https://stackoverflow.com/questions/16562121/git-diff-head-vs-staged}{Differenze tra diff
+HEAD e diff --staged}
+
 L'output di diff può essere ristretto ad uno o più file passati sempre come ultimi argomenti.
 
 Diff diventa ancora più utile quando utilizzato insieme a log:
@@ -530,6 +549,9 @@ ristretto ad uno o più file passati come argomento.
 ``git show`` mostra tutte le mofidiche introdotte con un commit passato come parametro (se non
 presente mostra HEAD di default), i file modificati utilizzando diff e il testo del commit
 utilizzando log.
+
++ \link{https://stackoverflow.com/questions/278192/view-the-change-history-of-a-file-using-git-versioning}{storia di un file. log -p}
++ \link{https://stackoverflow.com/questions/4456532/how-can-i-see-what-has-changed-in-a-file-before-committing-to-git}{diff relativo ad un file}
 
 \pagebreak
 
@@ -566,7 +588,8 @@ master/ develop/
 ```
 
 __HEAD__ è un file che punta all'ultimo commit del branch in cui si è attualmente posizionati nel
-repository locale.
+repository locale (\link{https://stackoverflow.com/questions/2304087/what-is-head-in-git}{cos'è
+head}).
 
 ```
 $ cat .git/HEAD
@@ -604,7 +627,9 @@ $ git checkout master~2
 ```
 
 ``~`` indica di quanti commit si deve tornare indietro per trovare il commit su cui effettaure il
-checkout. ``~`` e ``~1`` sono equivalenti.
+checkout. ``~`` e ``~1`` sono equivalenti (Approfondimento sulle
+\link{https://stackoverflow.com/questions/20954566/what-is-the-difference-from-head-head-and-head1}{diverse
+notazioni}).
 
 Se si vuole mantenere i commit fatti in questo stato è buona cosa spostarsi su un nuovo branch
 come suggerito.
@@ -635,6 +660,13 @@ sovrascrive il branch remoto su quello locale:
 ```
 $ git reset --hard origin/master
 ```
+
+Ulteriori informazioni su come:
+
++ \link{https://stackoverflow.com/questions/1125968/how-do-i-force-git-pull-to-overwrite-local-files}{forzare il pull}
++ \link{https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit}{ripristinare i commit}.
++ \link{https://stackoverflow.com/questions/34519665/how-can-i-move-head-back-to-a-previous-location-detached-head-undo-commits}{risolvere una detached head}
++ \link{https://stackoverflow.com/questions/10228760/fix-a-git-detached-head}{uscire da detached head}
 
 Oppure si può clonare nuovamente il progetto, ma è sempre la soluzione peggiore. Sia in questo
 modo che utilizzando reset c'è sempre il pericolo di eliminare qualcosa che invece si voleva
@@ -667,7 +699,7 @@ errore.
 ``git reset --mixed HEAD~2`` torna indietro di due commit ma non modifica nessun file. Infatti
 tutti i file vengono rimossi dall'area di staging e le modifiche non ancora committate tornano
 tutte nel worktree insieme a quelle dei due commit precedenti. Questo comportamento è simile allo
-squash con rebase [@sec:rebase].
+squash con rebase ([@sec:rebase)].
 
 Con ``git reset --hard HEAD~2`` è come se tutte le modifiche non committate e gli ultimi due
 commit non fossero mai esistiti.
@@ -680,7 +712,12 @@ automaticamente aggiunte alla staging area.
 Se nessuna opzione viene specificata per reset, ``--mixed`` è utilizzata di default. Se non viene
 specificato nessun file, agisce su tutti i file del repository. Se non viene specificato nessun
 commit, viene utilizzato ``HEAD`` di default (l'ultimo commit) diventando in parte analogo a
-restore [@sec:restore].
+restore [(@sec:add)].
+
++ \link{https://stackoverflow.com/questions/8358035/whats-the-difference-between-git-revert-checkout-and-reset}{differenza
+tra revert e reset}.
++ \link{https://stackoverflow.com/questions/58003030/what-is-git-restore-command-what-is-the-different-between-git-restore-and-git}{differenza tra restore e reset}
++ \link{https://www.atlassian.com/git/tutorials/undoing-changes/git-reset}{spiegazione dettagliata delle opzioni di reset}
 
 ## Tags {#sec:tags}
 
@@ -782,6 +819,12 @@ origin/ amanjot/
 ```
 
 Il remote amanjot è un fork ([@sec:fork]) del repository di questa dispensa.
+
++ \link{https://stackoverflow.com/questions/8196544/what-are-the-git-concepts-of-head-master-origin}{differenza tra head, master e origin}
++ \link{https://stackoverflow.com/questions/23241052/what-does-git-push-origin-head-mean}{push origin head}
++ \link{https://stackoverflow.com/questions/20889346/what-does-git-remote-mean}{che cos'è un remote}
++ \link{https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch?rq=1}{checkout di un branch remoto}
++ \link{https://stackoverflow.com/questions/18137175/in-git-what-is-the-difference-between-origin-master-vs-origin-master}{differenza tra origin master e origin/master}
 
 \pagebreak
 
@@ -973,14 +1016,15 @@ $ git submodule add https://github.com/Stivvo/GitNoob2Pro
 Quando si aggiunge un submodule, questo resta fermo al proprio commit più recente in quel momento.
 Anche dopo un clone, il submodule continua a fare il checkout sullo stesso commit.
 L'aggiornamento (a proprio rischio e pericolo) deve essere fatto manualmente ogni volta. Occorre
-andare nella rispettiva cartella e aggiornarlo alle modifiche remote come con un normale
-repository (quindi con pull ecc). è bene eseguire un commit in cui si effettua solamente
-l'aggiornamento dei submodule per non confonderlo con le effettive modifiche del proprio
-repository.
+andare nella rispettiva cartella e aggiornarlo alle modifiche remote  come con un normale
+repository (quindi con pull ecc). Vedi
+\link{https://stackoverflow.com/questions/5828324/update-git-submodule-to-latest-commit-on-origin}{
+aggiornare i submodule}. è bene eseguire un commit in cui si effettua solamente l'aggiornamento
+dei submodule per non confonderlo con le effettive modifiche del proprio repository.
 
 ``.gitmodules``, da cui è possibile fare ulteriori modifiche ai submodule.
 
-## Rebase
+## Rebase \label{rebase} {#sec:rebase}
 
 Rebase ha lo stesso compito di merge, ma lo svolge in modo molto diverso. Quando si effettua un
 merge tra due branch, i commit vengono ordinati per data. Se sono state fatte modifiche in
@@ -1061,6 +1105,9 @@ confusionaria perchè fatta dai commit appartenenti a vari branch che si incroci
 inutili (compresi quelli di merge). Rebase permette invece di effettuare intere revisioni della
 storia in modo da renderla più chiara e leggibile.
 
++ \link{https://stackoverflow.com/questions/179123/how-to-modify-existing-unpushed-commit-messages}{modificare commit esistenti}
++ \link{https://stackoverflow.com/questions/16666089/whats-the-difference-between-git-merge-and-git-rebase}{differenza tra merge e rebase}
+
 ## Gitignore
 
 Il file .gitignore, posizionato nella root del repository, permette di selezionare file o cartelle
@@ -1090,61 +1137,12 @@ Makefile
 
 # Fonti, link utili
 
-## Generale
-
 + \link{https://github.com/Stivvo/GitNoob2Pro}{questa stessa dispensa su Github}
 + \link{https://git-scm.com/about/branching-and-merging}{vantaggi di git}
 + \link{https://git-scm.com/book/en/v2}{pro git (libro completo)}
 + \link{https://git-scm.com/doc}{tutti i comandi}
 + \link{https://www.atlassian.com/git/tutorials}{guida di bitbucket (guardare "beginner" e "getting started")}
 + \link{https://www.git-tower.com/learn/git/faq}{FAQ di git tower (soprattutto "Understanding the detached HEAD state e "difference between fetch e pull")}
-
-## Commit, push, add
-
-+ \link{https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch}{differenza tra pull e fetch}
-+ \link{https://stackoverflow.com/questions/348170/how-do-i-undo-git-add-before-commit?rq=1}{annullare add}
-+ \link{https://stackoverflow.com/questions/572549/difference-between-git-add-a-and-git-add?rq=1}{parametri di add}
-+ \link{https://stackoverflow.com/questions/1125968/how-do-i-force-git-pull-to-overwrite-local-files?rq=1}{sovrascrivere le modifiche locali con quelle remote}
-+ \link{https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit?rq=1}{tornare a commit precedenti}
-+ \link{https://stackoverflow.com/questions/8358035/whats-the-difference-between-git-revert-checkout-and-reset}{differenza tra revert e reset}
-+ \link{https://stackoverflow.com/questions/22731126/writing-long-commit-messages-in-git}{lunghezza consigliata per i commit}
-
-## Head, remotes, branch, switch
-
-+ \link{https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch?rq=1}{checkout di un branch remoto}
-+ \link{https://stackoverflow.com/questions/2003505/how-do-i-delete-a-git-branch-locally-and-remotely?rq=1}{eliminare un branch}
-+ \link{https://stackoverflow.com/questions/6591213/how-do-i-rename-a-local-git-branch?rq=1}{rinominare un branch }
-+ \link{https://stackoverflow.com/questions/2304087/what-is-head-in-git}{cos'è head}
-+ \link{https://stackoverflow.com/questions/9529497/what-is-origin-in-git}{che cos'è origin}
-+ \link{https://stackoverflow.com/questions/34519665/how-can-i-move-head-back-to-a-previous-location-detached-head-undo-commits}{risolvere una deatached head}
-+ \link{https://stackoverflow.com/questions/8196544/what-are-the-git-concepts-of-head-master-origin}{differenza tra head, master e origin}
-+ \link{https://stackoverflow.com/questions/20954566/what-is-the-difference-from-head-head-and-head1}{tipi di head}
-+ \link{https://stackoverflow.com/questions/23241052/what-does-git-push-origin-head-mean}{push origin head}
-+ \link{https://stackoverflow.com/questions/10228760/fix-a-git-detached-head}{uscire da deatached head}
-+ \link{https://stackoverflow.com/questions/16562121/git-diff-head-vs-staged}{diff HEAD vs diff --staged}
-+ \link{https://stackoverflow.com/questions/20889346/what-does-git-remote-mean}{che cos'è un remote}
-+ \link{https://stackoverflow.com/questions/3404294/merging-2-branches-together-in-git}{fare il merge di due branch}
-+ \link{https://stackoverflow.com/questions/18137175/in-git-what-is-the-difference-between-origin-master-vs-origin-master}{differenza tra origin master e origin/master}
-+ \link{https://stackoverflow.com/questions/58003030/what-is-git-restore-command-what-is-the-different-between-git-restore-and-git}{differenza tra restore e reset}
-+ \link{https://www.atlassian.com/git/tutorials/undoing-changes/git-reset}{spiegazione dettagliata delle opzioni di reset}
-+ \link{https://stackoverflow.com/questions/57265785/whats-the-difference-between-git-switch-and-git-checkout-branch}{differenza tra checkout e switch}
-
-## Merge, rebase
-
-+ \link{https://stackoverflow.com/questions/179123/how-to-modify-existing-unpushed-commit-messages}{modificare commit esistenti}
-+ \link{https://stackoverflow.com/questions/21756614/difference-between-git-merge-origin-master-and-git-pull}{differenza tra merge e pull}
-+ \link{https://stackoverflow.com/questions/16666089/whats-the-difference-between-git-merge-and-git-rebase}{differenza tra merge e rebase}
-+ \link{https://stackoverflow.com/questions/5828324/update-git-submodule-to-latest-commit-on-origin}{aggiornare i submodule}
-
-## Log, diff
-
++ \link{https://linux.die.net/man/1/git}{man pages di git}
 + \link{https://www.toolsqa.com/git/git-log/}{guida a git log}
-+ \link{https://stackoverflow.com/questions/7124914/how-to-search-a-git-repository-by-commit-message}{cercare il messaggio dei commit}
-+ \link{https://stackoverflow.com/questions/5816134/how-to-find-the-git-commit-that-introduced-a-string-in-any-branch}{cercare il testo modificato dai commit}
-+ \link{https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history}{grep del testo modificato dai commit}
-+ \link{https://unix.stackexchange.com/questions/19317/can-less-retain-colored-output}{git log sempre colorato}
-+ \link{https://stackoverflow.com/questions/4259996/how-can-i-view-a-git-log-of-just-one-users-commits}{ottenere tutti i commit di uno stesso autore}
-+ \link{https://stackoverflow.com/questions/278192/view-the-change-history-of-a-file-using-git-versioning}{storia di un file. log -p}
-+ \link{https://stackoverflow.com/questions/4456532/how-can-i-see-what-has-changed-in-a-file-before-committing-to-git}{diff relativo ad un file}
-+ \link{https://stackoverflow.com/questions/2183900/how-do-i-prevent-git-diff-from-using-a-pager}{non utilizzare un pager}
 
