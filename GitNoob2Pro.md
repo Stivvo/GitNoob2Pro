@@ -236,14 +236,10 @@ aggiunte con add:
 
 ```
 $ git status
-Sul branch master
-Il tuo branch è aggiornato rispetto a 'origin/master'.
-
 Modifiche di cui verrà eseguito il commit:
   (usa "git restore --staged <file>..." per rimuovere gli elementi dall'area di staging)
 	modificato:             git.pdf
 	modificato:             git.tex
-
 Modifiche non nell'area di staging per il commit:
   (usa "git add/rm <file>..." per aggiornare gli elementi di cui sarà eseguito il commit)
   (usa "git restore <file>..." per scartare le modifiche nella directory di lavoro)
@@ -272,7 +268,27 @@ $ git commit -m "remove file"
 
 Questi due metodi sono equivalenti ma il secondo è più rapido.
 
-## Push {#sec:push} {#sec:push}
+```
+$ cat file
+This file contains text
+$ git rm --cached file
+$ git status
+Modifiche di cui verrà eseguito il commit:
+	eliminato:              file
+File non tracciati: file
+$ git commit -m "remove file"
+delete mode 100755 compile.sh
+$ git status
+File non tracciati: file
+$ cat file
+This file contains text
+```
+
+L'opzione ``--cached`` "inganna" git segnando un file come eliminato, mantenendolo comunque
+localmente. Ricorda che la prossima volta che scaricherai il repository questo file non ci sarà
+più; questa opzione è utile quando si aggiunono file a ``.gitignore`` (sec:gitignore).
+
+## Push \label{push} {#sec:push}
 
 è __l'unico__ comando che permette di modificare il repository remoto. Le modifiche locali vengono
 unite a quelle remote.
@@ -1108,7 +1124,7 @@ storia in modo da renderla più chiara e leggibile.
 + \link{https://stackoverflow.com/questions/179123/how-to-modify-existing-unpushed-commit-messages}{modificare commit esistenti}
 + \link{https://stackoverflow.com/questions/16666089/whats-the-difference-between-git-merge-and-git-rebase}{differenza tra merge e rebase}
 
-## Gitignore
+## Gitignore \label{gitignore} {#sec:gitignore}
 
 Il file .gitignore, posizionato nella root del repository, permette di selezionare file o cartelle
 di cui git non deve tenere traccia. Esiste una
