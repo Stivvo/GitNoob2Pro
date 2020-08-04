@@ -171,7 +171,7 @@ Infine, può capitare di essersi dimenticati di aggiungere un file, di aver effe
 troppo presto o di aver sbagliato la scrittura del messaggio. ``--amend`` permette di riscrivere il
 commit.
 
-## Add, restore, status {#sec:add}
+## Add, rm, restore, status {#sec:add}
 
 I file coinvolti dal commit devono essere prima selezionati con add. In questo modo si entra nella
 __staging area__ o index. è uno stato intermedio che sta prima del commit per tracciare le modifiche
@@ -244,13 +244,31 @@ Modifiche di cui verrà eseguito il commit:
 	modificato:             git.tex
 
 Modifiche non nell'area di staging per il commit:
-  (usa "git add <file>..." per aggiornare gli elementi di cui sarà eseguito il commit)
+  (usa "git add/rm <file>..." per aggiornare gli elementi di cui sarà eseguito il commit)
   (usa "git restore <file>..." per scartare le modifiche nella directory di lavoro)
 	modificato:             README.md
 ```
 
 Questo comando mostra anche informazioni relative al branch su cui si è posizionati e se si è
 aggiornati rispetto al remote (vedere [@sec:remoti]).
+
+Quando si eliminano manualmente dei file occorre aggiungerli alla staging area per comunicare a git
+l'avvenuta cancellazione. Se si desidera rendere subito effettiva la cancellazione, __rm__ offre la
+possibilità di farlo automaticamente. Ovviamente, anche rm può essere annullato con restore.
+
+```
+$ rm file
+$ git add file
+$ git commit -m "remove file"
+```
+
+```
+$ git rm file
+rm 'file'
+$ git commit -m "remove file"
+```
+
+Questi due metodi sono equivalenti ma il secondo è più rapido.
 
 ## Push {#sec:push}
 
