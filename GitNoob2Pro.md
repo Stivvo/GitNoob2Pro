@@ -225,7 +225,7 @@ In questo modo README.md tutte le modifiche effettuate a README.md vengono annul
 ripristinare file eliminati).
 
 Se non si specifica nessuna opzione, ``--worktree`` viene aggiunta di default. Prima dell'aggiunta
-di restore, parte delle sue funzionalità erano già offerte da reset [@sec:heads], che vedremo in
+di restore, parte delle sue funzionalità erano già offerte da reset [(@sec:heads)], che vedremo in
 contesti diversi; se non si desidera modificare i commit restore è più appropriato.
 
 Per vedere quali modifiche sono già nella staging area e quali invece non sono ancora state
@@ -325,7 +325,7 @@ $ git merge develop
 ```
 
 Questo permette di vedere prima le nuove modifiche remote: dopo l'utilizzo di fetch, si possono
-guardare al volo facendo ad esempio ``git checkout origin/develop`` (si entra in deatached head
+guardare al volo facendo ad esempio ``git checkout origin/develop`` (si entra in detached head
 [@sec:heads]). Poi si può decidere se effettuare il merge o no, oppure di effettuare il merge in
 assenza di internet (in casi estremi le modifiche solitamente prelevate con fetch potrebbero
 venire da un altro disco).
@@ -573,7 +573,7 @@ $ cat .git/HEAD
 ref: refs/heads/master
 ```
 
-Nel caso in cui si voglia ritornare ad un commit precedente si entra nello stato di ___deatached
+Nel caso in cui si voglia ritornare ad un commit precedente si entra nello stato di ___detached
 head___, ovvero facendo il checkout su uno specifico commit (identificato con il suo codice hash).
 
 ```
@@ -620,12 +620,12 @@ allo stato corrente (HEAD scollegato), usa
 git push origin HEAD:<nome del branch remoto>
 ```
 
-Il comando suggerito da git serve per caricare le modifiche effettuate in deatached head
+Il comando suggerito da git serve per caricare le modifiche effettuate in detached head
 direttamente sul branch remoto, come spiegato nella sezione [@sec:remoti]. è molto probabile che
 non funzioni, perché andrebbe ad eliminare delle modifiche remote successive al commit in cui ci
 si è posizionati; è necessario aggiungere l'opzione -f _force_ a push se si vuole eliminarle.
 
-Questo non risolve lo stato di deatached head. Infatti il branch (in questo caso master), contiene
+Questo non risolve lo stato di detached head. Infatti il branch (in questo caso master), contiene
 contiene ancora i commit che vogliamo eliminare: un push li riporterebbe sul repository remoto.
 
 Quindi dopo aver fatto ``git checkout master``, tornando sul branch da cui ci si era distaccati,
@@ -798,7 +798,7 @@ $ git config --global user.email entattis15@itsvinci.com
 ```
 
 In questo modo si imposta lo username e l'email che verranno associati a tutti i futuri commit.
-Non sono da confondere con le credenziali di Github [@sec:github]. Per impostare editor e pager
+Non sono da confondere con le credenziali di Github [(@sec:github)]. Per impostare editor e pager
 utilizzati da git (di solito vim e less sono già impostati di default):
 
 ```
